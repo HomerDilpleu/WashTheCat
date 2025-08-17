@@ -30,6 +30,8 @@ game.scenes.boot.update = function() {
     // Check is playButton is clicked
     game.sprites.playButton.update()
 
+    game.sprites.cat.update()
+
 }
 
 //////////////////////
