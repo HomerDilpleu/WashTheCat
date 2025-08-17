@@ -42,13 +42,10 @@ game.sprites.cat.init = function() {
 
     this.walkAnimation = [this.walk1Image, this.walk2Image, this.walk3Image]
 
-    // Face
+    // Facing
     this.faceBody = new Path2D("M110 36 C100 64,50 24,38 60 C55 78,47 92,46 105 C61 55,93 56,91 105 C92 66,105 64,116 58 Q133 54,122 35 Q117 48,110 36")
-    this.faceLegs = new Path2D("M38 60 C53 77,50 98,51 110 C63 40,92 71,97 110 C97 88,92 65,116 58")
-    this.faceTail = new Path2D("M38 60 C27 63,25 76,11 78")
     this.faceEyes = new Path2D("M110 45 Q112 48, 115 45 M119 45 Q122 48,124 45")
-    this.faceImage = {draw: function (ctx) {game.sprites.cat.drawCat(ctx,game.sprites.cat.faceBody, game.sprites.cat.faceLegs, game.sprites.cat.faceTail, game.sprites.cat.faceEyes)}}
-
+    this.faceImage = {draw: function (ctx) {game.sprites.cat.drawCat(ctx,game.sprites.cat.faceBody, game.sprites.cat.walk2Legs, game.sprites.cat.walk2Tail, game.sprites.cat.faceEyes)}}
 
     // Load animation extension
     mge.animation.loadExtention(this)

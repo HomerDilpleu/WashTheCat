@@ -1,14 +1,14 @@
 game.sprites.playButton.init = function() {
     
     // Init sprite properties
-    this.width = game.images.playButton.width
-    this.height = game.images.playButton.height
+    this.width = 100
+    this.height = 100
     this.x = 640
     this.y = 300
-    // Load animation extension
-    mge.animation.loadExtention(this)
-    this.animation.timeBetweenFrames = 500
-    this.animation.frames = game.animations.playButtonAnimation
+
+    // Path
+    this.path = new Path2D("M10 10 L90 45 L10 90")
+
 }
 
 game.sprites.playButton.update = function () {
@@ -19,6 +19,6 @@ game.sprites.playButton.update = function () {
 }
 
 game.sprites.playButton.drawFunction = function (ctx) {
-    // Draw animation
-    this.animation.draw(ctx)
+    ctx.fillStyle = "red"
+    ctx.fill(this.path)
 }

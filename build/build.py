@@ -2,17 +2,13 @@ import os
 import buildUtils
 
 inputFiles = ['../src/lib/mge_V1.1.1.js',\
-              '../src/lib/mge_imageExtension_V0.1.0.js',\
               '../src/lib/mge_animationExtension_V0.0.1.js',\
               '../src/lib/mge_songExtension_V0.1.0.js',\
               '../src/game.js',\
-              '../src/assets/animations.js',\
-              '../src/assets/images.js',\
               '../src/assets/instruments.js',\
               '../src/assets/songs.js',\
               '../src/scenes/boot.js',\
               '../src/scenes/main.js',\
-              '../src/sprites/logoDilpleu.js',\
               '../src/sprites/cat.js',\
               '../src/sprites/playButton.js'\
               ]

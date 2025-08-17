@@ -5,10 +5,7 @@ game = {
     boot : {},
     main : {}
   },
-  images:{},
-  animations:{},
   sprites:{
-    logoDilpleu: mge.game.createSprite(),
     playButton: mge.game.createSprite(),
     cat: mge.game.createSprite()
   },
