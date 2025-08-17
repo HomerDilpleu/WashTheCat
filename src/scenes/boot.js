@@ -15,16 +15,9 @@ game.scenes.boot.start = function() {
     game.sprites.hydro.init()
 
     // Create hydro objects
-    game.sprites.hydro.new({
-        type: 'T',
-        x: 200,
-        y: 200
-    })
-    game.sprites.hydro.new({
-        type: 'P',
-        x: 300,
-        y: 300
-    })
+    game.sprites.hydro.newTank({X:200,Altitude:200,tankWidth:100,tankHeight:200,curHeight:180})
+    //game.sprites.hydro.newPipe({x:300,y:300})
+
 
 }
 

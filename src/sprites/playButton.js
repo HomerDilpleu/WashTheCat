@@ -21,4 +21,5 @@ game.sprites.playButton.update = function () {
 game.sprites.playButton.drawFunction = function (ctx) {
     ctx.fillStyle = "red"
     ctx.fill(this.path)
+    
 }
