@@ -7,7 +7,8 @@ game = {
   },
   sprites:{
     playButton: mge.game.createSprite(),
-    cat: mge.game.createSprite()
+    cat: mge.game.createSprite(),
+    hydro: mge.game.createSprite()
   },
   variables:{},
   instruments:{},
