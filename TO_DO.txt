@@ -1,0 +1,46 @@
+-----------------------------
+TO DO
+-----------------------------
+- Logique "tank"
+- Logique "connector"
+- Logique "pipe"
+- Logique "valve"
+- Logique "shower"
+
+-----------------------------
+Mécanismes
+-----------------------------
+- Le chat change de direction lorsqu'il se fait arroser.
+- Le caht change de direction si il voit une douche ouverte
+- Il peut sortir de l'écran à gauche ou à droite
+- le caht se tache plus si il touche une poubelle
+- le taux de nettoyage dépend de la position du chat sous la douche. Si super bien centré, effet visuel 
+
+-----------------------------
+Idées pour les niveaux
+-----------------------------
+- Mettre plusieurs douches
+- Mettre plusieurs chats
+- Mettre plusieurs poubelles
+
+-----------------------------
+Condition de fin de niveau
+-----------------------------
+   le chat est propre à 100%
+OU il ne reste plus d'eau
+OU le chat est sorti de l'écran
+
+-----------------------------
+Condition de victoire
+-----------------------------
+>90% --> 3*
+>80% --> 2*
+>70% --> 1*
+en dessous, niveau perdu
+
+-----------------------------
+A faire si temps
+-----------------------------
+- enregistrer la progression (niveau par niveau, nb étoiles)
+- ajouter une possibilité de sélectionner les niveau à rejouer
+- ajouter un robinet à pression

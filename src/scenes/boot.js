@@ -15,9 +15,11 @@ game.scenes.boot.start = function() {
     game.sprites.hydro.init()
 
     // Create hydro objects
-    game.sprites.hydro.newTank({X:200,Altitude:200,tankWidth:100,tankHeight:200,curHeight:180})
-    //game.sprites.hydro.newPipe({x:300,y:300})
-
+    game.sprites.hydro.newTank({X:200,altitude:150,tankWidth:100,tankHeight:200,curHeight:180})
+    game.sprites.hydro.newTank({X:400,altitude:200,tankWidth:50,tankHeight:300,curHeight:200})
+    game.sprites.hydro.newDistributor({X:300,altitude:100})
+    game.sprites.hydro.newPipe(['T0','D0'])
+    game.sprites.hydro.newPipe(['T1','D0'])
 
 }
 
@@ -29,7 +31,9 @@ game.scenes.boot.update = function() {
     // Update sprites
     game.sprites.playButton.update()
     game.sprites.cat.update()
-    game.sprites.hydro.cloneExecuteForEach('update')
+    game.sprites.hydro.calcTanksPressure()
+    game.sprites.hydro.calcDistributorsPressure()
+    game.sprites.hydro.calcPipesProperties()
 
 }
 

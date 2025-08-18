@@ -8,9 +8,10 @@ game.sprites.hydro.init = function() {
     this.drawBoundaries = true
     this.width = 100
     this.height = 100
-    // Paths
-    //this.pathTank = new Path2D("M10 10 L90 10 L90 90 L10 90")
-    this.pathPipe = new Path2D("M10 10 L90 45 L10 90")
+    // List of objects by type
+    this.tanks = []
+    this.distributors = []
+    this.pipes = []
 }
 
 // *************************************************
@@ -27,29 +28,62 @@ game.sprites.hydro.newTank = function (c) {
     o.tankHeight = c.tankHeight
     o.curHeight = c.curHeight
     o.X = c.X
-    o.Altitude = c.Altitude
+    o.altitude = c.altitude
     // Sprite properties
     o.width = c.tankWidth
     o.height = c.tankHeight
     o.x = c.X
-    o.y = mge.game.height - c.Altitude - c.tankHeight / 2
-    // Draw properties
-    //o.colour = "blue"
-    //o.path = this.pathTank
-    return 0
+    o.y = mge.game.height - c.altitude - c.tankHeight / 2
+    // Connection point
+    o.connectionPointx = o.x
+    o.connectionPointy = o.y + o.height / 2
+    // Linked objects
+    o.linkedObjects = []
+    // Push to list
+    game.sprites.hydro.tanks.push(o)
+}
+
+game.sprites.hydro.newDistributor = function (c) {
+    // Create distributor object
+    let o = game.sprites.hydro.cloneCreate()
+    o.type = 'D'
+    // Hydro properties
+    o.X = c.X
+    o.altitude = c.altitude
+    // Sprite properties
+    o.width = 20
+    o.height = 20
+    o.x = c.X
+    o.y = mge.game.height - c.altitude - 10
+    // Connection point
+    o.connectionPointx = o.x
+    o.connectionPointy = o.y
+    // Linked objects
+    o.linkedObjects = []
+    // Push to list
+    game.sprites.hydro.distributors.push(o)
 }
 
 game.sprites.hydro.newPipe = function (c) {
-    // Create tank object
+    // Create pipe object
     let o = game.sprites.hydro.cloneCreate()
     o.type = 'P'
-    // Hydro properties
-    o.x = c.x
-    o.y = c.y
-    // Draw properties
-    o.colour = "green"
-    o.path = this.pathPipe
-    return 0
+    // Connection 1
+    if (c[0][0] == 'T') {o.connection1 = game.sprites.hydro.tanks[c[0][1]]}
+    if (c[0][0] == 'D') {o.connection1 = game.sprites.hydro.distributors[c[0][1]]}
+    // Connection 2
+    if (c[1][0] == 'T') {o.connection2 = game.sprites.hydro.tanks[c[1][1]]}
+    if (c[1][0] == 'D') {o.connection2 = game.sprites.hydro.distributors[c[1][1]]}
+    // Update 'connected objects' list of each object
+    o.connection1.linkedObjects.push(o.connection2)
+    o.connection2.linkedObjects.push(o.connection1)
+    // Sprite properties
+    o.width = mge.game.width
+    o.height = mge.game.height
+    o.x = mge.game.width / 2
+    o.y = mge.game.height / 2
+    // Push to list
+    game.sprites.hydro.pipes.push(o)
 }
 
 
@@ -58,16 +92,40 @@ game.sprites.hydro.newPipe = function (c) {
 // UPDATE
 // *************************************************
 // *************************************************
-game.sprites.hydro.update = function () {
-    if (this.type === 'T') {this.updateTank()}
-    if (this.type === 'P') {this.updatePipe()}
+game.sprites.hydro.calcTanksPressure = function () {
+    game.sprites.hydro.tanks.forEach(function (tank) {
+        // FAKE
+        if (tank.curHeight >= 1) {tank.curHeight-=1}
+        // Calculate hydro properties
+        tank.volume = tank.tankWidth * tank.curHeight
+        tank.pressure = tank.altitude + tank.curHeight
+    })
 }
 
-game.sprites.hydro.updateTank = function () {
-    if (this.curHeight > 1) {this.curHeight-=1}
+game.sprites.hydro.calcDistributorsPressure = function () {
+    game.sprites.hydro.distributors.forEach(function (distributor) {
+        // Calculate hydro properties
+        let inputPressure = 0
+        let inputNb = 0
+        distributor.pressure = 0
+        // For each linked objects
+        distributor.linkedObjects.forEach(function (linkedObject) {
+            // Linked tanks
+            if (linkedObject.type == 'T') {
+                inputPressure += linkedObject.pressure
+                inputNb+=1
+            }
+        })
+        if (inputNb > 0) {distributor.pressure = inputPressure / inputNb}
+    })
 }
-game.sprites.hydro.updatePipe = function () {
+
+game.sprites.hydro.calcPipesProperties = function () {
+    game.sprites.hydro.pipes.forEach(function (pipe) {
+        // A FAIRE
+    })
 }
+
 
 // *************************************************
 // *************************************************
@@ -76,6 +134,7 @@ game.sprites.hydro.updatePipe = function () {
 // *************************************************
 game.sprites.hydro.drawFunction = function (ctx) {
     if (this.type === 'T') {this.drawTank(ctx)}
+    if (this.type === 'D') {this.drawDistributor(ctx)}
     if (this.type === 'P') {this.drawPipe(ctx)}
 }
 
@@ -86,10 +145,29 @@ game.sprites.hydro.drawTank = function (ctx) {
     // Draw water
     ctx.fillStyle = "blue"
     ctx.fillRect(5, this.tankHeight, this.tankWidth-10, -this.curHeight)
+    // DEBUG
+    ctx.fillStyle = "white"
+    ctx.font = "12px serif"
+    ctx.fillText("P: " + this.pressure, 10, 20)
+    ctx.fillText("V: " + this.volume, 10, 40)
+}
 
+game.sprites.hydro.drawDistributor = function (ctx) {
+    // Draw connector
+    ctx.fillStyle = "green"
+    ctx.fillRect(0, 0, 20, 20)
+    // DEBUG
+    ctx.fillStyle = "Black"
+    ctx.font = "12px serif"
+    ctx.fillText("P: " + this.pressure, 10, 20)
 }
 
 game.sprites.hydro.drawPipe = function (ctx) {
-    ctx.fillStyle = this.colour
-    ctx.fill(this.path)
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 15
+    ctx.beginPath()
+    ctx.moveTo(this.connection1.connectionPointx, this.connection1.connectionPointy)
+    ctx.lineTo(this.connection2.connectionPointx, this.connection2.connectionPointy)
+    ctx.stroke()
+    ctx.lineWidth = 1
 }
