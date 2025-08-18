@@ -95,7 +95,7 @@ game.sprites.hydro.newPipe = function (c) {
 game.sprites.hydro.calcTanksPressure = function () {
     game.sprites.hydro.tanks.forEach(function (tank) {
         // FAKE
-        if (tank.curHeight >= 1) {tank.curHeight-=1}
+        //if (tank.curHeight >= 1) {tank.curHeight-=1}
         // Calculate hydro properties
         tank.volume = tank.tankWidth * tank.curHeight
         tank.pressure = tank.altitude + tank.curHeight
@@ -104,7 +104,7 @@ game.sprites.hydro.calcTanksPressure = function () {
 
 game.sprites.hydro.calcDistributorsPressure = function () {
     game.sprites.hydro.distributors.forEach(function (distributor) {
-        // Calculate hydro properties
+        // Init
         let inputPressure = 0
         let inputNb = 0
         distributor.pressure = 0
@@ -120,9 +120,21 @@ game.sprites.hydro.calcDistributorsPressure = function () {
     })
 }
 
-game.sprites.hydro.calcPipesProperties = function () {
+game.sprites.hydro.calcPipesFlow = function () {
     game.sprites.hydro.pipes.forEach(function (pipe) {
-        // A FAIRE
+        // Calculate flow based on pressure difference
+        pipe.flow = pipe.connection1.pressure - pipe.connection2.pressure
+        //////////////
+        // TO DO: add flow limits based on tank volume
+        //////////////
+    })
+}
+
+game.sprites.hydro.updateTankCurHeight = function () {
+    game.sprites.hydro.tanks.forEach(function (tank) {
+        // Update current height based on connected pipe flow
+        tank.curHeight = tank.linkedObjects[0].flow / tank.width
+        console.log(tank.linkedObjects[0])
     })
 }
 
@@ -170,4 +182,10 @@ game.sprites.hydro.drawPipe = function (ctx) {
     ctx.lineTo(this.connection2.connectionPointx, this.connection2.connectionPointy)
     ctx.stroke()
     ctx.lineWidth = 1
+    // DEBUG
+    ctx.fillStyle = "Black"
+    ctx.font = "12px serif"
+    let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
+    let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
+    ctx.fillText("F: " + this.flow, x + 20, y)
 }
