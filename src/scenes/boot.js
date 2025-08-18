@@ -34,7 +34,7 @@ game.scenes.boot.update = function() {
     game.sprites.hydro.calcTanksPressure()
     game.sprites.hydro.calcDistributorsPressure()
     game.sprites.hydro.calcPipesFlow()
-    game.sprites.hydro.updateTankCurHeight()
+    //game.sprites.hydro.updateTankCurHeight()
 
 }
 

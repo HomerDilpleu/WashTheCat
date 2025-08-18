@@ -124,17 +124,23 @@ game.sprites.hydro.calcPipesFlow = function () {
     game.sprites.hydro.pipes.forEach(function (pipe) {
         // Calculate flow based on pressure difference
         pipe.flow = pipe.connection1.pressure - pipe.connection2.pressure
-        //////////////
+        //////////////////////////////////////////////
         // TO DO: add flow limits based on tank volume
-        //////////////
+        //////////////////////////////////////////////
+        
     })
 }
 
 game.sprites.hydro.updateTankCurHeight = function () {
-    game.sprites.hydro.tanks.forEach(function (tank) {
-        // Update current height based on connected pipe flow
-        tank.curHeight = tank.linkedObjects[0].flow / tank.width
-        console.log(tank.linkedObjects[0])
+    // For each pipe, update the linked tank if exists
+    game.sprites.hydro.pipes.forEach(function (pipe) {
+        // Get linked tank
+        let linkedTank = {}
+        if (pipe.connection1.type == 'T') {linkedTank = pipe.connection1}
+        if (pipe.connection2.type == 'T') {linkedTank = pipe.connection2}
+        // Update linked tank height
+        linkedTank.curHeight = Math.max(pipe.flow * 80/ linkedTank.width,0)
+        //linkedTank.curHeight = pipe.flow / linkedTank.width
     })
 }
 
@@ -160,8 +166,10 @@ game.sprites.hydro.drawTank = function (ctx) {
     // DEBUG
     ctx.fillStyle = "white"
     ctx.font = "12px serif"
-    ctx.fillText("P: " + this.pressure, 10, 20)
-    ctx.fillText("V: " + this.volume, 10, 40)
+    ctx.fillText("A: " + this.altitude.toFixed(2), 10, 20)
+    ctx.fillText("P: " + this.pressure.toFixed(2), 10, 40)
+    ctx.fillText("H: " + this.curHeight.toFixed(2), 10, 60)
+    ctx.fillText("V: " + this.volume.toFixed(2), 10, 80)
 }
 
 game.sprites.hydro.drawDistributor = function (ctx) {
@@ -171,11 +179,12 @@ game.sprites.hydro.drawDistributor = function (ctx) {
     // DEBUG
     ctx.fillStyle = "Black"
     ctx.font = "12px serif"
-    ctx.fillText("P: " + this.pressure, 10, 20)
+    ctx.fillText("P: " + this.pressure.toFixed(2), 10, 40)
 }
 
 game.sprites.hydro.drawPipe = function (ctx) {
     ctx.strokeStyle = "black"
+    if(this.flow !=  0) {ctx.strokeStyle = "blue"}
     ctx.lineWidth = 15
     ctx.beginPath()
     ctx.moveTo(this.connection1.connectionPointx, this.connection1.connectionPointy)
@@ -187,5 +196,5 @@ game.sprites.hydro.drawPipe = function (ctx) {
     ctx.font = "12px serif"
     let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
     let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
-    ctx.fillText("F: " + this.flow, x + 20, y)
+    ctx.fillText("F: " + this.flow.toFixed(2), x + 20, y)
 }
