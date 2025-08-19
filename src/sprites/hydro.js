@@ -12,11 +12,12 @@ game.sprites.hydro.init = function() {
     this.tanks = []
     this.distributors = []
     this.pipes = []
+    this.combos = []
 }
 
 // *************************************************
 // *************************************************
-// Create hydro objets
+// CREATE
 // *************************************************
 // *************************************************
 game.sprites.hydro.newTank = function (c) {
@@ -90,6 +91,23 @@ game.sprites.hydro.newPipe = function (c) {
     game.sprites.hydro.pipes.push(o)
 }
 
+game.sprites.hydro.newCombo = function (c) {
+    // Create combo of tanks object
+    let o = game.sprites.hydro.cloneCreate()
+    o.type = 'C'
+    // Hydro properties
+    o.curHeight = 0
+    // Linked tanks
+    o.linkedObjects = []
+    c.forEach(function (tankIndex) {
+        // Get tank object
+        let tank = game.sprites.hydro.tanks[tankIndex]
+        // Add to linked objects
+        o.linkedObjects.push(tank)
+    })
+    // Push to list
+    game.sprites.hydro.combos.push(o)
+}
 
 // *************************************************
 // *************************************************
@@ -159,6 +177,29 @@ game.sprites.hydro.updateTankCurHeight = function () {
         if (linkedTank.curHeight < 0) {linkedTank.curHeight = 0}
     })
 }
+
+
+game.sprites.hydro.updateComboCurHeight = function () {
+    // For each combo, update the linked tanks
+    game.sprites.hydro.combos.forEach(function (combo) {
+        // Calculate combo height
+        let comboHeight = 0
+        let nbTanks = 0
+        combo.linkedObjects.forEach(function (tank) {
+            nbTanks += 1
+            comboHeight += tank.curHeight
+        })
+        // Calculate average height
+        comboHeight = comboHeight / nbTanks
+        combo.curHeight = comboHeight
+        // Update linked tanks height
+        combo.linkedObjects.forEach(function (tank) {
+            tank.curHeight = comboHeight
+        })
+    })
+
+}
+
 
 
 // *************************************************
