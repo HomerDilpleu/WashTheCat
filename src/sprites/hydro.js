@@ -94,8 +94,6 @@ game.sprites.hydro.newPipe = function (c) {
 // *************************************************
 game.sprites.hydro.calcTanksPressure = function () {
     game.sprites.hydro.tanks.forEach(function (tank) {
-        // FAKE
-        //if (tank.curHeight >= 1) {tank.curHeight-=1}
         // Calculate hydro properties
         tank.volume = tank.tankWidth * tank.curHeight
         tank.pressure = tank.altitude + tank.curHeight
@@ -111,7 +109,7 @@ game.sprites.hydro.calcDistributorsPressure = function () {
         // For each linked objects
         distributor.linkedObjects.forEach(function (linkedObject) {
             // Linked tanks
-            if (linkedObject.type == 'T') {
+            if (linkedObject.type == 'T' && linkedObject.curHeight > 0) {
                 inputPressure += linkedObject.pressure
                 inputNb+=1
             }
@@ -124,10 +122,6 @@ game.sprites.hydro.calcPipesFlow = function () {
     game.sprites.hydro.pipes.forEach(function (pipe) {
         // Calculate flow based on pressure difference
         pipe.flow = Math.abs(pipe.connection2.pressure - pipe.connection1.pressure)
-        //////////////////////////////////////////////
-        // TO DO: add flow limits based on tank volume
-        //////////////////////////////////////////////
-        
     })
 }
 
@@ -150,10 +144,8 @@ game.sprites.hydro.updateTankCurHeight = function () {
         let heightDifference = volumeToMove / linkedTank.tankWidth
         if (linkedTank.pressure > linkedObject.pressure) {linkedTank.curHeight -= heightDifference}
         else if (linkedTank.pressure < linkedObject.pressure) {linkedTank.curHeight += heightDifference}
-
-        //linkedTank.curHeight = Math.max(pipe.flow * 80/ linkedTank.width,0)
-        //linkedTank.curHeight = pipe.flow / linkedTank.width
-
+        // Check curHeight is not negative
+        if (linkedTank.curHeight < 0) {linkedTank.curHeight = 0}
     })
 }
 
