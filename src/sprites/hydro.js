@@ -97,6 +97,8 @@ game.sprites.hydro.calcTanksPressure = function () {
         // Calculate hydro properties
         tank.volume = tank.tankWidth * tank.curHeight
         tank.pressure = tank.altitude + tank.curHeight
+        // If tank is empty
+        if (tank.curHeight == 0) {tank.pressure = tank.linkedObjects[0].pressure}
     })
 }
 
@@ -109,7 +111,7 @@ game.sprites.hydro.calcDistributorsPressure = function () {
         // For each linked objects
         distributor.linkedObjects.forEach(function (linkedObject) {
             // Linked tanks
-            if (linkedObject.type == 'T' && linkedObject.curHeight > 0) {
+            if (linkedObject.type == 'T') {
                 inputPressure += linkedObject.pressure
                 inputNb+=1
             }
