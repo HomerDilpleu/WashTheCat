@@ -29,6 +29,7 @@ game.sprites.hydro.newTank = function (c) {
     o.curHeight = c.curHeight
     o.X = c.X
     o.altitude = c.altitude
+    o.pressure = 0
     // Sprite properties
     o.width = c.tankWidth
     o.height = c.tankHeight
@@ -50,6 +51,7 @@ game.sprites.hydro.newDistributor = function (c) {
     // Hydro properties
     o.X = c.X
     o.altitude = c.altitude
+    o.pressure = 0
     // Sprite properties
     o.width = 20
     o.height = 20
@@ -100,7 +102,8 @@ game.sprites.hydro.calcTanksPressure = function () {
         tank.volume = tank.tankWidth * tank.curHeight
         tank.pressure = tank.altitude + tank.curHeight
         // If tank is empty
-        if (tank.curHeight == 0) {tank.pressure = tank.linkedObjects[0].pressure}
+        //if (tank.curHeight == 0) {tank.pressure = tank.linkedObjects[0].pressure}
+        if (tank.curHeight == 0) {tank.pressure = Math.min(tank.linkedObjects[0].pressure,tank.pressure)}
     })
 }
 
@@ -209,5 +212,5 @@ game.sprites.hydro.drawPipe = function (ctx) {
     ctx.font = "12px serif"
     let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
     let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
-    ctx.fillText("F: " + this.flow.toFixed(2), x + 20, y)
+    ctx.fillText("F: " + this.flow.toFixed(0), x + 20, y)
 }
