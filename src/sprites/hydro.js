@@ -82,6 +82,8 @@ game.sprites.hydro.newPipe = function (c) {
     o.height = mge.game.height
     o.x = mge.game.width / 2
     o.y = mge.game.height / 2
+    // Specifi properties
+    o.isFilled = 0
     // Push to list
     game.sprites.hydro.pipes.push(o)
 }
@@ -124,6 +126,10 @@ game.sprites.hydro.calcPipesFlow = function () {
     game.sprites.hydro.pipes.forEach(function (pipe) {
         // Calculate flow based on pressure difference
         pipe.flow = Math.abs(pipe.connection2.pressure - pipe.connection1.pressure)
+        // Check if pipe is filled or not
+        pipe.isFilled = 1
+        if (pipe.connection1.type == 'T' && pipe.connection1.curHeight == 0) {pipe.isFilled = 0}
+        if (pipe.connection2.type == 'T' && pipe.connection2.curHeight == 0) {pipe.isFilled = 0}
     })
 }
 
@@ -191,7 +197,7 @@ game.sprites.hydro.drawDistributor = function (ctx) {
 
 game.sprites.hydro.drawPipe = function (ctx) {
     ctx.strokeStyle = "black"
-    if(this.flow !=  0) {ctx.strokeStyle = "blue"}
+    if(this.isFilled ==  1) {ctx.strokeStyle = "blue"}
     ctx.lineWidth = 15
     ctx.beginPath()
     ctx.moveTo(this.connection1.connectionPointx, this.connection1.connectionPointy)
