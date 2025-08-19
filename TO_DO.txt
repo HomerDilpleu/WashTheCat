@@ -22,6 +22,7 @@ Idées pour les niveaux
 - Mettre plusieurs douches
 - Mettre plusieurs chats
 - Mettre plusieurs poubelles
+- Voir si scoll de manière à ne pas tout voir
 
 -----------------------------
 Condition de fin de niveau

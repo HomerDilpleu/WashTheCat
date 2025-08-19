@@ -31,8 +31,7 @@ game.sprites.hydro.newTank = function (c) {
     o.curHeight = c.curHeight
     o.X = c.X
     o.altitude = c.altitude
-    o.pressureTank = 0
-    o.pressureDistributor = 0
+    o.pressure = 0
     // Sprite properties
     o.width = c.tankWidth
     o.height = c.tankHeight
@@ -160,11 +159,9 @@ game.sprites.hydro.updateValves = function () {
             if (valve.isOpen == 1) {valve.isOpen = 0}
             else {valve.isOpen = 1}
         }
-        // Updatte tank pressure and distributor pressure
-        if (valve.linkedObjects[0].type == 'T') {valve.pressureTank = valve.linkedObjects[0].pressure}  
-        if (valve.linkedObjects[1].type == 'T') {valve.pressureTank = valve.linkedObjects[1].pressure}
-        if (valve.linkedObjects[0].type == 'D') {valve.pressureDistributor = valve.linkedObjects[0].pressure}
-        if (valve.linkedObjects[1].type == 'D') {valve.pressureDistributor = valve.linkedObjects[1].pressure}
+        // Connection to tanks
+        if (valve.linkedObjects[0].type == 'T') {valve.pressure = valve.linkedObjects[0].pressure}
+        if (valve.linkedObjects[1].type == 'T') {valve.pressure = valve.linkedObjects[1].pressure}
     })
 }
 
@@ -177,13 +174,8 @@ game.sprites.hydro.calcDistributorsPressure = function () {
         // For each linked objects
         distributor.linkedObjects.forEach(function (linkedObject) {
             // Linked tanks
-            if (linkedObject.type == 'T') {
+            if (linkedObject.type == 'T' || (linkedObject.type == 'V' && linkedObject.isOpen)) {
                 inputPressure += linkedObject.pressure
-                inputNb+=1
-            }
-            // Linked valves
-            if (linkedObject.type == 'V' && linkedObject.isOpen == 1) {
-                inputPressure += linkedObject.pressureTank
                 inputNb+=1
             }
         })
@@ -193,36 +185,24 @@ game.sprites.hydro.calcDistributorsPressure = function () {
 
 game.sprites.hydro.calcPipesFlow = function () {
     game.sprites.hydro.pipes.forEach(function (pipe) {
-        // Default value to reduce code size (no need update flow if valve is closed)
-        pipe.flow = 0
-        // Flow calculation: case without valve
-        if (pipe.connection1.type != 'V' && pipe.connection2.type != 'V') {
-            pipe.flow = Math.abs(pipe.connection2.pressure - pipe.connection1.pressure)
-        }
-        // Flow calculation: valve opened to tank
-        if (pipe.connection1.type == 'V' && pipe.connection1.isOpen == 1 && pipe.connection2.type == 'T') {
-            pipe.flow = Math.abs(pipe.connection2.pressure - pipe.connection1.pressureDistributor)  
-        }
-        // Flow calculation: tank to valve opened
-        if (pipe.connection1.type == 'T' && pipe.connection2.type == 'V' && pipe.connection2.isOpen == 1 ) {
-            pipe.flow = Math.abs(pipe.connection1.pressure - pipe.connection2.pressureDistributor)  
-        }
-        // Flow calculation: valve opened to distributor
-        if (pipe.connection1.type == 'V' && pipe.connection1.isOpen == 1 && pipe.connection2.type == 'D') {
-            pipe.flow = Math.abs(pipe.connection2.pressure - pipe.connection1.pressureTank)  
-        }
-        // Flow calculation: distributo to valve opened
-        if (pipe.connection1.type == 'D' && pipe.connection2.type == 'V' && pipe.connection2.isOpen == 1 ) {
-            pipe.flow = Math.abs(pipe.connection1.pressure - pipe.connection2.pressureTank)  
-        }
-        pipe.flow = pipe.flow * 0.5
-               
+        // Get the real connected objects
+        let realObj1 = pipe.connection1
+        let realObj2 = pipe.connection2
+
+
+        if (pipe.connection1.type == 'T' && ) {pipe.connection1 = game.sprites.hydro.tanks[pipe.connection1.index]}
+
+
+
+        // Calculate flow based on pressure difference
+        pipe.flow = Math.abs(pipe.connection2.pressure - pipe.connection1.pressure)
+        // If a valve is closed, set flow to 0
+        if(pipe.connection1.type == 'V' && pipe.connection1.isOpen == 0) {pipe.flow = 0}
+        if(pipe.connection2.type == 'V' && pipe.connection2.isOpen == 0) {pipe.flow = 0}
         // Check if pipe is filled or not
         pipe.isFilled = 1
         if (pipe.connection1.type == 'T' && pipe.connection1.curHeight == 0) {pipe.isFilled = 0}
         if (pipe.connection2.type == 'T' && pipe.connection2.curHeight == 0) {pipe.isFilled = 0}
-        if (pipe.connection1.type == 'V' && pipe.connection1.isOpen == 0) {pipe.isFilled = 0}
-        if (pipe.connection2.type == 'V' && pipe.connection2.isOpen == 0) {pipe.isFilled = 0}
     })
 }
 
@@ -322,8 +302,7 @@ game.sprites.hydro.drawValve = function (ctx) {
     // DEBUG
     ctx.fillStyle = "Black"
     ctx.font = "12px serif"
-    ctx.fillText("PT: " + this.pressureTank.toFixed(0), -50, 20)
-    ctx.fillText("PD: " + this.pressureDistributor.toFixed(0), -50, 40)
+    ctx.fillText("P: " + this.pressure.toFixed(0), -50, 25)
 }
 
 game.sprites.hydro.drawPipe = function (ctx) {
