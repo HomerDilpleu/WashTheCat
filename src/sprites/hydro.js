@@ -116,6 +116,8 @@ game.sprites.hydro.newPipe = function (c) {
     o.height = mge.game.height
     o.x = mge.game.width / 2
     o.y = mge.game.height / 2
+    o.isVisible = 1
+    if (c[2] == 'Hide') {o.isVisible = 0}
     // Push to list
     game.sprites.hydro.pipes.push(o)
 }
@@ -338,21 +340,23 @@ game.sprites.hydro.drawValve = function (ctx) {
 }
 
 game.sprites.hydro.drawPipe = function (ctx) {
-    // Draw pipe
-    ctx.strokeStyle = "black"
-    if(this.isFilled ==  1) {ctx.strokeStyle = "blue"}
-    ctx.lineWidth = 15
-    ctx.beginPath()
-    ctx.moveTo(this.connection1.connectionPointx, this.connection1.connectionPointy)
-    ctx.lineTo(this.connection2.connectionPointx, this.connection2.connectionPointy)
-    ctx.stroke()
-    ctx.lineWidth = 1
-    // DEBUG
-    ctx.fillStyle = "Black"
-    ctx.font = "12px serif"
-    let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
-    let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
-    ctx.fillText("F: " + this.flow.toFixed(0), x + 20, y)
+    if (this.isVisible == 1) {
+        // Draw pipe
+        ctx.strokeStyle = "black"
+        if(this.isFilled ==  1) {ctx.strokeStyle = "blue"}
+        ctx.lineWidth = 15
+        ctx.beginPath()
+        ctx.moveTo(this.connection1.connectionPointx, this.connection1.connectionPointy)
+        ctx.lineTo(this.connection2.connectionPointx, this.connection2.connectionPointy)
+        ctx.stroke()
+        ctx.lineWidth = 1
+        // DEBUG
+        ctx.fillStyle = "Black"
+        ctx.font = "12px serif"
+        let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
+        let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
+        ctx.fillText("F: " + this.flow.toFixed(0), x + 20, y)
+    }
 }
 
 game.sprites.hydro.drawShower = function (ctx) {
@@ -361,12 +365,13 @@ game.sprites.hydro.drawShower = function (ctx) {
     ctx.fillRect(0, 0, 50, 50)
     // Draw water
     if(this.linkedPipe.flow < 0) {
-        ctx.fillStyle = "blue"
-        ctx.beginPath()
+        ctx.fillStyle = "aqua"
+        ctx.fillRect(0,50,50,200)
+        /*ctx.beginPath()
         ctx.moveTo(25,50)
         ctx.lineTo(this.linkedPipe.flow / 2 + 50, 200)
         ctx.lineTo(-this.linkedPipe.flow / 2, 200)
-        ctx.fill()
+        ctx.fill()*/
 
     }
     // DEBUG

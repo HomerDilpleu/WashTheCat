@@ -162,8 +162,8 @@ game.scenes.boot.start = function() {
     game.sprites.hydro.newPipe(['V0','D0'])
     game.sprites.hydro.newPipe(['T1','V1'])
     game.sprites.hydro.newPipe(['V1','D0'])
-    game.sprites.hydro.newPipe(['T2','D0'])
-    game.sprites.hydro.newShower({X:300,altitude:220,triggerPipe:4})
+    game.sprites.hydro.newPipe(['T2','D0','Hide'])
+    game.sprites.hydro.newShower({X:300,altitude:245,triggerPipe:4})
 
 }
 
