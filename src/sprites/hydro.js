@@ -214,6 +214,9 @@ game.sprites.hydro.calcDistributorsPressure = function () {
 }
 
 game.sprites.hydro.calcPipesFlow = function () {
+    ///////////////////////
+    // /!\ pipe T -> D or T -> V -> D
+    ///////////////////////
     game.sprites.hydro.pipes.forEach(function (pipe) {
         // Default value to reduce code size (no need update flow if valve is closed)
         pipe.flow = 0
@@ -222,9 +225,9 @@ game.sprites.hydro.calcPipesFlow = function () {
             pipe.flow = pipe.connection1.pressure - pipe.connection2.pressure
         }
         // Flow calculation: valve opened to tank
-        if (pipe.connection1.type == 'V' && pipe.connection1.isOpen == 1 && pipe.connection2.type == 'T') {
-            pipe.flow = pipe.connection1.pressureDistributor - pipe.connection2.pressure 
-        }
+//        if (pipe.connection1.type == 'V' && pipe.connection1.isOpen == 1 && pipe.connection2.type == 'T') {
+//            pipe.flow = pipe.connection1.pressureDistributor - pipe.connection2.pressure 
+//        }
         // Flow calculation: tank to valve opened
         if (pipe.connection1.type == 'T' && pipe.connection2.type == 'V' && pipe.connection2.isOpen == 1 ) {
             pipe.flow = pipe.connection1.pressure - pipe.connection2.pressureDistributor
@@ -234,10 +237,10 @@ game.sprites.hydro.calcPipesFlow = function () {
             pipe.flow = pipe.connection1.pressureTank - pipe.connection2.pressure  
         }
         // Flow calculation: distributo to valve opened
-        if (pipe.connection1.type == 'D' && pipe.connection2.type == 'V' && pipe.connection2.isOpen == 1 ) {
-            pipe.flow = pipe.connection1.pressure - pipe.connection2.pressureTank  
-        }
-        pipe.flow = Math.round(pipe.flow * 0.1)
+//        if (pipe.connection1.type == 'D' && pipe.connection2.type == 'V' && pipe.connection2.isOpen == 1 ) {
+//            pipe.flow = pipe.connection1.pressure - pipe.connection2.pressureTank  
+//        }
+        pipe.flow = Math.round(pipe.flow * 0.5)
                
         // Check if pipe is filled or not
         pipe.isFilled = 1

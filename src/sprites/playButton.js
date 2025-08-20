@@ -3,8 +3,8 @@ game.sprites.playButton.init = function() {
     // Init sprite properties
     this.width = 100
     this.height = 100
-    this.x = 640
-    this.y = 300
+    this.x = 900
+    this.y = 100
 
     // Path
     this.path = new Path2D("M10 10 L90 45 L10 90")
