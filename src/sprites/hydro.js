@@ -237,7 +237,7 @@ game.sprites.hydro.calcPipesFlow = function () {
         if (pipe.connection1.type == 'D' && pipe.connection2.type == 'V' && pipe.connection2.isOpen == 1 ) {
             pipe.flow = pipe.connection1.pressure - pipe.connection2.pressureTank  
         }
-        pipe.flow = Math.round(pipe.flow * 1)
+        pipe.flow = Math.round(pipe.flow * 0.1)
                
         // Check if pipe is filled or not
         pipe.isFilled = 1
@@ -308,10 +308,10 @@ game.sprites.hydro.drawTank = function (ctx) {
     // DEBUG
     ctx.fillStyle = "white"
     ctx.font = "12px serif"
-    ctx.fillText("A: " + this.altitude.toFixed(0), 10, 20)
-    ctx.fillText("P: " + this.pressure.toFixed(0), 10, 40)
-    ctx.fillText("H: " + this.curHeight.toFixed(0), 10, 60)
-    ctx.fillText("V: " + this.volume.toFixed(0), 10, 80)
+    ctx.fillText("A: " + Math.round(this.altitude), 10, 20)
+    ctx.fillText("P: " + Math.round(this.pressure), 10, 40)
+    ctx.fillText("H: " + Math.round(this.curHeight), 10, 60)
+    ctx.fillText("V: " + Math.round(this.volume), 10, 80)
 }
 
 game.sprites.hydro.drawDistributor = function (ctx) {
@@ -321,7 +321,7 @@ game.sprites.hydro.drawDistributor = function (ctx) {
     // DEBUG
     ctx.fillStyle = "Black"
     ctx.font = "12px serif"
-    ctx.fillText("P: " + this.pressure.toFixed(0), 10, 40)
+    ctx.fillText("P: " + Math.round(this.pressure), 10, 40)
 }
 
 game.sprites.hydro.drawValve = function (ctx) {
@@ -335,8 +335,8 @@ game.sprites.hydro.drawValve = function (ctx) {
     // DEBUG
     ctx.fillStyle = "Black"
     ctx.font = "12px serif"
-    ctx.fillText("PT: " + this.pressureTank.toFixed(0), -50, 20)
-    ctx.fillText("PD: " + this.pressureDistributor.toFixed(0), -50, 40)
+    ctx.fillText("PT: " + Math.round(this.pressureTank), -50, 20)
+    ctx.fillText("PD: " + Math.round(this.pressureDistributor), -50, 40)
 }
 
 game.sprites.hydro.drawPipe = function (ctx) {
@@ -355,7 +355,7 @@ game.sprites.hydro.drawPipe = function (ctx) {
         ctx.font = "12px serif"
         let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
         let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
-        ctx.fillText("F: " + this.flow.toFixed(0), x + 20, y)
+        ctx.fillText("F: " + Math.round(this.flow), x + 20, y)
     }
 }
 
@@ -367,15 +367,9 @@ game.sprites.hydro.drawShower = function (ctx) {
     if(this.linkedPipe.flow < 0) {
         ctx.fillStyle = "aqua"
         ctx.fillRect(0,50,50,200)
-        /*ctx.beginPath()
-        ctx.moveTo(25,50)
-        ctx.lineTo(this.linkedPipe.flow / 2 + 50, 200)
-        ctx.lineTo(-this.linkedPipe.flow / 2, 200)
-        ctx.fill()*/
-
     }
     // DEBUG
     ctx.fillStyle = "white"
     ctx.font = "12px serif"
-    ctx.fillText("F: " + this.linkedPipe.flow.toFixed(0), 10, 40)
+    ctx.fillText("F: " + Math.round(this.linkedPipe.flow), 10, 40)
 }
