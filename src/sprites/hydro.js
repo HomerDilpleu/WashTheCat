@@ -14,6 +14,7 @@ game.sprites.hydro.init = function() {
     this.pipes = []
     this.combos = []
     this.valves = []
+    this.showers = []
 }
 
 // *************************************************
@@ -137,6 +138,24 @@ game.sprites.hydro.newCombo = function (c) {
     game.sprites.hydro.combos.push(o)
 }
 
+game.sprites.hydro.newShower = function (c) {
+    // Create shower object
+    let o = game.sprites.hydro.cloneCreate()
+    o.type = 'S'
+    // Hydro properties
+    o.X = c.X
+    o.altitude = c.altitude
+    o.linkedPipe = game.sprites.hydro.pipes[c.triggerPipe]
+    o.isOpen = game.sprites.hydro.pipes[c.triggerPipe]
+    // Sprite properties
+    o.width = 50
+    o.height = 50
+    o.x = c.X
+    o.y = mge.game.height - c.altitude - 10
+    // Push to list
+    game.sprites.hydro.showers.push(o)
+}
+
 // *************************************************
 // *************************************************
 // UPDATE
@@ -227,11 +246,6 @@ game.sprites.hydro.calcPipesFlow = function () {
     })
 }
 
-
-/////////////////////////////////////////////////
-// A REVOIR POUR PRENDRE EN COMPTE LES ROBINETS
-/////////////////////////////////////////////////
-
 game.sprites.hydro.updateTankCurHeight = function () {
     // For each pipe, update the linked tank if exists
     game.sprites.hydro.pipes.forEach(function (pipe) {
@@ -248,31 +262,6 @@ game.sprites.hydro.updateTankCurHeight = function () {
         if (linkedTank.curHeight < 1) {linkedTank.curHeight = 0}
     })
 }
-/*
-game.sprites.hydro.updateTankCurHeight = function () {
-    // For each pipe, update the linked tank if exists
-    game.sprites.hydro.pipes.forEach(function (pipe) {
-        // Get linked tank and second linked object
-        let linkedTank = {}
-        let linkedObject = {}
-        if (pipe.connection1.type == 'T') {
-            linkedTank = pipe.connection1
-            linkedObject = pipe.connection2
-        }
-        if (pipe.connection2.type == 'T') {
-            linkedTank = pipe.connection2
-            linkedObject = pipe.connection1
-        }
-        // Update linked tank height
-        let volumeToMove = pipe.flow
-        let heightDifference = volumeToMove / linkedTank.tankWidth
-        if (linkedTank.pressure > linkedObject.pressure) {linkedTank.curHeight -= heightDifference}
-        else if (linkedTank.pressure < linkedObject.pressure) {linkedTank.curHeight += heightDifference}
-        // Check curHeight is not negative
-        if (linkedTank.curHeight < 0) {linkedTank.curHeight = 0}
-    })
-}
-*/
 
 game.sprites.hydro.updateComboCurHeight = function () {
     // For each combo, update the linked tanks
@@ -292,10 +281,7 @@ game.sprites.hydro.updateComboCurHeight = function () {
             tank.curHeight = comboHeight
         })
     })
-
 }
-
-
 
 // *************************************************
 // *************************************************
@@ -307,6 +293,7 @@ game.sprites.hydro.drawFunction = function (ctx) {
     if (this.type === 'D') {this.drawDistributor(ctx)}
     if (this.type === 'P') {this.drawPipe(ctx)}
     if (this.type === 'V') {this.drawValve(ctx)}
+    if (this.type === 'S') {this.drawShower(ctx)}
 }
 
 game.sprites.hydro.drawTank = function (ctx) {
@@ -366,4 +353,24 @@ game.sprites.hydro.drawPipe = function (ctx) {
     let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
     let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
     ctx.fillText("F: " + this.flow.toFixed(0), x + 20, y)
+}
+
+game.sprites.hydro.drawShower = function (ctx) {
+    // Draw shower
+    ctx.fillStyle = "purple"
+    ctx.fillRect(0, 0, 50, 50)
+    // Draw water
+    if(this.linkedPipe.flow < 0) {
+        ctx.fillStyle = "blue"
+        ctx.beginPath()
+        ctx.moveTo(25,50)
+        ctx.lineTo(this.linkedPipe.flow / 2 + 50, 200)
+        ctx.lineTo(-this.linkedPipe.flow / 2, 200)
+        ctx.fill()
+
+    }
+    // DEBUG
+    ctx.fillStyle = "white"
+    ctx.font = "12px serif"
+    ctx.fillText("F: " + this.linkedPipe.flow.toFixed(0), 10, 40)
 }

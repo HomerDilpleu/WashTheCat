@@ -132,9 +132,9 @@ game.scenes.boot.start = function() {
 */
 
     /////////////////////////////////////
-    // Test avec 3 "robinets" 
+    // Test avec 3 "robinets" --> Interessant pour ateindre le niveau le plus haut possible
     ///////////////////////////////////////
-    game.sprites.hydro.newTank({X:200,altitude:400,tankWidth:110,tankHeight:300,curHeight:150})
+/*    game.sprites.hydro.newTank({X:200,altitude:400,tankWidth:110,tankHeight:300,curHeight:150})
     game.sprites.hydro.newTank({X:600,altitude:500,tankWidth:60,tankHeight:200,curHeight:100})
     game.sprites.hydro.newTank({X:800,altitude:150,tankWidth:50,tankHeight:200,curHeight:0})
     game.sprites.hydro.newDistributor({X:300,altitude:200})
@@ -147,6 +147,23 @@ game.scenes.boot.start = function() {
     game.sprites.hydro.newPipe(['V0','D0'])
     game.sprites.hydro.newPipe(['V1','D0'])
     game.sprites.hydro.newPipe(['V2','D0'])
+*/
+
+    /////////////////////////////////////
+    // Test avec 1 douche
+    ///////////////////////////////////////
+    game.sprites.hydro.newTank({X:200,altitude:500,tankWidth:110,tankHeight:200,curHeight:100})
+    game.sprites.hydro.newTank({X:600,altitude:400,tankWidth:60,tankHeight:300,curHeight:100})
+    game.sprites.hydro.newTank({X:300,altitude:-100,tankWidth:200,tankHeight:100,curHeight:0})
+    game.sprites.hydro.newDistributor({X:300,altitude:280})
+    game.sprites.hydro.newValve({X:200,altitude:450,isOpen:0})
+    game.sprites.hydro.newValve({X:450,altitude:400,isOpen:0})
+    game.sprites.hydro.newPipe(['T0','V0'])
+    game.sprites.hydro.newPipe(['V0','D0'])
+    game.sprites.hydro.newPipe(['T1','V1'])
+    game.sprites.hydro.newPipe(['V1','D0'])
+    game.sprites.hydro.newPipe(['T2','D0'])
+    game.sprites.hydro.newShower({X:300,altitude:220,triggerPipe:4})
 
 }
 
