@@ -18,7 +18,7 @@ game.scenes.boot.start = function() {
     /////////////////////////////////////
     // Test de base avec 2 réservoirs qui s'équilibrent
     /////////////////////////////////////
-    /*game.sprites.hydro.newTank({X:200,altitude:150,tankWidth:110,tankHeight:300,curHeight:100})
+/*    game.sprites.hydro.newTank({X:200,altitude:150,tankWidth:110,tankHeight:300,curHeight:100})
     game.sprites.hydro.newTank({X:400,altitude:200,tankWidth:60,tankHeight:300,curHeight:100})
     game.sprites.hydro.newDistributor({X:300,altitude:100})
     game.sprites.hydro.newPipe(['T0','D0'])
@@ -39,7 +39,7 @@ game.scenes.boot.start = function() {
     /////////////////////////////////////
     // Test avec 3 réservoirs dont un qui n'a pas assez d'eau
     /////////////////////////////////////
-   /* game.sprites.hydro.newTank({X:200,altitude:150,tankWidth:100,tankHeight:300,curHeight:100})
+/*    game.sprites.hydro.newTank({X:200,altitude:150,tankWidth:100,tankHeight:300,curHeight:100})
     game.sprites.hydro.newTank({X:400,altitude:400,tankWidth:70,tankHeight:300,curHeight:100})
     game.sprites.hydro.newTank({X:600,altitude:200,tankWidth:80,tankHeight:300,curHeight:100})
     game.sprites.hydro.newDistributor({X:300,altitude:100})
@@ -67,7 +67,7 @@ game.scenes.boot.start = function() {
     /////////////////////////////////////
     // Test avec un "combo" de réservoir en bas
     /////////////////////////////////////
-   /* game.sprites.hydro.newTank({X:200,altitude:450,tankWidth:100,tankHeight:300,curHeight:100})
+/*    game.sprites.hydro.newTank({X:200,altitude:450,tankWidth:100,tankHeight:200,curHeight:100})
     game.sprites.hydro.newTank({X:400,altitude:200,tankWidth:50,tankHeight:300,curHeight:100})
     game.sprites.hydro.newTank({X:450,altitude:200,tankWidth:50,tankHeight:300,curHeight:100})
     game.sprites.hydro.newTank({X:800,altitude:300,tankWidth:80,tankHeight:300,curHeight:100})
@@ -82,7 +82,7 @@ game.scenes.boot.start = function() {
     /////////////////////////////////////
     // Test avec un "combo" de réservoir au milieu
     /////////////////////////////////////
-  /*  game.sprites.hydro.newTank({X:200,altitude:400,tankWidth:100,tankHeight:300,curHeight:100})
+/*    game.sprites.hydro.newTank({X:200,altitude:400,tankWidth:100,tankHeight:300,curHeight:100})
     game.sprites.hydro.newTank({X:400,altitude:200,tankWidth:50,tankHeight:300,curHeight:100})
     game.sprites.hydro.newTank({X:450,altitude:200,tankWidth:50,tankHeight:300,curHeight:100})
     game.sprites.hydro.newTank({X:800,altitude:100,tankWidth:80,tankHeight:300,curHeight:0})
@@ -97,7 +97,7 @@ game.scenes.boot.start = function() {
     /////////////////////////////////////
     // Test avec un "robinet" lié au réservoir qui alimente
     ///////////////////////////////////////
- /*   game.sprites.hydro.newTank({X:200,altitude:400,tankWidth:110,tankHeight:300,curHeight:100})
+/*    game.sprites.hydro.newTank({X:200,altitude:450,tankWidth:110,tankHeight:200,curHeight:100})
     game.sprites.hydro.newTank({X:400,altitude:100,tankWidth:60,tankHeight:300,curHeight:100})
     game.sprites.hydro.newDistributor({X:300,altitude:80})
     game.sprites.hydro.newValve({X:200,altitude:250,isOpen:0})
@@ -108,19 +108,19 @@ game.scenes.boot.start = function() {
     /////////////////////////////////////
     // Test avec un "robinet" lié au réservoir alimenté
     ///////////////////////////////////////
-    game.sprites.hydro.newTank({X:200,altitude:200,tankWidth:110,tankHeight:300,curHeight:100})
+/*    game.sprites.hydro.newTank({X:200,altitude:200,tankWidth:110,tankHeight:300,curHeight:100})
     game.sprites.hydro.newTank({X:400,altitude:500,tankWidth:60,tankHeight:200,curHeight:100})
     game.sprites.hydro.newDistributor({X:300,altitude:80})
     game.sprites.hydro.newValve({X:200,altitude:150,isOpen:0})
     game.sprites.hydro.newPipe(['T0','V0'])
     game.sprites.hydro.newPipe(['V0','D0'])
     game.sprites.hydro.newPipe(['T1','D0'])
-
+*/
 
     /////////////////////////////////////
     // Test avec 2 "robinets" 
     ///////////////////////////////////////
-/*    game.sprites.hydro.newTank({X:200,altitude:300,tankWidth:110,tankHeight:300,curHeight:100})
+    game.sprites.hydro.newTank({X:200,altitude:300,tankWidth:110,tankHeight:300,curHeight:100})
     game.sprites.hydro.newTank({X:600,altitude:200,tankWidth:60,tankHeight:300,curHeight:100})
     game.sprites.hydro.newDistributor({X:300,altitude:80})
     game.sprites.hydro.newValve({X:200,altitude:250,isOpen:0})
@@ -129,7 +129,7 @@ game.scenes.boot.start = function() {
     game.sprites.hydro.newPipe(['V0','D0'])
     game.sprites.hydro.newPipe(['T1','V1'])
     game.sprites.hydro.newPipe(['V1','D0'])
-*/
+
 }
 
 //////////////////////

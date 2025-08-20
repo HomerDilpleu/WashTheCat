@@ -198,25 +198,25 @@ game.sprites.hydro.calcPipesFlow = function () {
         pipe.flow = 0
         // Flow calculation: case without valve
         if (pipe.connection1.type != 'V' && pipe.connection2.type != 'V') {
-            pipe.flow = Math.abs(pipe.connection2.pressure - pipe.connection1.pressure)
+            pipe.flow = pipe.connection1.pressure - pipe.connection2.pressure
         }
         // Flow calculation: valve opened to tank
         if (pipe.connection1.type == 'V' && pipe.connection1.isOpen == 1 && pipe.connection2.type == 'T') {
-            pipe.flow = Math.abs(pipe.connection2.pressure - pipe.connection1.pressureDistributor)  
+            pipe.flow = pipe.connection1.pressureDistributor - pipe.connection2.pressure 
         }
         // Flow calculation: tank to valve opened
         if (pipe.connection1.type == 'T' && pipe.connection2.type == 'V' && pipe.connection2.isOpen == 1 ) {
-            pipe.flow = Math.abs(pipe.connection1.pressure - pipe.connection2.pressureDistributor)  
+            pipe.flow = pipe.connection1.pressure - pipe.connection2.pressureDistributor
         }
         // Flow calculation: valve opened to distributor
         if (pipe.connection1.type == 'V' && pipe.connection1.isOpen == 1 && pipe.connection2.type == 'D') {
-            pipe.flow = Math.abs(pipe.connection2.pressure - pipe.connection1.pressureTank)  
+            pipe.flow = pipe.connection1.pressureTank - pipe.connection2.pressure  
         }
         // Flow calculation: distributo to valve opened
         if (pipe.connection1.type == 'D' && pipe.connection2.type == 'V' && pipe.connection2.isOpen == 1 ) {
-            pipe.flow = Math.abs(pipe.connection1.pressure - pipe.connection2.pressureTank)  
+            pipe.flow = pipe.connection1.pressure - pipe.connection2.pressureTank  
         }
-        pipe.flow = pipe.flow * 0.1
+        pipe.flow = Math.round(pipe.flow * 1)
                
         // Check if pipe is filled or not
         pipe.isFilled = 1
@@ -232,6 +232,23 @@ game.sprites.hydro.calcPipesFlow = function () {
 // A REVOIR POUR PRENDRE EN COMPTE LES ROBINETS
 /////////////////////////////////////////////////
 
+game.sprites.hydro.updateTankCurHeight = function () {
+    // For each pipe, update the linked tank if exists
+    game.sprites.hydro.pipes.forEach(function (pipe) {
+        // Get linked tank and second linked object
+        let linkedTank = {}
+        if (pipe.connection1.type == 'T') {linkedTank = pipe.connection1}
+        if (pipe.connection2.type == 'T') {linkedTank = pipe.connection2}
+        // Calculate volume to move and height difference
+        let volumeToMove = pipe.flow
+        let heightDifference = volumeToMove / linkedTank.tankWidth
+        // Update tank height
+        linkedTank.curHeight -= heightDifference
+        // Check curHeight is not negative
+        if (linkedTank.curHeight < 0) {linkedTank.curHeight = 0}
+    })
+}
+/*
 game.sprites.hydro.updateTankCurHeight = function () {
     // For each pipe, update the linked tank if exists
     game.sprites.hydro.pipes.forEach(function (pipe) {
@@ -255,6 +272,7 @@ game.sprites.hydro.updateTankCurHeight = function () {
         if (linkedTank.curHeight < 0) {linkedTank.curHeight = 0}
     })
 }
+*/
 
 game.sprites.hydro.updateComboCurHeight = function () {
     // For each combo, update the linked tanks
