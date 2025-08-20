@@ -147,9 +147,10 @@ game.sprites.hydro.calcTanksPressure = function () {
         // Calculate hydro properties
         tank.volume = tank.tankWidth * tank.curHeight
         tank.pressure = tank.altitude + tank.curHeight
-        // If tank is empty
-        //if (tank.curHeight == 0) {tank.pressure = tank.linkedObjects[0].pressure}
-        if (tank.curHeight == 0) {tank.pressure = Math.min(tank.linkedObjects[0].pressure,tank.pressure)}
+        // If tank is empty and linked to a distributor
+        if (tank.curHeight == 0 && tank.linkedObjects[0].type == 'D') {tank.pressure = Math.min(tank.linkedObjects[0].pressure,tank.pressure)}
+        // If tank is empty and linked to a valve
+        if (tank.curHeight == 0 && tank.linkedObjects[0].type == 'V') {tank.pressure = Math.min(tank.linkedObjects[0].pressureDistributor,tank.pressure)}
     })
 }
 
@@ -160,7 +161,7 @@ game.sprites.hydro.updateValves = function () {
             if (valve.isOpen == 1) {valve.isOpen = 0}
             else {valve.isOpen = 1}
         }
-        // Updatte tank pressure and distributor pressure
+        // Get tank pressure and distributor pressure
         if (valve.linkedObjects[0].type == 'T') {valve.pressureTank = valve.linkedObjects[0].pressure}  
         if (valve.linkedObjects[1].type == 'T') {valve.pressureTank = valve.linkedObjects[1].pressure}
         if (valve.linkedObjects[0].type == 'D') {valve.pressureDistributor = valve.linkedObjects[0].pressure}
@@ -215,7 +216,7 @@ game.sprites.hydro.calcPipesFlow = function () {
         if (pipe.connection1.type == 'D' && pipe.connection2.type == 'V' && pipe.connection2.isOpen == 1 ) {
             pipe.flow = Math.abs(pipe.connection1.pressure - pipe.connection2.pressureTank)  
         }
-        pipe.flow = pipe.flow * 0.5
+        pipe.flow = pipe.flow * 0.1
                
         // Check if pipe is filled or not
         pipe.isFilled = 1
@@ -225,6 +226,11 @@ game.sprites.hydro.calcPipesFlow = function () {
         if (pipe.connection2.type == 'V' && pipe.connection2.isOpen == 0) {pipe.isFilled = 0}
     })
 }
+
+
+/////////////////////////////////////////////////
+// A REVOIR POUR PRENDRE EN COMPTE LES ROBINETS
+/////////////////////////////////////////////////
 
 game.sprites.hydro.updateTankCurHeight = function () {
     // For each pipe, update the linked tank if exists
