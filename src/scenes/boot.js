@@ -234,7 +234,7 @@ game.scenes.boot.start = function() {
     /////////////////////////////////////
     // Test avec tout 4 - Combo avec 3 tanks
     ///////////////////////////////////////
-    game.sprites.hydro.newTank({X:200,altitude:400,tankWidth:110,tankHeight:300,curHeight:150})
+/*    game.sprites.hydro.newTank({X:200,altitude:400,tankWidth:110,tankHeight:300,curHeight:150})
     game.sprites.hydro.newTank({X:600,altitude:500,tankWidth:60,tankHeight:200,curHeight:100})
     game.sprites.hydro.newTank({X:800,altitude:350,tankWidth:50,tankHeight:200,curHeight:0,isVisible:'0'})
     game.sprites.hydro.newTank({X:850,altitude:350,tankWidth:50,tankHeight:200,curHeight:0,isVisible:'0'})
@@ -258,7 +258,29 @@ game.scenes.boot.start = function() {
     game.sprites.hydro.newValve({X:420,altitude:300,linkedTank:1,isOpen:0})
     game.sprites.hydro.newValve({X:620,altitude:300,linkedTank:2,isOpen:0})
     game.sprites.hydro.newValve({X:820,altitude:300,linkedTank:3,isOpen:0})
-    
+*/    
+    /////////////////////////////////////
+    // Test avec un robinet lié à la hauteur d'un réservoir
+    ///////////////////////////////////////
+    game.sprites.hydro.newTank({X:200,altitude:350,tankWidth:100,tankHeight:300,curHeight:150})
+    game.sprites.hydro.newTank({X:600,altitude:500,tankWidth:80,tankHeight:200,curHeight:100})
+    game.sprites.hydro.newTank({X:800,altitude:150,tankWidth:90,tankHeight:300,curHeight:0})
+    game.sprites.hydro.newTank({X:1000,altitude:500,tankWidth:300,tankHeight:200,curHeight:100})
+    game.sprites.hydro.newTank({X:850,altitude:-100,tankWidth:2000,tankHeight:200,curHeight:1,isVisible:'0'})
+    game.sprites.hydro.newDistributor({X:300,altitude:200})
+    game.sprites.hydro.newDistributor({X:1000,altitude:200})
+    game.sprites.hydro.newPipe({obj:['T0','D0']})
+    game.sprites.hydro.newPipe({obj:['T1','D0']})
+    game.sprites.hydro.newPipe({obj:['T2','D0']})
+    game.sprites.hydro.newPipe({obj:['T3','D1']})
+    game.sprites.hydro.newPipe({obj:['T4','D1'],isVisible:'0'})
+    game.sprites.hydro.newShower({X:1000,altitude:205,triggerPipe:4})
+    game.sprites.hydro.newValve({X:220,altitude:300,linkedTank:0,isOpen:0})
+    game.sprites.hydro.newValve({X:550,altitude:440,linkedTank:1,isOpen:0})
+    game.sprites.hydro.newValve({X:680,altitude:150,linkedTank:2,isOpen:0})
+    game.sprites.hydro.newValve({X:1000,altitude:405,linkedTank:3,isOpen:0,trigger:{tank:2,height:255}})
+
+
     
 }
 
@@ -268,7 +290,7 @@ game.scenes.boot.start = function() {
 game.scenes.boot.update = function() {
 
     // Update sprites
-    game.sprites.playButton.update()
+    //game.sprites.playButton.update()
     game.sprites.cat.update()
     game.sprites.hydro.update()
 }
@@ -279,7 +301,7 @@ game.scenes.boot.update = function() {
 game.scenes.boot.draw = function() {
 
     // Draw sprites
-    game.sprites.playButton.draw()
+    //game.sprites.playButton.draw()
     game.sprites.cat.draw()
     game.sprites.hydro.cloneExecuteForEach('draw')
 

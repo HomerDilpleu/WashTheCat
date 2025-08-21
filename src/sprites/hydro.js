@@ -5,7 +5,7 @@
 // *************************************************
 game.sprites.hydro.init = function() {
     // Constants shared by all clones
-    this.drawBoundaries = true
+    //this.drawBoundaries = true
     this.width = 100
     this.height = 100
     // Hydro constants
@@ -82,6 +82,7 @@ game.sprites.hydro.newValve = function (c) {
     // Hydro properties
     o.linkedTank = game.sprites.hydro.tanks[c.linkedTank]
     o.linkedTank.isOpen = c.isOpen
+    o.trigger = c.trigger || 'click'
     // World coordinates
     o.X = c.X
     o.altitude = c.altitude
@@ -207,10 +208,16 @@ game.sprites.hydro.calcTanksPressure = function () {
 
 game.sprites.hydro.updateValves = function () {
     game.sprites.hydro.valves.forEach(function (valve) {
-        // If clicked, chage isOpen state
-        if (valve.isClicked) {
-            if(valve.linkedTank.isOpen == 1) {valve.linkedTank.isOpen = 0}
-            else {valve.linkedTank.isOpen = 1}
+        // Clickable valve
+        if (valve.trigger == 'click') {
+            if (valve.isClicked) {
+                if(valve.linkedTank.isOpen == 1) {valve.linkedTank.isOpen = 0}
+                else {valve.linkedTank.isOpen = 1}
+            }
+        } else {
+            // Valve triggered by tank height
+            valve.linkedTank.isOpen = 0
+            if (game.sprites.hydro.tanks[valve.trigger.tank].curHeight >= valve.trigger.height) {valve.linkedTank.isOpen = 1}
         }
     })
 }
@@ -329,11 +336,19 @@ game.sprites.hydro.drawDistributor = function (ctx) {
 
 game.sprites.hydro.drawValve = function (ctx) {
     // Draw valve
-    ctx.fillStyle = "yellow"
+    ctx.fillStyle = "orange"
+    if (this.trigger == 'click') {ctx.fillStyle = "yellow"}
     ctx.fillRect(0, 0, 50, 50)
+    // Draw water
     if (this.linkedTank.isOpen == 1) {
         ctx.fillStyle = "blue"
         ctx.fillRect(5, 5, 40, 40)
+    }
+    // Draw trigger tank height
+    if (this.trigger != 'click') {
+        ctx.fillStyle = "black"
+        if (this.linkedTank.isOpen == 1) {ctx.fillStyle = "blue"}
+        ctx.fillRect(-130, 35, 130, 5)       
     }
     // DEBUG
 }
