@@ -270,13 +270,7 @@ game.scenes.boot.update = function() {
     // Update sprites
     game.sprites.playButton.update()
     game.sprites.cat.update()
-    // hydro
-    game.sprites.hydro.calcTanksPressure()
-    game.sprites.hydro.updateValves()
-    game.sprites.hydro.calcDistributorsPressure()
-    game.sprites.hydro.calcPipesFlow()
-    game.sprites.hydro.updateTankCurHeight()
-    game.sprites.hydro.updateComboCurHeight()
+    game.sprites.hydro.update()
 }
 
 //////////////////////

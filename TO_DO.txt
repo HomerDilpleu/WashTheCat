@@ -1,14 +1,8 @@
 -----------------------------
 TO DO
 -----------------------------
-- COMBO
-   - Faire un affichage et implémenter isVisible
-PIPE
-   X Mettre en place un objet en paramètre avec isVisible afin d'aligner la logique de isVisible avec le reste
-
 GLOBAL:
-- faire un DRAW comme le UPDATE de manière à pouvoir gérer l'order d'affichage par type d'objet
-- faire une fonction UPDATE et une fonction DRAW dans le sprite plutôt que dans la scene
+- faire un DRAW comme le UPDATE de manière à pouvoir gérer l'order d'affichage par type d'objet ???
 
 
 - PIPE

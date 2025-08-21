@@ -186,6 +186,15 @@ game.sprites.hydro.newShower = function (c) {
 // UPDATE
 // *************************************************
 // *************************************************
+game.sprites.hydro.update = function () {
+    game.sprites.hydro.calcTanksPressure()
+    game.sprites.hydro.updateValves()
+    game.sprites.hydro.calcDistributorsPressure()
+    game.sprites.hydro.calcPipesFlow()
+    game.sprites.hydro.updateTankCurHeight()
+    game.sprites.hydro.updateComboCurHeight()
+}
+
 game.sprites.hydro.calcTanksPressure = function () {
     game.sprites.hydro.tanks.forEach(function (tank) {
         // Calculate hydro properties
