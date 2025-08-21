@@ -263,8 +263,9 @@ game.sprites.hydro.updateTankCurHeight = function () {
         let heightDifference = volumeToMove / linkedTank.tankWidth
         // Update tank height
         linkedTank.curHeight -= heightDifference
+        // Round height
         // Check curHeight is not negative
-        if (linkedTank.curHeight < 1) {linkedTank.curHeight = 0}
+        if (linkedTank.curHeight < 0) {linkedTank.curHeight = 0}
     })
 }
 
