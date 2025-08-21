@@ -35,7 +35,6 @@ game.sprites.hydro.newTank = function (c) {
     o.X = c.X
     o.altitude = c.altitude
     o.isOpen = 1
-    //o.pressure = 0
     // Sprite properties
     o.width = c.tankWidth
     o.height = c.tankHeight
@@ -88,6 +87,7 @@ game.sprites.hydro.newValve = function (c) {
     o.height = 50
     o.x = c.X
     o.y = mge.game.height - c.altitude - 10
+    o.isVisible = c.isVisible || '1'
     // Push to list
     game.sprites.hydro.valves.push(o)
 }
@@ -97,11 +97,11 @@ game.sprites.hydro.newPipe = function (c) {
     let o = game.sprites.hydro.cloneCreate()
     o.type = 'P'
     // Connection 1
-    if (c[0][0] == 'T') {o.connection1 = game.sprites.hydro.tanks[c[0][1]]}
-    if (c[0][0] == 'D') {o.connection1 = game.sprites.hydro.distributors[c[0][1]]}
+    if (c.obj[0][0] == 'T') {o.connection1 = game.sprites.hydro.tanks[c.obj[0][1]]}
+    if (c.obj[0][0] == 'D') {o.connection1 = game.sprites.hydro.distributors[c.obj[0][1]]}
     // Connection 2
-    if (c[1][0] == 'T') {o.connection2 = game.sprites.hydro.tanks[c[1][1]]}
-    if (c[1][0] == 'D') {o.connection2 = game.sprites.hydro.distributors[c[1][1]]}
+    if (c.obj[1][0] == 'T') {o.connection2 = game.sprites.hydro.tanks[c.obj[1][1]]}
+    if (c.obj[1][0] == 'D') {o.connection2 = game.sprites.hydro.distributors[c.obj[1][1]]}
     // Update 'connected objects' list of each object
     o.connection1.linkedObjects.push(o.connection2)
     o.connection2.linkedObjects.push(o.connection1)
@@ -113,8 +113,7 @@ game.sprites.hydro.newPipe = function (c) {
     o.height = mge.game.height
     o.x = mge.game.width / 2
     o.y = mge.game.height / 2
-    o.isVisible = 1
-    if (c[2] == 'Hide') {o.isVisible = 0}
+    o.isVisible = c.isVisible || '1'
     // Push to list
     game.sprites.hydro.pipes.push(o)
 }
@@ -133,6 +132,8 @@ game.sprites.hydro.newCombo = function (c) {
         // Add to linked objects
         o.linkedObjects.push(tank)
     })
+    // Sprite properties
+    o.isVisible = c.isVisible || '1'
     // Push to list
     game.sprites.hydro.combos.push(o)
 }
@@ -151,6 +152,7 @@ game.sprites.hydro.newShower = function (c) {
     o.height = 50
     o.x = c.X
     o.y = mge.game.height - c.altitude - 10
+    o.isVisible = c.isVisible || '1'
     // Push to list
     game.sprites.hydro.showers.push(o)
 }
