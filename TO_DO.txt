@@ -1,19 +1,18 @@
 -----------------------------
 TO DO
 -----------------------------
-- TOUS LES OBJETS
-   - Mettre un paramètre pour masquer
 - COMBO
-   - Faire un affichage
-- TANK
-   - Mettre en place un tank à pression constante (pour le bas)
-   - Permettre de masquer un tank
+   - Faire un affichage et implémenter isVisible
+PIPE
+   - Mettre en place un objet en paramètre avec isVisible afin d'aligner la logique de isVisible avec le reste
+
+
 - PIPE
    - Limeter le flux d'une canalisation ???
 - VALVE
    - Mettre en place un mécanisme pour action une valve indirectement
       --> en reilant 2 valves?
-      --> avec un seuil de tank?
+      --> avec un seuil de tank? --> à priori ça
       --> avec un flux de pipe?
 
 

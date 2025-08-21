@@ -41,6 +41,7 @@ game.sprites.hydro.newTank = function (c) {
     o.height = c.tankHeight
     o.x = c.X
     o.y = mge.game.height - c.altitude - c.tankHeight / 2
+    o.isVisible = c.isVisible || '1'
     // Connection point
     o.connectionPointx = o.x
     o.connectionPointy = o.y + o.height / 2
@@ -63,6 +64,7 @@ game.sprites.hydro.newDistributor = function (c) {
     o.height = 20
     o.x = c.X
     o.y = mge.game.height - c.altitude - 10
+    o.isVisible = c.isVisible || '1'
     // Connection point
     o.connectionPointx = o.x
     o.connectionPointy = o.y
@@ -250,11 +252,13 @@ game.sprites.hydro.updateComboCurHeight = function () {
 // *************************************************
 // *************************************************
 game.sprites.hydro.drawFunction = function (ctx) {
-    if (this.type === 'T') {this.drawTank(ctx)}
-    if (this.type === 'D') {this.drawDistributor(ctx)}
-    if (this.type === 'P') {this.drawPipe(ctx)}
-    if (this.type === 'V') {this.drawValve(ctx)}
-    if (this.type === 'S') {this.drawShower(ctx)}
+    if (this.isVisible == 1) {
+        if (this.type == 'T') {this.drawTank(ctx)}
+        if (this.type == 'D') {this.drawDistributor(ctx)}
+        if (this.type == 'P') {this.drawPipe(ctx)}
+        if (this.type == 'V') {this.drawValve(ctx)}
+        if (this.type == 'S') {this.drawShower(ctx)}
+    }
 }
 
 game.sprites.hydro.drawTank = function (ctx) {
