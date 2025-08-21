@@ -32,9 +32,10 @@ game.sprites.hydro.newTank = function (c) {
     o.tankWidth = c.tankWidth
     o.tankHeight = c.tankHeight
     o.curHeight = c.curHeight
+    o.isOpen = 1
+    // World coordinates
     o.X = c.X
     o.altitude = c.altitude
-    o.isOpen = 1
     // Sprite properties
     o.width = c.tankWidth
     o.height = c.tankHeight
@@ -55,9 +56,10 @@ game.sprites.hydro.newDistributor = function (c) {
     let o = game.sprites.hydro.cloneCreate()
     o.type = 'D'
     // Hydro properties
+    o.pressure = 0
+    // World coordinates
     o.X = c.X
     o.altitude = c.altitude
-    o.pressure = 0
     // Sprite properties
     o.width = 20
     o.height = 20
@@ -78,10 +80,11 @@ game.sprites.hydro.newValve = function (c) {
     let o = game.sprites.hydro.cloneCreate()
     o.type = 'V'
     // Hydro properties
-    o.X = c.X
-    o.altitude = c.altitude
     o.linkedTank = game.sprites.hydro.tanks[c.linkedTank]
     o.linkedTank.isOpen = c.isOpen
+    // World coordinates
+    o.X = c.X
+    o.altitude = c.altitude
     // Sprite properties
     o.width = 50
     o.height = 50
@@ -122,17 +125,37 @@ game.sprites.hydro.newCombo = function (c) {
     // Create combo of tanks object
     let o = game.sprites.hydro.cloneCreate()
     o.type = 'C'
-    // Hydro properties
-    o.curHeight = 0
     // Linked tanks
+    let tanksNb = 0
+    let tanksX = 0
+    let tanksAltitude = 0
+    let tanksWidth = 0
+    let tanksHeight = 0
     o.linkedObjects = []
     c.forEach(function (tankIndex) {
         // Get tank object
         let tank = game.sprites.hydro.tanks[tankIndex]
         // Add to linked objects
         o.linkedObjects.push(tank)
+        // For avg calculations
+        tanksNb+=1
+        tanksX+=tank.X
+        tanksAltitude+=tank.altitude
+        tanksWidth+=tank.width
+        tanksHeight+=tank.height
     })
+    // Hydro properties
+    o.curHeight = 0
+    o.tankWidth = tanksWidth
+    o.tankHeight = tanksHeight / tanksNb
+    // World coordinates
+    o.X = tanksX / tanksNb
+    o.altitude = tanksAltitude / tanksNb
     // Sprite properties
+    o.width = o.tankWidth
+    o.height = o.tankHeight
+    o.x = o.X
+    o.y = mge.game.height - o.altitude - o.tankHeight / 2
     o.isVisible = c.isVisible || '1'
     // Push to list
     game.sprites.hydro.combos.push(o)
@@ -143,10 +166,11 @@ game.sprites.hydro.newShower = function (c) {
     let o = game.sprites.hydro.cloneCreate()
     o.type = 'S'
     // Hydro properties
-    o.X = c.X
-    o.altitude = c.altitude
     o.linkedPipe = game.sprites.hydro.pipes[c.triggerPipe]
     o.isOpen = game.sprites.hydro.pipes[c.triggerPipe]
+    // World coordinates
+    o.X = c.X
+    o.altitude = c.altitude
     // Sprite properties
     o.width = 50
     o.height = 50
@@ -235,11 +259,15 @@ game.sprites.hydro.updateComboCurHeight = function () {
     game.sprites.hydro.combos.forEach(function (combo) {
         // Calculate combo height
         let comboHeight = 0
+        let tanksNb = 0
         combo.linkedObjects.forEach(function (tank) {
-            if(tank.curHeight >= 1) {comboHeight += tank.curHeight}
+            tanksNb+=1
+            if(tank.curHeight >= 1) {
+                comboHeight += tank.curHeight
+            }
         })
         // Calculate average height
-        comboHeight = comboHeight / 2
+        comboHeight = comboHeight / tanksNb
         combo.curHeight = comboHeight
         // Update linked tanks height
         combo.linkedObjects.forEach(function (tank) {
@@ -260,6 +288,7 @@ game.sprites.hydro.drawFunction = function (ctx) {
         if (this.type == 'P') {this.drawPipe(ctx)}
         if (this.type == 'V') {this.drawValve(ctx)}
         if (this.type == 'S') {this.drawShower(ctx)}
+        if (this.type == 'C') {this.drawCombo(ctx)}
     }
 }
 
@@ -333,4 +362,9 @@ game.sprites.hydro.drawShower = function (ctx) {
     ctx.fillStyle = "white"
     ctx.font = "12px serif"
     ctx.fillText("F: " + Math.round(this.linkedPipe.flow), 10, 40)
+}
+
+game.sprites.hydro.drawCombo = function (ctx) {
+    // Draw as a tank
+    this.drawTank(ctx)
 }
