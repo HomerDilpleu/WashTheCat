@@ -231,13 +231,11 @@ game.sprites.hydro.updateComboCurHeight = function () {
     game.sprites.hydro.combos.forEach(function (combo) {
         // Calculate combo height
         let comboHeight = 0
-        let nbTanks = 0
         combo.linkedObjects.forEach(function (tank) {
-            nbTanks += 1
-            comboHeight += tank.curHeight
+            if(tank.curHeight >= 1) {comboHeight += tank.curHeight}
         })
         // Calculate average height
-        comboHeight = comboHeight / nbTanks
+        comboHeight = comboHeight / 2
         combo.curHeight = comboHeight
         // Update linked tanks height
         combo.linkedObjects.forEach(function (tank) {

@@ -1,23 +1,21 @@
 -----------------------------
 TO DO
 -----------------------------
+- TOUS LES OBJETS
+   - Mettre un paramètre pour masquer
+- COMBO
+   - Faire un affichage
 - TANK
    - Mettre en place un tank à pression constante (pour le bas)
    - Permettre de masquer un tank
 - PIPE
-   - Limeter le flux d'une canalisation 
-   - Mettre un minimum pour le flux d'une canalisation de manière à ne pas avoir des va et vient
+   - Limeter le flux d'une canalisation ???
 - VALVE
    - Mettre en place un mécanisme pour action une valve indirectement
       --> en reilant 2 valves?
       --> avec un seuil de tank?
       --> avec un flux de pipe?
 
-- Logique "tank"
-- Logique "connector"
-- Logique "pipe"
-- Logique "valve"
-- Logique "shower"
 
 -----------------------------
 Mécanismes
