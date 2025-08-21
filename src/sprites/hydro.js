@@ -34,6 +34,7 @@ game.sprites.hydro.newTank = function (c) {
     o.curHeight = c.curHeight
     o.X = c.X
     o.altitude = c.altitude
+    o.isOpen = 1
     //o.pressure = 0
     // Sprite properties
     o.width = c.tankWidth
@@ -70,30 +71,25 @@ game.sprites.hydro.newDistributor = function (c) {
     // Push to list
     game.sprites.hydro.distributors.push(o)
 }
-/*
+
 game.sprites.hydro.newValve = function (c) {
-    // Create valve object
+    // Create shower object
     let o = game.sprites.hydro.cloneCreate()
     o.type = 'V'
     // Hydro properties
     o.X = c.X
     o.altitude = c.altitude
-    o.pressure = 0
-    o.isOpen = c.isOpen
+    o.linkedTank = game.sprites.hydro.tanks[c.linkedTank]
+    o.linkedTank.isOpen = c.isOpen
     // Sprite properties
     o.width = 50
     o.height = 50
     o.x = c.X
     o.y = mge.game.height - c.altitude - 10
-    // Connection point
-    o.connectionPointx = o.x
-    o.connectionPointy = o.y
-    // Linked objects
-    o.linkedObjects = []
     // Push to list
     game.sprites.hydro.valves.push(o)
 }
-*/
+
 game.sprites.hydro.newPipe = function (c) {
     // Create pipe object
     let o = game.sprites.hydro.cloneCreate()
@@ -171,32 +167,29 @@ game.sprites.hydro.calcTanksPressure = function () {
         if (tank.curHeight == 0) {tank.pressure = Math.min(tank.linkedObjects[0].pressure,tank.pressure)}
     })
 }
-/*
+
 game.sprites.hydro.updateValves = function () {
     game.sprites.hydro.valves.forEach(function (valve) {
         // If clicked, chage isOpen state
         if (valve.isClicked) {
-            if (valve.isOpen == 1) {valve.isOpen = 0}
-            else {valve.isOpen = 1}
+            if(valve.linkedTank.isOpen == 1) {valve.linkedTank.isOpen = 0}
+            else {valve.linkedTank.isOpen = 1}
         }
-        // Get tank pressure and distributor pressure
-        if (valve.linkedObjects[0].type == 'T') {valve.pressureTank = valve.linkedObjects[0].pressure}  
-        if (valve.linkedObjects[1].type == 'T') {valve.pressureTank = valve.linkedObjects[1].pressure}
-        if (valve.linkedObjects[0].type == 'D') {valve.pressureDistributor = valve.linkedObjects[0].pressure}
-        if (valve.linkedObjects[1].type == 'D') {valve.pressureDistributor = valve.linkedObjects[1].pressure}
     })
 }
-*/
+
 game.sprites.hydro.calcDistributorsPressure = function () {
     game.sprites.hydro.distributors.forEach(function (distributor) {
         // Init
         let inputPressure = 0
         let inputNb = 0
         distributor.pressure = 0
-        // For each linked objects
+        // For each linked and opened objects
         distributor.linkedObjects.forEach(function (linkedObject) {
-            inputPressure += linkedObject.pressure
-            inputNb+=1
+            if (linkedObject.isOpen == 1) {
+                inputPressure += linkedObject.pressure
+                inputNb+=1
+            }
         })
         if (inputNb > 0) {distributor.pressure = inputPressure / inputNb}
     })
@@ -207,6 +200,9 @@ game.sprites.hydro.calcPipesFlow = function () {
         // Calculate flow
         pipe.flow = pipe.connection1.pressure - pipe.connection2.pressure
         pipe.flow = Math.round(pipe.flow * this.flowConst)
+        // If tank is closed, then flow = 0
+        if (pipe.connection1.isOpen == 0) {pipe.flow = 0} 
+        if (pipe.connection2.isOpen == 0) {pipe.flow = 0} 
         // Check if pipe is filled or not
         pipe.isFilled = 1
         if (pipe.connection1.curHeight == 0 || pipe.connection2.curHeight == 0) {pipe.isFilled = 0}
@@ -288,22 +284,18 @@ game.sprites.hydro.drawDistributor = function (ctx) {
     ctx.font = "12px serif"
     ctx.fillText("P: " + Math.round(this.pressure), 10, 40)
 }
-/*
+
 game.sprites.hydro.drawValve = function (ctx) {
     // Draw valve
     ctx.fillStyle = "yellow"
     ctx.fillRect(0, 0, 50, 50)
-    if (this.isOpen == 1) {
+    if (this.linkedTank.isOpen == 1) {
         ctx.fillStyle = "blue"
         ctx.fillRect(5, 5, 40, 40)
     }
     // DEBUG
-    ctx.fillStyle = "Black"
-    ctx.font = "12px serif"
-    ctx.fillText("PT: " + Math.round(this.pressureTank), -50, 20)
-    ctx.fillText("PD: " + Math.round(this.pressureDistributor), -50, 40)
 }
-*/
+
 game.sprites.hydro.drawPipe = function (ctx) {
     if (this.isVisible == 1) {
         // Draw pipe

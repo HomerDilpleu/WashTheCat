@@ -95,9 +95,9 @@ game.scenes.boot.start = function() {
     game.sprites.hydro.newCombo([1,2])
 */
     /////////////////////////////////////
-    // Test avec un "combo" de réservoir VID au milieu
+    // Test avec un "combo" de réservoir VIDE au milieu
     /////////////////////////////////////
-    game.sprites.hydro.newTank({X:200,altitude:400,tankWidth:100,tankHeight:300,curHeight:100})
+/*    game.sprites.hydro.newTank({X:200,altitude:400,tankWidth:100,tankHeight:300,curHeight:100})
     game.sprites.hydro.newTank({X:400,altitude:250,tankWidth:50,tankHeight:300,curHeight:0})
     game.sprites.hydro.newTank({X:450,altitude:250,tankWidth:50,tankHeight:300,curHeight:0})
     game.sprites.hydro.newTank({X:800,altitude:100,tankWidth:80,tankHeight:300,curHeight:0})
@@ -108,44 +108,41 @@ game.scenes.boot.start = function() {
     game.sprites.hydro.newPipe(['T2','D1'])
     game.sprites.hydro.newPipe(['T3','D1'])
     game.sprites.hydro.newCombo([1,2])
-
+*/
 
     /////////////////////////////////////
     // Test avec un "robinet" lié au réservoir qui alimente
     ///////////////////////////////////////
-/*    game.sprites.hydro.newTank({X:200,altitude:450,tankWidth:110,tankHeight:200,curHeight:100})
-    game.sprites.hydro.newTank({X:400,altitude:100,tankWidth:60,tankHeight:300,curHeight:100})
-    game.sprites.hydro.newDistributor({X:300,altitude:80})
-    game.sprites.hydro.newValve({X:200,altitude:250,isOpen:0})
-    game.sprites.hydro.newPipe(['T0','V0'])
-    game.sprites.hydro.newPipe(['V0','D0'])
+/*    game.sprites.hydro.newTank({X:200,altitude:150,tankWidth:100,tankHeight:300,curHeight:50})
+    game.sprites.hydro.newTank({X:400,altitude:300,tankWidth:80,tankHeight:300,curHeight:100})
+    game.sprites.hydro.newDistributor({X:300,altitude:50})
+    game.sprites.hydro.newPipe(['T0','D0'])
     game.sprites.hydro.newPipe(['T1','D0'])
+    game.sprites.hydro.newValve({X:230,altitude:100,linkedTank:0,isOpen:0})
 */
     /////////////////////////////////////
     // Test avec un "robinet" lié au réservoir alimenté
     ///////////////////////////////////////
-/*    game.sprites.hydro.newTank({X:200,altitude:200,tankWidth:110,tankHeight:300,curHeight:100})
-    game.sprites.hydro.newTank({X:400,altitude:500,tankWidth:60,tankHeight:200,curHeight:100})
-    game.sprites.hydro.newDistributor({X:300,altitude:80})
-    game.sprites.hydro.newValve({X:200,altitude:150,isOpen:0})
-    game.sprites.hydro.newPipe(['T0','V0'])
-    game.sprites.hydro.newPipe(['V0','D0'])
+/*    game.sprites.hydro.newTank({X:200,altitude:150,tankWidth:100,tankHeight:300,curHeight:50})
+    game.sprites.hydro.newTank({X:400,altitude:300,tankWidth:80,tankHeight:300,curHeight:100})
+    game.sprites.hydro.newDistributor({X:300,altitude:50})
+    game.sprites.hydro.newPipe(['T0','D0'])
     game.sprites.hydro.newPipe(['T1','D0'])
+    game.sprites.hydro.newValve({X:375,altitude:225,linkedTank:1,isOpen:0})
 */
-
     /////////////////////////////////////
-    // Test avec 2 "robinets" 
+    // Test avec 2 "robinets"
     ///////////////////////////////////////
-/*    game.sprites.hydro.newTank({X:200,altitude:300,tankWidth:110,tankHeight:300,curHeight:100})
-    game.sprites.hydro.newTank({X:600,altitude:200,tankWidth:60,tankHeight:300,curHeight:100})
-    game.sprites.hydro.newDistributor({X:300,altitude:80})
-    game.sprites.hydro.newValve({X:200,altitude:250,isOpen:0})
-    game.sprites.hydro.newValve({X:450,altitude:200,isOpen:0})
-    game.sprites.hydro.newPipe(['T0','V0'])
-    game.sprites.hydro.newPipe(['V0','D0'])
-    game.sprites.hydro.newPipe(['T1','V1'])
-    game.sprites.hydro.newPipe(['V1','D0'])
-*/
+    game.sprites.hydro.newTank({X:200,altitude:150,tankWidth:100,tankHeight:300,curHeight:50})
+    game.sprites.hydro.newTank({X:400,altitude:300,tankWidth:80,tankHeight:300,curHeight:100})
+    game.sprites.hydro.newDistributor({X:300,altitude:50})
+    game.sprites.hydro.newPipe(['T0','D0'])
+    game.sprites.hydro.newPipe(['T1','D0'])
+    game.sprites.hydro.newValve({X:230,altitude:100,linkedTank:0,isOpen:0})
+    game.sprites.hydro.newValve({X:375,altitude:225,linkedTank:1,isOpen:0})
+
+
+
 
     /////////////////////////////////////
     // Test avec 3 "robinets" --> Interessant pour ateindre le niveau le plus haut possible
@@ -271,7 +268,7 @@ game.scenes.boot.update = function() {
     game.sprites.cat.update()
     // hydro
     game.sprites.hydro.calcTanksPressure()
-//    game.sprites.hydro.updateValves()
+    game.sprites.hydro.updateValves()
     game.sprites.hydro.calcDistributorsPressure()
     game.sprites.hydro.calcPipesFlow()
     game.sprites.hydro.updateTankCurHeight()
