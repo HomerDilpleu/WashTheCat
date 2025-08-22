@@ -284,7 +284,8 @@ game.scenes.boot.start = function() {
     /////////////////////////////////////
     // Premier niveau
     //////////////////////////////////////
-    game.sprites.cat.x = 300
+    game.sprites.cat.x = 400
+    game.sprites.cat.speed = 0.5
     game.sprites.cat.cleanLevel = 0.05
     game.sprites.hydro.newTank({X:600,altitude:450,tankWidth:80,tankHeight:200,curHeight:150})
     game.sprites.hydro.newTank({X:600,altitude:-100,tankWidth:2000,tankHeight:200,curHeight:1,isVisible:'0'})

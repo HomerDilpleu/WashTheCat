@@ -3,13 +3,16 @@ game.sprites.cat.init = function() {
     //this.drawBoundaries = true
 
     // Init sprite properties
-    this.width = 150
+    this.width = 140
     this.height = 110
     this.x = 200
     this.y = 200
     this.scaleX = 1
     this.scaleY = 1
     this.cleanLevel = 0.05
+    this.speed = 0.5
+    this.touchThresehold = 95
+    this.blockedThresehold = 20
     // Animation
     this.curAnimation = 'idle'
     this.lastAnimation = ''
@@ -61,14 +64,53 @@ game.sprites.cat.init = function() {
 }
 
 game.sprites.cat.update = function () {
+    // y
     this.y = mge.game.height - 50 - this.height/2
 
-    if (this.x < 250) {
-        this.x+=0.4
-        this.curAnimation = 'walk'
-    } else {
-        this.curAnimation = 'idle'
+    // Get distance to closest shower
+    let closestShowerAbsDistance = 10000
+    let closestShowerDistance = 10000
+    game.sprites.hydro.showers.forEach(function (shower) {
+        if(shower.linkedPipe.flow < 0) {
+            if (Math.abs(shower.x-game.sprites.cat.x) < closestShowerAbsDistance) {
+                closestShowerAbsDistance = Math.abs(shower.x-game.sprites.cat.x)
+                closestShowerDistance = shower.x-game.sprites.cat.x
+            }
+        }
+    })
+    // No open shower, just walk
+    if (closestShowerAbsDistance == 10000) {
+        game.sprites.cat.x+=game.sprites.cat.speed
+        game.sprites.cat.curAnimation = 'walk'                
+    } 
+    // Cat far from shower --> walk
+    else if (closestShowerAbsDistance > game.sprites.cat.touchThresehold) {
+        game.sprites.cat.x+=game.sprites.cat.speed
+        game.sprites.cat.curAnimation = 'walk'                
     }
+    // Cat not in the shower but seeing it --> idle
+    else if (closestShowerAbsDistance == game.sprites.cat.touchThresehold) {
+        game.sprites.cat.curAnimation = 'idle'                
+    }
+    // Cat inside shower --> blocked
+    else if (closestShowerAbsDistance <= game.sprites.cat.blockedThresehold) {
+        game.sprites.cat.curAnimation = 'idle'
+        game.sprites.cat.cleanLevel+=0.1
+    }
+    // Cat touched on face --> walk back
+    else if (closestShowerDistance > 0) {
+        game.sprites.cat.x-=game.sprites.cat.speed*2
+        game.sprites.cat.curAnimation = 'walk'                
+        game.sprites.cat.cleanLevel+=0.01
+    }
+    // Cat touched on back --> keep walking
+    else {
+        game.sprites.cat.x+=game.sprites.cat.speed*2
+        game.sprites.cat.curAnimation = 'walk'                
+        game.sprites.cat.cleanLevel+=0.01
+    }
+    // Cap clean level
+    if(this.cleanLevel>1) {this.cleanLevel=1}
 
 }
 
@@ -87,12 +129,5 @@ game.sprites.cat.drawFunction = function (ctx) {
 
     // Draw animation
     this.animation.draw(ctx)
-
-
-/*
-
-    if (this.x < 250) {this.animation.draw(ctx)}
-    else {this.faceImage.draw(ctx)}
- */
  
 }
