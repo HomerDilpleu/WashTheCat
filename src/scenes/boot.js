@@ -287,7 +287,7 @@ game.scenes.boot.start = function() {
     game.sprites.cat.x = 400
     game.sprites.cat.speed = 0.5
     game.sprites.cat.cleanLevel = 0.05
-    game.sprites.hydro.newTank({X:600,altitude:450,tankWidth:80,tankHeight:200,curHeight:150})
+    game.sprites.hydro.newTank({X:600,altitude:450,tankWidth:100,tankHeight:200,curHeight:180})
     game.sprites.hydro.newTank({X:600,altitude:-100,tankWidth:2000,tankHeight:200,curHeight:1,isVisible:'0'})
     game.sprites.hydro.newDistributor({X:600,altitude:200})
     game.sprites.hydro.newPipe({obj:['T0','D0']})
@@ -295,7 +295,8 @@ game.scenes.boot.start = function() {
     game.sprites.hydro.newValve({X:600,altitude:330,linkedTank:0,isOpen:0})
     game.sprites.hydro.newShower({X:600,altitude:180,triggerPipe:1})
 
-    
+
+
 }
 
 //////////////////////

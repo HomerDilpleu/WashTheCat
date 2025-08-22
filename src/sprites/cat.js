@@ -60,6 +60,8 @@ game.sprites.cat.init = function() {
 
     this.faceAnimation = [this.faceImage]
 
+    // Blocked - TO DO
+    this.blockedAnimation = [this.walk3Image]
 
 }
 
@@ -94,20 +96,21 @@ game.sprites.cat.update = function () {
     }
     // Cat inside shower --> blocked
     else if (closestShowerAbsDistance <= game.sprites.cat.blockedThresehold) {
-        game.sprites.cat.curAnimation = 'idle'
-        game.sprites.cat.cleanLevel+=0.1
+        game.sprites.cat.curAnimation = 'blocked'
+        game.sprites.cat.x+=game.sprites.cat.speed*0.5
+        game.sprites.cat.cleanLevel+=0.02
     }
     // Cat touched on face --> walk back
     else if (closestShowerDistance > 0) {
         game.sprites.cat.x-=game.sprites.cat.speed*2
         game.sprites.cat.curAnimation = 'walk'                
-        game.sprites.cat.cleanLevel+=0.01
+        game.sprites.cat.cleanLevel+=0.005
     }
     // Cat touched on back --> keep walking
     else {
         game.sprites.cat.x+=game.sprites.cat.speed*2
         game.sprites.cat.curAnimation = 'walk'                
-        game.sprites.cat.cleanLevel+=0.01
+        game.sprites.cat.cleanLevel+=0.005
     }
     // Cap clean level
     if(this.cleanLevel>1) {this.cleanLevel=1}
@@ -122,6 +125,9 @@ game.sprites.cat.drawFunction = function (ctx) {
         }
         if(this.curAnimation == 'walk') {
             this.animation.frames = this.walkAnimation
+        }
+        if(this.curAnimation == 'blocked') {
+            this.animation.frames = this.blockedAnimation
         }
         this.animation.restart()
     }
