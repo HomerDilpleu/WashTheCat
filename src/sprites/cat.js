@@ -1,5 +1,7 @@
 game.sprites.cat.init = function() {
 
+    //this.drawBoundaries = true
+
     // Init sprite properties
     this.width = 150
     this.height = 110
@@ -7,7 +9,12 @@ game.sprites.cat.init = function() {
     this.y = 200
     this.scaleX = 1
     this.scaleY = 1
-    //this.drawBoundaries = true
+    // Animation
+    this.curAnimation = 'idle'
+    this.lastAnimation = ''
+    // Load animation extension
+    mge.animation.loadExtention(this)
+    this.animation.timeBetweenFrames = 220
 
     // Draw cat generic function
     this.drawCat = function(ctx, pathBody, pathLegs, pathTail, pathEyes) {
@@ -47,20 +54,44 @@ game.sprites.cat.init = function() {
     this.faceEyes = new Path2D("M110 45 Q112 48, 115 45 M119 45 Q122 48,124 45")
     this.faceImage = {draw: function (ctx) {game.sprites.cat.drawCat(ctx,game.sprites.cat.faceBody, game.sprites.cat.walk2Legs, game.sprites.cat.walk2Tail, game.sprites.cat.faceEyes)}}
 
-    // Load animation extension
-    mge.animation.loadExtention(this)
-    this.animation.timeBetweenFrames = 220
-    this.animation.frames = this.walkAnimation
+    this.faceAnimation = [this.faceImage]
 
 
 }
 
 game.sprites.cat.update = function () {
     this.y = mge.game.height - 50 - this.height/2
-    if (this.x < 250) {this.x+=0.4}
+
+    if (this.x < 250) {
+        this.x+=0.4
+        this.curAnimation = 'walk'
+    } else {
+        this.curAnimation = 'idle'
+    }
+
 }
 
 game.sprites.cat.drawFunction = function (ctx) {
+    // Update animation
+    if (this.curAnimation != this.lastAnimation ) {
+        if(this.curAnimation == 'idle') {
+            this.animation.frames = this.faceAnimation
+        }
+        if(this.curAnimation == 'walk') {
+            this.animation.frames = this.walkAnimation
+        }
+        this.animation.restart()
+    }
+    this.lastAnimation = this.curAnimation
+
+    // Draw animation
+    this.animation.draw(ctx)
+
+
+/*
+
     if (this.x < 250) {this.animation.draw(ctx)}
     else {this.faceImage.draw(ctx)}
- }
+ */
+ 
+}
