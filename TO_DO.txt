@@ -1,17 +1,25 @@
 -----------------------------
 TO DO
 -----------------------------
-GLOBAL:
-- faire un DRAW comme le UPDATE de manière à pouvoir gérer l'order d'affichage par type d'objet ???
+P1:
+- Logique chat pour avoir un niveau jouable
+P2:
+- Ajouter section pipe pour calcul flow
+P3:
+- Ajouter 2 valves liées
+- Revoir la taille du sprite PIPE
+P4:
+- Gros cleaing avant de commencer niveaux et graphiques
+    - Surement virer les coordonnées absolues si pas de scroll
+    - Voir pour dessiner le fond dans une canvas hors ligne
+- faire un DRAW comme le UPDATE de manière à pouvoir gérer l'order d'affichage par type d'objet
+P5:
+- implémeter la logique de jeu
 
 
-- PIPE
-   - Limeter le flux d'une canalisation ???
-- VALVE
-   - Mettre en place un mécanisme pour action une valve indirectement
-      --> en reilant 2 valves?
-      --> avec un seuil de tank? --> à priori ça
-      --> avec un flux de pipe?
+
+
+
 
 
 -----------------------------

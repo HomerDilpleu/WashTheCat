@@ -1,5 +1,5 @@
 game.sprites.cat.init = function() {
-    
+
     // Init sprite properties
     this.width = 150
     this.height = 110
@@ -56,6 +56,7 @@ game.sprites.cat.init = function() {
 }
 
 game.sprites.cat.update = function () {
+    this.y = mge.game.height - 50 - this.height/2
     if (this.x < 250) {this.x+=0.4}
 }
 

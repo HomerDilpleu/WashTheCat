@@ -261,8 +261,8 @@ game.scenes.boot.start = function() {
 */    
     /////////////////////////////////////
     // Test avec un robinet lié à la hauteur d'un réservoir
-    ///////////////////////////////////////
-    game.sprites.hydro.newTank({X:200,altitude:350,tankWidth:100,tankHeight:300,curHeight:150})
+    //////////////////////////////////////
+/*    game.sprites.hydro.newTank({X:200,altitude:350,tankWidth:100,tankHeight:300,curHeight:150})
     game.sprites.hydro.newTank({X:600,altitude:500,tankWidth:80,tankHeight:200,curHeight:100})
     game.sprites.hydro.newTank({X:800,altitude:150,tankWidth:90,tankHeight:300,curHeight:0})
     game.sprites.hydro.newTank({X:1000,altitude:500,tankWidth:300,tankHeight:200,curHeight:100})
@@ -279,7 +279,18 @@ game.scenes.boot.start = function() {
     game.sprites.hydro.newValve({X:550,altitude:440,linkedTank:1,isOpen:0})
     game.sprites.hydro.newValve({X:680,altitude:150,linkedTank:2,isOpen:0})
     game.sprites.hydro.newValve({X:1000,altitude:405,linkedTank:3,isOpen:0,trigger:{tank:2,height:255}})
+*/
 
+    /////////////////////////////////////
+    // Premier niveau
+    //////////////////////////////////////
+    game.sprites.hydro.newTank({X:600,altitude:500,tankWidth:80,tankHeight:200,curHeight:150})
+    game.sprites.hydro.newTank({X:600,altitude:-100,tankWidth:2000,tankHeight:200,curHeight:1,isVisible:'0'})
+    game.sprites.hydro.newDistributor({X:600,altitude:200})
+    game.sprites.hydro.newPipe({obj:['T0','D0']})
+    game.sprites.hydro.newPipe({obj:['T1','D0'],isVisible:'0'})
+    game.sprites.hydro.newValve({X:600,altitude:350,linkedTank:0,isOpen:0})
+    game.sprites.hydro.newShower({X:600,altitude:180,triggerPipe:1})
 
     
 }
@@ -299,6 +310,11 @@ game.scenes.boot.update = function() {
 // Draw scene
 //////////////////////
 game.scenes.boot.draw = function() {
+
+    // Draw ground
+    let ctx = mge.game.context
+    ctx.fillStyle = "Black"
+    ctx.fillRect(0,mge.game.height-50,mge.game.width,50)
 
     // Draw sprites
     //game.sprites.playButton.draw()

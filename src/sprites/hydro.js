@@ -250,6 +250,7 @@ game.sprites.hydro.calcPipesFlow = function () {
         // Check if pipe is filled or not
         pipe.isFilled = 1
         if (pipe.connection1.curHeight == 0 || pipe.connection2.curHeight == 0) {pipe.isFilled = 0}
+        if (pipe.connection1.isOpen == 0 || pipe.connection2.curHeight == 0) {pipe.isFilled = 0}
     })
 }
 
@@ -313,41 +314,43 @@ game.sprites.hydro.drawTank = function (ctx) {
     ctx.fillStyle = "black"
     ctx.fillRect(0, 0, this.tankWidth, this.tankHeight)
     // Draw water
-    ctx.fillStyle = "blue"
+    ctx.fillStyle = "teal"
     ctx.fillRect(5, this.tankHeight, this.tankWidth-10, -this.curHeight)
-    // DEBUG
+/*    // DEBUG
     ctx.fillStyle = "white"
     ctx.font = "12px serif"
     ctx.fillText("A: " + Math.round(this.altitude), 10, 20)
     ctx.fillText("P: " + Math.round(this.pressure), 10, 40)
     ctx.fillText("H: " + Math.round(this.curHeight), 10, 60)
     ctx.fillText("V: " + Math.round(this.volume), 10, 80)
+    */
 }
 
 game.sprites.hydro.drawDistributor = function (ctx) {
     // Draw connector
     ctx.fillStyle = "green"
     ctx.fillRect(0, 0, 20, 20)
-    // DEBUG
+/*    // DEBUG
     ctx.fillStyle = "Black"
     ctx.font = "12px serif"
     ctx.fillText("P: " + Math.round(this.pressure), 10, 40)
+    */
 }
 
 game.sprites.hydro.drawValve = function (ctx) {
     // Draw valve
-    ctx.fillStyle = "orange"
-    if (this.trigger == 'click') {ctx.fillStyle = "yellow"}
+    ctx.fillStyle = "yellow"
+    if (this.trigger == 'click') {ctx.fillStyle = "orange"}
     ctx.fillRect(0, 0, 50, 50)
     // Draw water
     if (this.linkedTank.isOpen == 1) {
-        ctx.fillStyle = "blue"
+        ctx.fillStyle = "teal"
         ctx.fillRect(5, 5, 40, 40)
     }
     // Draw trigger tank height
     if (this.trigger != 'click') {
         ctx.fillStyle = "black"
-        if (this.linkedTank.isOpen == 1) {ctx.fillStyle = "blue"}
+        if (this.linkedTank.isOpen == 1) {ctx.fillStyle = "teal"}
         ctx.fillRect(-130, 35, 130, 5)       
     }
     // DEBUG
@@ -357,19 +360,20 @@ game.sprites.hydro.drawPipe = function (ctx) {
     if (this.isVisible == 1) {
         // Draw pipe
         ctx.strokeStyle = "black"
-        if(this.isFilled ==  1) {ctx.strokeStyle = "blue"}
+        if(this.isFilled ==  1) {ctx.strokeStyle = "teal"}
         ctx.lineWidth = 15
         ctx.beginPath()
         ctx.moveTo(this.connection1.connectionPointx, this.connection1.connectionPointy)
         ctx.lineTo(this.connection2.connectionPointx, this.connection2.connectionPointy)
         ctx.stroke()
         ctx.lineWidth = 1
-        // DEBUG
+    /*    // DEBUG
         ctx.fillStyle = "Black"
         ctx.font = "12px serif"
         let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
         let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
         ctx.fillText("F: " + Math.round(this.flow), x + 20, y)
+        */
     }
 }
 
@@ -380,12 +384,13 @@ game.sprites.hydro.drawShower = function (ctx) {
     // Draw water
     if(this.linkedPipe.flow < 0) {
         ctx.fillStyle = "aqua"
-        ctx.fillRect(0,50,50,200)
+        ctx.fillRect(0,50,50,115)
     }
-    // DEBUG
+/*    // DEBUG
     ctx.fillStyle = "white"
     ctx.font = "12px serif"
     ctx.fillText("F: " + Math.round(this.linkedPipe.flow), 10, 40)
+    */
 }
 
 game.sprites.hydro.drawCombo = function (ctx) {
