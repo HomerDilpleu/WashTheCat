@@ -284,12 +284,14 @@ game.scenes.boot.start = function() {
     /////////////////////////////////////
     // Premier niveau
     //////////////////////////////////////
-    game.sprites.hydro.newTank({X:600,altitude:500,tankWidth:80,tankHeight:200,curHeight:150})
+    game.sprites.cat.x = 300
+    game.sprites.cat.cleanLevel = 0.05
+    game.sprites.hydro.newTank({X:600,altitude:450,tankWidth:80,tankHeight:200,curHeight:150})
     game.sprites.hydro.newTank({X:600,altitude:-100,tankWidth:2000,tankHeight:200,curHeight:1,isVisible:'0'})
     game.sprites.hydro.newDistributor({X:600,altitude:200})
     game.sprites.hydro.newPipe({obj:['T0','D0']})
     game.sprites.hydro.newPipe({obj:['T1','D0'],isVisible:'0'})
-    game.sprites.hydro.newValve({X:600,altitude:350,linkedTank:0,isOpen:0})
+    game.sprites.hydro.newValve({X:600,altitude:330,linkedTank:0,isOpen:0})
     game.sprites.hydro.newShower({X:600,altitude:180,triggerPipe:1})
 
     
@@ -315,6 +317,21 @@ game.scenes.boot.draw = function() {
     let ctx = mge.game.context
     ctx.fillStyle = "Black"
     ctx.fillRect(0,mge.game.height-50,mge.game.width,50)
+
+    // Draw clean jauge
+    // Jauge size
+    let jaugeWidth = 300
+    let jaugeHeight = 20
+    // Draw empty jauge
+    ctx.fillStyle = "Black"
+    ctx.fillRect(10,20,jaugeWidth,jaugeHeight)
+    // Draw jauge level
+    let jaugeGradient = ctx.createLinearGradient(0, 0, jaugeWidth, 0)
+    jaugeGradient.addColorStop(0, "red")
+    jaugeGradient.addColorStop(0.5, "yellow")
+    jaugeGradient.addColorStop(1, "green")
+    ctx.fillStyle = jaugeGradient
+    ctx.fillRect(12,22,jaugeWidth*game.sprites.cat.cleanLevel-4,jaugeHeight-4)
 
     // Draw sprites
     //game.sprites.playButton.draw()

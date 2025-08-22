@@ -9,6 +9,7 @@ game.sprites.cat.init = function() {
     this.y = 200
     this.scaleX = 1
     this.scaleY = 1
+    this.cleanLevel = 0.05
     // Animation
     this.curAnimation = 'idle'
     this.lastAnimation = ''
