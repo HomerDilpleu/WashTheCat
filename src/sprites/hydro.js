@@ -310,11 +310,7 @@ game.sprites.hydro.transferLinkedTanks = function () {
         if (link.sourceTank.curHeight > link.sourceHeighTrigger) {
             link.targetTank.curHeight+=link.sourceTank.curHeight-link.sourceHeighTrigger
             link.sourceTank.curHeight = link.sourceHeighTrigger
-        } else {
-            // target tank height = 0
-            link.targetTank.curHeight = 0
-        }
-
+        } 
     })
 
 /*
