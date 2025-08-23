@@ -1,29 +1,31 @@
 -----------------------------
 TO DO
 -----------------------------
-P1:
-X Logique chat pour avoir un niveau jouable
-X Variabiliser le taux de "cleaning" pour l'adapter en fct du niveau
-X Faire un connecteur de réervoirs
-P2:
-X Ajouter un min débit pipe
-P3:
-X Revoir la taille du sprite PIPE
-- Voir si on peut utiliser isVisible natif
-P4:
-- Gros cleaing avant de commencer niveaux et graphiques
-    - Surement virer les coordonnées absolues si pas de scroll
-    - Voir pour dessiner le fond dans une canvas hors ligne
-- faire un DRAW comme le UPDATE de manière à pouvoir gérer l'order d'affichage par type d'objet
-P5:
-- implémeter la logique de niveaux
-- implémenter les boutons "rejouer" / "niveau suivant" / "pause"
-- implémenter la possibilité d'accélérer le chat
-P6:
-- animations du chat
-- graphismes hydrauliques
-- gaphismes fond
-P7: 
+P1: voir exactement ou on en est de la taille 
+- Cleaner MGE + Maquiller l'existant
+- Remplacer PlayButton par PlayButton
+- Voir logique de scènes (une seule scène, plusieurs scènes,...)
+
+P2: boucle de jeu
+- Variable "curLevel" + load level 
+- Conditions de victoire
+- Implémenter la possibilité d'accélérer le chat
+- Ajouter les boutons "rejouer" / "niveau suivant" / "pause"
+
+P3: optimisations graphismes / audio
+- Gérer la création des composants 
+   - contour
+   - intérieur vide
+   - eau
+- Voir comment faire les robinets
+- Animations chat
+- Son Miaou
+- Fond d'écran
+P3: Levels & tests
+
+P4: Polishing
+- effets particules
+- sound effects
 - stockage local du dernier niveau ateint
 - menu pour voir niveaux
 - boutons arrêt / marche son

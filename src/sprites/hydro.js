@@ -365,25 +365,24 @@ game.sprites.hydro.drawTank = function (ctx) {
     // Draw water
     ctx.fillStyle = "teal"
     ctx.fillRect(5, this.tankHeight, this.tankWidth-10, -this.curHeight)
-/*    // DEBUG
-    ctx.fillStyle = "white"
-    ctx.font = "12px serif"
-    ctx.fillText("A: " + Math.round(this.altitude), 10, 20)
-    ctx.fillText("P: " + Math.round(this.pressure), 10, 40)
-    ctx.fillText("H: " + Math.round(this.curHeight), 10, 60)
-    ctx.fillText("V: " + Math.round(this.volume), 10, 80)
-    */
+    // DEBUG
+    //ctx.fillStyle = "white"
+    //ctx.font = "12px serif"
+    //ctx.fillText("A: " + Math.round(this.altitude), 10, 20)
+    //ctx.fillText("P: " + Math.round(this.pressure), 10, 40)
+    //ctx.fillText("H: " + Math.round(this.curHeight), 10, 60)
+    //ctx.fillText("V: " + Math.round(this.volume), 10, 80)
+    
 }
 
 game.sprites.hydro.drawDistributor = function (ctx) {
     // Draw connector
     ctx.fillStyle = "green"
     ctx.fillRect(0, 0, 20, 20)
-/*    // DEBUG
-    ctx.fillStyle = "Black"
-    ctx.font = "12px serif"
-    ctx.fillText("P: " + Math.round(this.pressure), 10, 40)
-    */
+    // DEBUG
+    //ctx.fillStyle = "Black"
+    //ctx.font = "12px serif"
+    //ctx.fillText("P: " + Math.round(this.pressure), 10, 40)
 }
 
 game.sprites.hydro.drawValve = function (ctx) {
@@ -415,16 +414,13 @@ game.sprites.hydro.drawPipe = function (ctx) {
         ctx.moveTo(this.connectionPoint1.x,this.connectionPoint1.y)
         ctx.lineTo(this.connectionPoint1.x,this.connectionPoint2.y)
         ctx.lineTo(this.connectionPoint2.x,this.connectionPoint2.y)
-        //ctx.moveTo(this.connectionPoint1.x,this.connectionPoint1.y)
-        //ctx.lineTo(this.connectionPoint2.x,this.connectionPoint2.y)
         ctx.stroke()
         // DEBUG
-/*        ctx.fillStyle = "Black"
-        ctx.font = "12px serif"
-        let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
-        let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
-        ctx.fillText("F: " + Math.round(this.flow), x + 20, y)
-*/        
+        //ctx.fillStyle = "Black"
+        //ctx.font = "12px serif"
+        //let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
+        //let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
+        //ctx.fillText("F: " + Math.round(this.flow), x + 20, y)
     }
 }
 
@@ -437,11 +433,10 @@ game.sprites.hydro.drawShower = function (ctx) {
         ctx.fillStyle = "aqua"
         ctx.fillRect(0,50,50,115)
     }
-/*    // DEBUG
-    ctx.fillStyle = "white"
-    ctx.font = "12px serif"
-    ctx.fillText("F: " + Math.round(this.linkedPipe.flow), 10, 40)
-    */
+    // DEBUG
+    //ctx.fillStyle = "white"
+    //ctx.font = "12px serif"
+    //ctx.fillText("F: " + Math.round(this.linkedPipe.flow), 10, 40)
 }
 
 game.sprites.hydro.drawCombo = function (ctx) {
