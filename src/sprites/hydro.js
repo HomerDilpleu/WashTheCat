@@ -413,7 +413,10 @@ game.sprites.hydro.drawPipe = function (ctx) {
         ctx.lineWidth = 15
         ctx.beginPath()
         ctx.moveTo(this.connectionPoint1.x,this.connectionPoint1.y)
+        ctx.lineTo(this.connectionPoint1.x,this.connectionPoint2.y)
         ctx.lineTo(this.connectionPoint2.x,this.connectionPoint2.y)
+        //ctx.moveTo(this.connectionPoint1.x,this.connectionPoint1.y)
+        //ctx.lineTo(this.connectionPoint2.x,this.connectionPoint2.y)
         ctx.stroke()
         // DEBUG
 /*        ctx.fillStyle = "Black"

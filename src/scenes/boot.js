@@ -331,7 +331,7 @@ game.scenes.boot.start = function() {
     game.sprites.hydro.newTank({X:640,altitude:400,tankWidth:40,tankHeight:150,curHeight:0})
     game.sprites.hydro.newTank({X:850,altitude:-100,tankWidth:2000,tankHeight:200,curHeight:0,isVisible:'0'})
     game.sprites.hydro.newDistributor({X:300,altitude:250})
-    game.sprites.hydro.newDistributor({X:500,altitude:350})
+    game.sprites.hydro.newDistributor({X:500,altitude:450})
     game.sprites.hydro.newDistributor({X:640,altitude:250})
     game.sprites.hydro.newPipe({obj:['T0','D0']})
     game.sprites.hydro.newPipe({obj:['T1','D0']})

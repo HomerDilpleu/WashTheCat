@@ -8,7 +8,7 @@ X Faire un connecteur de réervoirs
 P2:
 X Ajouter un min débit pipe
 P3:
-- Revoir la taille du sprite PIPE
+X Revoir la taille du sprite PIPE
 - Voir si on peut utiliser isVisible natif
 P4:
 - Gros cleaing avant de commencer niveaux et graphiques
