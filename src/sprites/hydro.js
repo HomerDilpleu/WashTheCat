@@ -192,21 +192,6 @@ game.sprites.hydro.newLinkedTanks = function (c) {
     o.sourceTank = game.sprites.hydro.tanks[c[0]]
     o.targetTank = game.sprites.hydro.tanks[c[1]]
     o.sourceHeighTrigger = game.sprites.hydro.tanks[c[1]].altitude - game.sprites.hydro.tanks[c[0]].altitude
-
-/*    // Hydro properties
-    o.curHeight = 0
-    o.tankWidth = tanksWidth
-    o.tankHeight = tanksHeight / tanksNb
-    // World coordinates
-    o.X = tanksX / tanksNb
-    o.altitude = tanksAltitude / tanksNb
-    // Sprite properties
-    o.width = o.tankWidth
-    o.height = o.tankHeight
-    o.x = o.X
-    o.y = mge.game.height - o.altitude - o.tankHeight / 2
-    o.isVisible = c.isVisible || '1'
-*/
     // Push to list
     game.sprites.hydro.linkedTanks.push(o)
 }
@@ -312,28 +297,6 @@ game.sprites.hydro.transferLinkedTanks = function () {
             link.sourceTank.curHeight = link.sourceHeighTrigger
         } 
     })
-
-/*
-  o.sourceTank = game.sprites.hydro.tanks[c[0]]
-    o.targetTank = game.sprites.hydro.tanks[c[1]]
-    o.sourceHeighLink = game.sprites.hydro.tanks[c[1]].altitude - game.sprites.hydro.tanks[c[0]].altitude
-*/
-/*
-
-    // For each pipe, update the linked tank if exists
-    game.sprites.hydro.pipes.forEach(function (pipe) {
-        // Get linked tank and second linked object
-        let linkedTank = {}
-        if (pipe.connection1.type == 'T') {linkedTank = pipe.connection1}
-        if (pipe.connection2.type == 'T') {linkedTank = pipe.connection2}
-        // Calculate volume to move and height difference
-        let volumeToMove = pipe.flow
-        let heightDifference = volumeToMove / linkedTank.tankWidth
-        // Update tank height
-        linkedTank.curHeight -= heightDifference
-        // Check curHeight is not negative
-        if (linkedTank.curHeight < 0) {linkedTank.curHeight = 0}
-    })*/
 }
 
 game.sprites.hydro.updateComboCurHeight = function () {
