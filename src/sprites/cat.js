@@ -9,10 +9,13 @@ game.sprites.cat.init = function() {
     this.y = 200
     this.scaleX = 1
     this.scaleY = 1
-    this.cleanLevel = 0.05
+    this.cleanLevel = 0
     this.speed = 0.5
+    // Constants
     this.touchThresehold = 95
     this.blockedThresehold = 20
+    this.touchCleanSpeed = 0.005
+    this.blockedCleanSpeed = 0.02
     // Animation
     this.curAnimation = 'idle'
     this.lastAnimation = ''
@@ -98,19 +101,19 @@ game.sprites.cat.update = function () {
     else if (closestShowerAbsDistance <= game.sprites.cat.blockedThresehold) {
         game.sprites.cat.curAnimation = 'blocked'
         game.sprites.cat.x+=game.sprites.cat.speed*0.5
-        game.sprites.cat.cleanLevel+=0.02
+        game.sprites.cat.cleanLevel+=game.sprites.cat.blockedCleanSpeed
     }
     // Cat touched on face --> walk back
     else if (closestShowerDistance > 0) {
         game.sprites.cat.x-=game.sprites.cat.speed*2
         game.sprites.cat.curAnimation = 'walk'                
-        game.sprites.cat.cleanLevel+=0.005
+        game.sprites.cat.cleanLevel+=game.sprites.cat.touchCleanSpeed
     }
     // Cat touched on back --> keep walking
     else {
         game.sprites.cat.x+=game.sprites.cat.speed*2
         game.sprites.cat.curAnimation = 'walk'                
-        game.sprites.cat.cleanLevel+=0.005
+        game.sprites.cat.cleanLevel+=game.sprites.cat.touchCleanSpeed
     }
     // Cap clean level
     if(this.cleanLevel>1) {this.cleanLevel=1}

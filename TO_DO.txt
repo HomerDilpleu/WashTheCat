@@ -3,7 +3,8 @@ TO DO
 -----------------------------
 P1:
 X Logique chat pour avoir un niveau jouable
-- Variabiliser le taux de "cleaning" pour l'adapter en fct du niveau
+X Variabiliser le taux de "cleaning" pour l'adapter en fct du niveau
+- Faire un connecteur de réervoirs
 P2:
 - Ajouter section pipe pour calcul flow
 P3:
