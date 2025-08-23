@@ -4,11 +4,10 @@ TO DO
 P1:
 X Logique chat pour avoir un niveau jouable
 X Variabiliser le taux de "cleaning" pour l'adapter en fct du niveau
-- Faire un connecteur de réervoirs
+X Faire un connecteur de réervoirs
 P2:
-- Ajouter section pipe pour calcul flow
+X Ajouter un min débit pipe
 P3:
-- Ajouter 2 valves liées
 - Revoir la taille du sprite PIPE
 P4:
 - Gros cleaing avant de commencer niveaux et graphiques
@@ -16,7 +15,17 @@ P4:
     - Voir pour dessiner le fond dans une canvas hors ligne
 - faire un DRAW comme le UPDATE de manière à pouvoir gérer l'order d'affichage par type d'objet
 P5:
-- implémeter la logique de jeu
+- implémeter la logique de niveaux
+- implémenter les boutons "rejouer" / "niveau suivant" / "pause"
+- implémenter la possibilité d'accélérer le chat
+P6:
+- animations du chat
+- graphismes hydrauliques
+- gaphismes fond
+P7: 
+- stockage local du dernier niveau ateint
+- menu pour voir niveaux
+- boutons arrêt / marche son
 
 
 

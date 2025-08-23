@@ -433,12 +433,12 @@ game.sprites.hydro.drawPipe = function (ctx) {
         ctx.stroke()
         ctx.lineWidth = 1
         // DEBUG
-        ctx.fillStyle = "Black"
+/*        ctx.fillStyle = "Black"
         ctx.font = "12px serif"
         let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
         let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
         ctx.fillText("F: " + Math.round(this.flow), x + 20, y)
-        
+*/        
     }
 }
 
