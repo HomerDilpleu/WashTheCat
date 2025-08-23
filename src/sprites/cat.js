@@ -7,8 +7,8 @@ game.sprites.cat.init = function() {
     this.height = 110
     this.x = 200
     this.y = 200
-    this.scaleX = 1
-    this.scaleY = 1
+    this.scaleX = 1.2
+    this.scaleY = 1.2
     this.cleanLevel = 0
     this.speed = 0.5
     // Constants

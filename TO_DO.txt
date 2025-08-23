@@ -19,6 +19,7 @@ P3: optimisations graphismes / audio
    - eau
 - Voir comment faire les robinets
 - Animations chat
+- Saleté chat
 - Son Miaou
 - Fond d'écran
 P3: Levels & tests
