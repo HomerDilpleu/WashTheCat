@@ -115,10 +115,31 @@ game.sprites.hydro.newPipe = function (c) {
     o.isFilled = 0
     o.flow = 0
     // Sprite properties
-    o.width = mge.game.width
-    o.height = mge.game.height
-    o.x = mge.game.width / 2
-    o.y = mge.game.height / 2
+    o.width = Math.abs(o.connection1.connectionPointx-o.connection2.connectionPointx)
+    o.height = Math.abs(o.connection1.connectionPointy-o.connection2.connectionPointy)
+    o.x = (o.connection1.connectionPointx+o.connection2.connectionPointx) / 2
+    o.y = (o.connection2.connectionPointy+o.connection1.connectionPointy) / 2
+    // relative connexon points inside sprite
+    o.connectionPoint1={}
+    o.connectionPoint2={}
+    // --> x
+    if (o.connection1.connectionPointx < o.connection2.connectionPointx) {
+        o.connectionPoint1.x = 0
+        o.connectionPoint2.x = o.width
+    }
+    else {
+        o.connectionPoint1.x = o.width
+        o.connectionPoint2.x = 0
+    }
+    // --> y
+    if (o.connection1.connectionPointy < o.connection2.connectionPointy) {
+        o.connectionPoint1.y = 0
+        o.connectionPoint2.y = o.height
+    }
+    else {
+        o.connectionPoint1.y = o.height
+        o.connectionPoint2.y = 0
+    }
     o.isVisible = c.isVisible || '1'
     // Push to list
     game.sprites.hydro.pipes.push(o)
@@ -391,10 +412,9 @@ game.sprites.hydro.drawPipe = function (ctx) {
         if(this.isFilled ==  1) {ctx.strokeStyle = "teal"}
         ctx.lineWidth = 15
         ctx.beginPath()
-        ctx.moveTo(this.connection1.connectionPointx, this.connection1.connectionPointy)
-        ctx.lineTo(this.connection2.connectionPointx, this.connection2.connectionPointy)
+        ctx.moveTo(this.connectionPoint1.x,this.connectionPoint1.y)
+        ctx.lineTo(this.connectionPoint2.x,this.connectionPoint2.y)
         ctx.stroke()
-        ctx.lineWidth = 1
         // DEBUG
 /*        ctx.fillStyle = "Black"
         ctx.font = "12px serif"
