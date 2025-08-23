@@ -10,6 +10,7 @@ game.sprites.hydro.init = function() {
     this.height = 100
     // Hydro constants
     flowConst = 1
+    minPipeFlow = 50
     // List of objects by type
     this.tanks = []
     this.distributors = []
@@ -17,6 +18,7 @@ game.sprites.hydro.init = function() {
     this.combos = []
     this.valves = []
     this.showers = []
+    this.linkedTanks = []
 }
 
 // *************************************************
@@ -182,6 +184,33 @@ game.sprites.hydro.newShower = function (c) {
     game.sprites.hydro.showers.push(o)
 }
 
+game.sprites.hydro.newLinkedTanks = function (c) {
+    // Create combo of tanks object
+    let o = game.sprites.hydro.cloneCreate()
+    o.type = 'L'
+    // Linked tanks
+    o.sourceTank = game.sprites.hydro.tanks[c[0]]
+    o.targetTank = game.sprites.hydro.tanks[c[1]]
+    o.sourceHeighTrigger = game.sprites.hydro.tanks[c[1]].altitude - game.sprites.hydro.tanks[c[0]].altitude
+
+/*    // Hydro properties
+    o.curHeight = 0
+    o.tankWidth = tanksWidth
+    o.tankHeight = tanksHeight / tanksNb
+    // World coordinates
+    o.X = tanksX / tanksNb
+    o.altitude = tanksAltitude / tanksNb
+    // Sprite properties
+    o.width = o.tankWidth
+    o.height = o.tankHeight
+    o.x = o.X
+    o.y = mge.game.height - o.altitude - o.tankHeight / 2
+    o.isVisible = c.isVisible || '1'
+*/
+    // Push to list
+    game.sprites.hydro.linkedTanks.push(o)
+}
+
 // *************************************************
 // *************************************************
 // UPDATE
@@ -193,6 +222,7 @@ game.sprites.hydro.update = function () {
     game.sprites.hydro.calcDistributorsPressure()
     game.sprites.hydro.calcPipesFlow()
     game.sprites.hydro.updateTankCurHeight()
+    game.sprites.hydro.transferLinkedTanks()
     game.sprites.hydro.updateComboCurHeight()
 }
 
@@ -247,6 +277,8 @@ game.sprites.hydro.calcPipesFlow = function () {
         // If tank is closed, then flow = 0
         if (pipe.connection1.isOpen == 0) {pipe.flow = 0} 
         if (pipe.connection2.isOpen == 0) {pipe.flow = 0} 
+        if (pipe.flow>0 && pipe.flow < minPipeFlow) {pipe.flow = minPipeFlow}
+        if (pipe.flow<0 && pipe.flow > -minPipeFlow) {pipe.flow = -minPipeFlow}
         // Check if pipe is filled or not
         pipe.isFilled = 1
         if (pipe.connection1.curHeight == 0 || pipe.connection2.curHeight == 0) {pipe.isFilled = 0}
@@ -269,6 +301,43 @@ game.sprites.hydro.updateTankCurHeight = function () {
         // Check curHeight is not negative
         if (linkedTank.curHeight < 0) {linkedTank.curHeight = 0}
     })
+}
+
+game.sprites.hydro.transferLinkedTanks = function () {
+    // For each linked tanks
+    game.sprites.hydro.linkedTanks.forEach(function (link) {
+        // if minimal height reached in source tank, then transfer water
+        if (link.sourceTank.curHeight > link.sourceHeighTrigger) {
+            link.targetTank.curHeight+=link.sourceTank.curHeight-link.sourceHeighTrigger
+            link.sourceTank.curHeight = link.sourceHeighTrigger
+        } else {
+            // target tank height = 0
+            link.targetTank.curHeight = 0
+        }
+
+    })
+
+/*
+  o.sourceTank = game.sprites.hydro.tanks[c[0]]
+    o.targetTank = game.sprites.hydro.tanks[c[1]]
+    o.sourceHeighLink = game.sprites.hydro.tanks[c[1]].altitude - game.sprites.hydro.tanks[c[0]].altitude
+*/
+/*
+
+    // For each pipe, update the linked tank if exists
+    game.sprites.hydro.pipes.forEach(function (pipe) {
+        // Get linked tank and second linked object
+        let linkedTank = {}
+        if (pipe.connection1.type == 'T') {linkedTank = pipe.connection1}
+        if (pipe.connection2.type == 'T') {linkedTank = pipe.connection2}
+        // Calculate volume to move and height difference
+        let volumeToMove = pipe.flow
+        let heightDifference = volumeToMove / linkedTank.tankWidth
+        // Update tank height
+        linkedTank.curHeight -= heightDifference
+        // Check curHeight is not negative
+        if (linkedTank.curHeight < 0) {linkedTank.curHeight = 0}
+    })*/
 }
 
 game.sprites.hydro.updateComboCurHeight = function () {
@@ -367,13 +436,13 @@ game.sprites.hydro.drawPipe = function (ctx) {
         ctx.lineTo(this.connection2.connectionPointx, this.connection2.connectionPointy)
         ctx.stroke()
         ctx.lineWidth = 1
-    /*    // DEBUG
+        // DEBUG
         ctx.fillStyle = "Black"
         ctx.font = "12px serif"
         let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
         let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
         ctx.fillText("F: " + Math.round(this.flow), x + 20, y)
-        */
+        
     }
 }
 
