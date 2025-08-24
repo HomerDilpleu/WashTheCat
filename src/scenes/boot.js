@@ -26,6 +26,8 @@ game.scenes.boot.update = function() {
     //game.sprites.button.update()
     game.sprites.cat.update()
     game.sprites.hydro.update()
+    // Get level state
+    console.log(game.getLevelState())
 }
 
 //////////////////////
