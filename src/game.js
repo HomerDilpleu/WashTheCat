@@ -10,10 +10,12 @@ game = {
     cat: mge.game.createSprite(),
     hydro: mge.game.createSprite()
   },
-  variables:{},
+  levels:[],
+  curLevel:0,
+//  variables:{},
   instruments:{},
   songs:{},
-  utils:{}
+//  utils:{}
 }
 
 // Remove "Loading" div and start the game

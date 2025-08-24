@@ -9,8 +9,8 @@ game.sprites.hydro.init = function() {
     this.width = 100
     this.height = 100
     // Hydro constants
-    flowConst = 1
-    minPipeFlow = 50
+    this.flowConst = 1
+    this.minPipeFlow = 50
     // List of objects by type
     this.tanks = []
     this.distributors = []
@@ -279,12 +279,12 @@ game.sprites.hydro.calcPipesFlow = function () {
     game.sprites.hydro.pipes.forEach(function (pipe) {
         // Calculate flow
         pipe.flow = pipe.connection1.pressure - pipe.connection2.pressure
-        pipe.flow = Math.round(pipe.flow * this.flowConst)
+        pipe.flow = Math.round(pipe.flow * game.sprites.hydro.flowConst)
         // If tank is closed, then flow = 0
         if (pipe.connection1.isOpen == 0) {pipe.flow = 0} 
         if (pipe.connection2.isOpen == 0) {pipe.flow = 0} 
-        if (pipe.flow>0 && pipe.flow < minPipeFlow) {pipe.flow = minPipeFlow}
-        if (pipe.flow<0 && pipe.flow > -minPipeFlow) {pipe.flow = -minPipeFlow}
+        if (pipe.flow>0 && pipe.flow < game.sprites.hydro.minPipeFlow) {pipe.flow = game.sprites.hydro.minPipeFlow}
+        if (pipe.flow<0 && pipe.flow > -game.sprites.hydro.minPipeFlow) {pipe.flow = -game.sprites.hydro.minPipeFlow}
         // Check if pipe is filled or not
         pipe.isFilled = 1
         if (pipe.connection1.curHeight == 0 || pipe.connection2.curHeight == 0) {pipe.isFilled = 0}

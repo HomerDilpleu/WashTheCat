@@ -7,6 +7,7 @@ inputFiles = ['../src/lib/mge_V1.1.1.js',\
               '../src/game.js',\
               '../src/assets/instruments.js',\
               '../src/assets/songs.js',\
+              '../src/assets/levels.js',\
               '../src/scenes/boot.js',\
               '../src/scenes/main.js',\
               '../src/sprites/cat.js',\
