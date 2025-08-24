@@ -8,7 +8,7 @@ const mge = {
     _game:{},
     _loop:{},
     _mouse:{},
-    _keyboard:{},
+//    _keyboard:{},
     _sequencer:{}
 }
 ///////////////////////////
@@ -123,21 +123,21 @@ mge.game = {
 ///////////////////////////
 // Keyboard API
 ///////////////////////////
-mge.keyboard = {
+//mge.keyboard = {
     ////////////////
     // Properties
     ////////////////
-    get keysPressed() {
-        return mge._keyboard._keyPressed
-    },
+//    get keysPressed() {
+//        return mge._keyboard._keyPressed
+//    },
     
     ////////////////
     // Methods
     ////////////////
-    isKeyPressed: function (_key) {
-        return mge._keyboard._isKeyPressed(_key)
-    }
-}
+//    isKeyPressed: function (_key) {
+//        return mge._keyboard._isKeyPressed(_key)
+//    }
+//}
 ///////////////////////////
 // Mouse API
 ///////////////////////////
@@ -443,29 +443,6 @@ mge._audio._volumeToGain = function (_volume) {
     }
 }
 
-/////////////////////////////////////////
-// gain final = 10 ^ (volume en DB / 10)
-/////////////////////////////////////////
-// Gain final    Volume en DB
-// 1             0
-// 0.75          -1.25
-// 0.5           -3
-// 0.25          -6
-
-/////////////////////////////////////////
-// volume en DB = (volume jeu -1) * max réduction
-/////////////////////////////////////////
-// Exemple max réduction 30
-// Volume jeu    Volume DB
-// 1             0
-// 0.9           -3
-// 0.8           -6
-// 0.7           -9
-
-/////////////////////////////////////////
-// Donc gain final = 10 ^(((volume jeu-1) * max réduction ) / 10)
-/////////////////////////////////////////
-
 
 ///////////////////////////
 // Create a canvas
@@ -529,7 +506,7 @@ mge._game._create = function (_width, _height) {
     mge._mouse._create(mge._canvas._renderCanvas)
 
     // Create keyboard
-    mge._keyboard._create()
+//    mge._keyboard._create()
 
     // Create the audio context
     mge._audio._create()
@@ -615,71 +592,71 @@ mge._game._start = function (_scene) {
 ///////////////////////////
 // Check if a key is pressed
 ///////////////////////////
-mge._keyboard._isKeyPressed = function(_key) {
+//mge._keyboard._isKeyPressed = function(_key) {
 
-    if (this._keyPressed.indexOf(_key) == -1) {
-        return false
-    } else {
-        return true
-    }
-}
+//    if (this._keyPressed.indexOf(_key) == -1) {
+//        return false
+//    } else {
+//        return true
+//    }
+//}
 ///////////////////////////
 // Event handler onkeydown
 ///////////////////////////
-mge._keyboard._onKeyDown = function(e) {
+//mge._keyboard._onKeyDown = function(e) {
 
     // Add _keyPressedDetected array 
-    if (this._keyPressedDetected.indexOf(e.key) == -1) {
-        this._keyPressedDetected.push(e.key)
-    }
+//    if (this._keyPressedDetected.indexOf(e.key) == -1) {
+//        this._keyPressedDetected.push(e.key)
+//    }
 
-}
+//}
 ///////////////////////////
 // Event handler onkeyup
 ///////////////////////////
-mge._keyboard._onKeyUp = function(e) {
+//mge._keyboard._onKeyUp = function(e) {
 
     // Remove fom _keyPressedDetected array 
-    let indexOfKey = this._keyPressedDetected.indexOf(e.key)
-    if (indexOfKey != -1) {
-        this._keyPressedDetected.splice(indexOfKey,1)
-    }
-}
+//    let indexOfKey = this._keyPressedDetected.indexOf(e.key)
+//    if (indexOfKey != -1) {
+//        this._keyPressedDetected.splice(indexOfKey,1)
+//    }
+//}
 ///////////////////////////
 // Reset keyboard information
 ///////////////////////////
-mge._keyboard._reset = function() {
-    this._keyPressed = []
-    this._keyPressedDetected = []
-}
+//mge._keyboard._reset = function() {
+//    this._keyPressed = []
+//    this._keyPressedDetected = []
+//}
 ///////////////////////////
 // Update keyboard properties
 ///////////////////////////
-mge._keyboard._update = function() {
+//mge._keyboard._update = function() {
 
     // Set list of pressed keys
-    this._keyPressed = this._keyPressedDetected.slice()
+//    this._keyPressed = this._keyPressedDetected.slice()
 
-}
+//}
  ///////////////////////////
 // Create the keayboard
 ///////////////////////////
-mge._keyboard._create = function() {
+//mge._keyboard._create = function() {
 
     // Properties
-    this._keyPressed = []
-    this._keyPressedDetected = []
+//    this._keyPressed = []
+//    this._keyPressedDetected = []
 
     // Create listeners
-    document.onkeydown = function(e) {
-        mge._keyboard._onKeyDown(e)
-    }
+//    document.onkeydown = function(e) {
+//        mge._keyboard._onKeyDown(e)
+//    }
 
-    document.onkeyup = function(e) {
-        mge._keyboard._onKeyUp(e)
-    }
+//    document.onkeyup = function(e) {
+//        mge._keyboard._onKeyUp(e)
+//    }
 
-}
+//}
 ///////////////////////////
 // Create the loop
 ///////////////////////////
@@ -716,14 +693,14 @@ mge._loop._tick = function () {
 
         // Get mouse & keyboard information
         mge._mouse._update() 
-        mge._keyboard._update() 
+//        mge._keyboard._update() 
 
         // Check if the scene must change
         if (mge._game._curScene != mge._game._nextScene) {
             // Update curScene, reset controls and launch the start function of the new scene
             mge._game._curScene = mge._game._nextScene
             mge._mouse._reset()
-            mge._keyboard._reset()
+//            mge._keyboard._reset()
             mge._game._curScene.start()
         }
 
