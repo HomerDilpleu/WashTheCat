@@ -149,18 +149,18 @@ mge.mouse = {
     get isClicked () {
         return mge._mouse._isClicked
     },
-    get isDown () {
-        return mge._mouse._isDown
-    },
-    get isUp () {
-        return mge._mouse._isUp
-    },
-    get isPressed () {
-        return mge._mouse._isPressed
-    },
-    get isReleased () {
-        return mge._mouse._isReleased
-    },
+//    get isDown () {
+//        return mge._mouse._isDown
+//    },
+//    get isUp () {
+//        return mge._mouse._isUp
+//    },
+//    get isPressed () {
+//        return mge._mouse._isPressed
+//    },
+//    get isReleased () {
+//        return mge._mouse._isReleased
+//    },
     get x() {
         return mge._mouse._x
     },
@@ -744,9 +744,9 @@ mge._mouse._onClick = function(e) {
 ///////////////////////////
 // Event handler onmousedown
 ///////////////////////////
-mge._mouse._onDown = function(e) {
-    this._downDetected = true
-}
+//mge._mouse._onDown = function(e) {
+//    this._downDetected = true
+//}
 ///////////////////////////
 // Event handler onmousemouve
 ///////////////////////////
@@ -765,9 +765,9 @@ mge._mouse._onOut = function(e) {
 ///////////////////////////
 // Event handler onmouseup
 ///////////////////////////
-mge._mouse._onUp = function(e) {
-    this._upDetected = true
-}
+//mge._mouse._onUp = function(e) {
+//    this._upDetected = true
+//}
 ///////////////////////////
 // Reset mouse information
 ///////////////////////////
@@ -775,15 +775,15 @@ mge._mouse._reset = function() {
     this._x = 0
     this._y = 0
     this._isClicked = false
-    this._isDown = false
-    this._isUp = true
-    this._isPressed = false
-    this._isReleased = false
+//    this._isDown = false
+//    this._isUp = true
+//    this._isPressed = false
+//    this._isReleased = false
     this._xDetected = 0
     this._yDetected = 0
     this._clickDetected = false
-    this._downDetected = false
-    this._upDetected = false
+//    this._downDetected = false
+//    this._upDetected = false
 }
 ///////////////////////////
 // Update mouse properties
@@ -799,22 +799,22 @@ mge._mouse._update = function() {
     this._clickDetected = false
 
     // Take into account mouse down
-    this._isPressed = false
-    if (this._downDetected) {
-        this._isDown = true
-        this._isUp = false
-        this._downDetected = false    
-        this._isPressed = true
-    }
+//    this._isPressed = false
+//    if (this._downDetected) {
+//        this._isDown = true
+//        this._isUp = false
+//        this._downDetected = false    
+//        this._isPressed = true
+//    }
 
     // Take into account mouse up
-    this._isReleased = false
-    if (this._upDetected) {
-        this._isDown = false
-        this._isUp = true
-        this._upDetected = false
-        this._isReleased = true
-    }
+//    this._isReleased = false
+//    if (this._upDetected) {
+//        this._isDown = false
+//        this._isUp = true
+//        this._upDetected = false
+//        this._isReleased = true
+//    }
 
 }
 ///////////////////////////
@@ -826,36 +826,36 @@ mge._mouse._create = function(_HtmlCanvas) {
     this._x = 0
     this._y = 0
     this._isClicked = false
-    this._isDown = false
-    this._isUp = true
-    this._isPressed = false
-    this._isReleased = false
+//    this._isDown = false
+//    this._isUp = true
+//    this._isPressed = false
+//    this._isReleased = false
     this._xDetected = 0
     this._yDetected = 0
     this._clickDetected = false
-    this._downDetected = false
-    this._upDetected = false
+//    this._downDetected = false
+//    this._upDetected = false
 
     // Create listeners
     _HtmlCanvas.onclick = function(e) {
         mge._mouse._onClick(e)
     }
 
-    _HtmlCanvas.onmousemove = function(e) {
-        mge._mouse._onMove(e)
-    }
+//    _HtmlCanvas.onmousemove = function(e) {
+//        mge._mouse._onMove(e)
+//    }
     
-    _HtmlCanvas.onmouseout = function(e) {
-        mge._mouse._onOut(e)
-    }
+//    _HtmlCanvas.onmouseout = function(e) {
+//        mge._mouse._onOut(e)
+//    }
 
-    _HtmlCanvas.onmousedown = function(e) {
-        mge._mouse._onDown(e)
-    }
+//    _HtmlCanvas.onmousedown = function(e) {
+//        mge._mouse._onDown(e)
+//    }
 
-    _HtmlCanvas.onmouseup = function(e) {
-        mge._mouse._onUp(e)
-    }
+//    _HtmlCanvas.onmouseup = function(e) {
+//        mge._mouse._onUp(e)
+//    }
 
 }
 ///////////////////////////
@@ -876,8 +876,8 @@ mge._sprite._create = function(_ctx) {
     this._drawBoundaries = false
 
     // Properties for mouse
-    this._dragState = false
-    this._selectState = false
+//    this._dragState = false
+//    this._selectState = false
 
     // Clone properties
     this._clonesList = []
@@ -934,42 +934,42 @@ mge._sprite._isClicked = function() {
 // Check if the sprite is
 // being draged
 ///////////////////////////
-mge._sprite._isDragged = function() {
+//mge._sprite._isDragged = function() {
 
     // Start dragging
-    if (this._isTouched() && mge._mouse._isPressed ) {
-        this._dragState = true
-    } 
+//    if (this._isTouched() && mge._mouse._isPressed ) {
+//        this._dragState = true
+//    } 
 
     // Continue dragging
-    if (this._dragState && mge._mouse._isDown ) {
-        this._dragState = true
-    } else {
-        this._dragState = false
-    }
+//    if (this._dragState && mge._mouse._isDown ) {
+//        this._dragState = true
+//    } else {
+//        this._dragState = false
+//    }
 
     // Return dragging state
-    return this._dragState
-}
+//    return this._dragState
+//}
 ///////////////////////////
 // Check if the sprite is
 // selected
 ///////////////////////////
-mge._sprite._isSelected = function() {
+//mge._sprite._isSelected = function() {
 
     // Click the sprite
-    if (this._isTouched() && mge._mouse._isPressed ) {
-        this._selectState = true
-    } 
+//    if (this._isTouched() && mge._mouse._isPressed ) {
+//        this._selectState = true
+//    } 
     
     // Click outside the sprite
-    if (!this._isTouched() && mge._mouse._isPressed ) {
-        this._selectState = false
-    } 
+//    if (!this._isTouched() && mge._mouse._isPressed ) {
+//        this._selectState = false
+//    } 
 
     // Return dragging state
-    return this._selectState
-}
+//    return this._selectState
+//}
 ///////////////////////////
 // Check if the sprite is
 // touch for given x and y
