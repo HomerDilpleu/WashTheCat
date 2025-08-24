@@ -426,12 +426,21 @@ game.sprites.hydro.drawPipe = function (ctx) {
 
 game.sprites.hydro.drawShower = function (ctx) {
     // Draw shower
-    ctx.fillStyle = "purple"
-    ctx.fillRect(0, 0, 50, 50)
+    ctx.fillStyle = "black"
+    if(this.linkedPipe.flow < 0) {
+        ctx.fillStyle = "teal"
+    }
+    ctx.beginPath()
+    ctx.moveTo(this.width/2,0)
+    ctx.lineTo(this.width,this.height)
+    ctx.lineTo(0,this.height)
+    ctx.fill()
+
+
     // Draw water
     if(this.linkedPipe.flow < 0) {
         ctx.fillStyle = "aqua"
-        ctx.fillRect(0,50,50,115)
+        ctx.fillRect(0,50,50,125)
     }
     // DEBUG
     //ctx.fillStyle = "white"
