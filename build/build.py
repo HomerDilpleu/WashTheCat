@@ -250,7 +250,7 @@ stringsToUglify+=['animation']
 #########################################
 #########################################
 # game.js
-stringsToUglify+=['game','scenes','boot','main','sprites','variables','instruments','songs','utils']
+stringsToUglify+=['game','scenes','boot','main','sprites','hydro','variables','instruments','songs','utils']
 
 # assets / instruments.js
 stringsToUglify+=['preRenderedSounds','standardOsc','octave','volumeADSR','detuneADSR','filterType','filterADSR','reverb','oscGain','oscFilter','_delay','_feedbackGain']
@@ -269,10 +269,32 @@ stringsToUglify+=['closestShowerAbsDistance','closestShowerDistance']
 # sprites / cat.js (draw)
 stringsToUglify+=['idle','walk','blocked']
 
+# sprites / hydro.js (create)
+stringsToUglify+=['newTank','tankWidth','tankHeight','curHeight','isOpen','altitude','connectionPointx','connectionPointy','linkedObjects']
+stringsToUglify+=['newDistributor','pressure']
+stringsToUglify+=['newValve','linkedTank','trigger']
+stringsToUglify+=['newPipe','connection1','connection2','connectionPoint1','connectionPoint2']
+stringsToUglify+=['newCombo','tanksNb','tanksX','tanksAltitude','tanksWidth','tanksHeight','tankIndex']
+stringsToUglify+=['newShower','linkedPipe']
+stringsToUglify+=['newLinkedTanks','sourceTank','targetTank','sourceHeighTrigger']
+# sprites / hydro.js (update)
+stringsToUglify+=['calcTanksPressure']
+stringsToUglify+=['updateValves']
+stringsToUglify+=['calcDistributorsPressure','inputPressure','inputNb','linkedObject']
+stringsToUglify+=['calcPipesFlow','isFilled']
+stringsToUglify+=['updateTankCurHeight','volumeToMove','heightDifference']
+stringsToUglify+=['transferLinkedTanks']
+stringsToUglify+=['updateComboCurHeight','comboHeight','tanksNb']
+# sprites / hydro.js (draw)
+stringsToUglify+=['drawTank','drawDistributor','drawValve','drawPipe']
+# sprites / hydro.js (init)
+stringsToUglify+=['flowConst','minPipeFlow','tanks','distributors','pipes','combos','valves','showers','linkedTanks']
+# sprites / hydro.js (rammassemiettes)
+stringsToUglify+=['tank','pipe','distributor','combo','valve','shower']
 
 
-# sprites / hydro.js
-stringsToUglify+=['AFAIRE']
+
+
 
 # sprites / button.js
 stringsToUglify+=['button']
