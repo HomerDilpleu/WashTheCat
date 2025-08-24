@@ -235,21 +235,21 @@ mge._sprite = {
         this._drawBoundaries = _value
     },
     // is touched by mouse
-    get isTouched() {
-        return this._isTouched()
-    },   
+//    get isTouched() {
+//        return this._isTouched()
+//    },   
     // is clicked
     get isClicked() {
         return this._isClicked() 
     },  
     // is dragged
-    get isDragged() {
-        return this._isDragged() 
-    },  
+//    get isDragged() {
+//        return this._isDragged() 
+//    },  
     // is selected
-    get isSelected() {
-        return this._isSelected() 
-    },  
+//    get isSelected() {
+//        return this._isSelected() 
+//    },  
         
     ////////////////
     // Methods
@@ -760,7 +760,7 @@ mge._mouse._onMove = function(e) {
 mge._mouse._onOut = function(e) {
     this._xDetected = ''
     this._yDetected = ''
-    this._upDetected = true
+//    this._upDetected = true
 }
 ///////////////////////////
 // Event handler onmouseup

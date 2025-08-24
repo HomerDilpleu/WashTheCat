@@ -2,7 +2,7 @@
 TO DO
 -----------------------------
 P1: voir exactement ou on en est de la taille 
-- Cleaner MGE + Maquiller l'existant
+X Cleaner MGE + Maquiller l'existant
 X Remplacer PlayButton par PlayButton
 - Voir logique de scènes (une seule scène, plusieurs scènes,...)
 
@@ -24,7 +24,11 @@ P3: optimisations graphismes / audio
 - Fond d'écran
 P3: Levels & tests
 
-P4: Polishing
+P4: optimisations fianles
+- enleveer le dra w boundaries
+- voir ce qu'on peut enlever de mege
+
+P5: Polishing
 - effets particules
 - sound effects
 - stockage local du dernier niveau ateint
