@@ -250,7 +250,7 @@ stringsToUglify+=['animation']
 #########################################
 #########################################
 # game.js
-stringsToUglify+=['game','scenes','boot','main','images','animations','sprites','variables','instruments','songs','utils']
+stringsToUglify+=['game','scenes','boot','main','sprites','variables','instruments','songs','utils']
 
 # assets / instruments.js
 stringsToUglify+=['preRenderedSounds','standardOsc','octave','volumeADSR','detuneADSR','filterType','filterADSR','reverb','oscGain','oscFilter','_delay','_feedbackGain']
@@ -259,8 +259,17 @@ stringsToUglify+=['getBufferId','preRender','playLive','playPreRendered','bass',
 # assets / songs
 stringsToUglify+=['mainSong']
 
-# sprites / cat.js
-stringsToUglify+=['AFAIRE']
+# sprites / cat.js (init)
+stringsToUglify+=['cleanLevel','speed','touchThresehold','blockedThresehold','touchCleanSpeed','blockedCleanSpeed','curAnimation','lastAnimation']
+stringsToUglify+=['pathBody','pathLegs','pathTail','pathEyes']
+stringsToUglify+=['walk1Body','walk1Legs','walk1Tail','walk1Image','walk2Body','walk2Legs','walk2Tail','walk2Image','walk3Body','walk3Legs','walk3Tail','walk3Image']
+stringsToUglify+=['walkAnimation','faceBody','faceEyes','faceImage','faceAnimation','blockedAnimation']
+# sprites / cat.js (update)
+stringsToUglify+=['closestShowerAbsDistance','closestShowerDistance']
+# sprites / cat.js (draw)
+stringsToUglify+=['idle','walk','blocked']
+
+
 
 # sprites / hydro.js
 stringsToUglify+=['AFAIRE']
