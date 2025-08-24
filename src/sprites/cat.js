@@ -131,6 +131,8 @@ game.sprites.cat.update = function () {
 }
 
 game.sprites.cat.drawFunction = function (ctx) {
+    // If game is paused, then animation = idle
+    if (game.isPaused) {this.curAnimation='idle'}
     // Update animation
     if (this.curAnimation != this.lastAnimation ) {
         if(this.curAnimation == 'idle') {

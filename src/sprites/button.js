@@ -8,31 +8,49 @@ game.sprites.button.create = function() {
     p.height = 50
     p.x = 200
     p.y = 600
-    p.svg = new Path2D('M10 10 A20 20 0 1 0 40 10 L30 20 M40 10 L50 20 M0 0')
+    p.svg = new Path2D('M10 10 A19 19 0 1 0 40 10 L30 20 M40 10 L50 20 M0 0')
+
+    // Pause Button
+    p = game.sprites.button.cloneCreate()
+    p.id = 'pause'
+    p.width = 50
+    p.height = 50
+    p.x = 275
+    p.y = 600
+    p.svgPlay = new Path2D('M10 10 L40 25 L10 40 L10 10')
+    p.svgPause = new Path2D('M20 15 L20 40 M30 15 L30 40')
 
     // Next level Button
     p = game.sprites.button.cloneCreate()
     p.id = 'next'
     p.width = 50
     p.height = 50
-    p.x = 275
+    p.x = 350
     p.y = 600
-    p.svg = new Path2D('M10 10 L40 25 L10 40 L10 10')
+    p.svg = new Path2D('M10 10 L40 25 L10 40')
 
 }
 
 game.sprites.button.update = function () {
     // Restart level
-    if (this.id == 'restart' && this.isClicked) {game.loadLevel(game.curLevel)}
+    if (this.id == 'restart' && this.isClicked) {
+        game.isPaused=false
+        game.loadLevel(game.curLevel)
+    }
+    // Play/pause
+    if (this.id == 'pause' && this.isClicked) {
+        game.isPaused=!game.isPaused
+    }
     // Next level
-    if (this.id == 'next' && this.isClicked) {game.loadLevel(game.curLevel+1)}
-    
-    
-    
-    // If clicked, then change scene
-    //if (this.isClicked) {
-    //    mge.game.changeScene(game.scenes.main)
-    //}
+    if (this.id == 'next') {
+        // Visibility
+        if (game.getLevelState()[0]=='*') {this.isVisible=true} else {this.isVisible=false}
+        // If is cliked
+        if (this.isClicked) {
+            game.isPaused=false
+            game.loadLevel(game.curLevel+1)
+        }
+    }
 }
 
 game.sprites.button.drawFunction = function (ctx) {
@@ -47,8 +65,20 @@ game.sprites.button.drawFunction = function (ctx) {
     // Draw button box
     ctx.fillRect(0,0,50,50)
     ctx.strokeRect(0,0,50,50)
-    // Draw inside
-    ctx.stroke(this.svg)
+    // restart
+    if (this.id == 'restart') {
+        ctx.stroke(this.svg)
+    } 
+    // next
+    if (this.id == 'next') {
+        ctx.stroke(this.svg)
+    } 
+    // Pause
+    if (this.id == 'pause') {
+        if (game.isPaused) {ctx.stroke(this.svgPlay)} 
+        else {ctx.stroke(this.svgPause)}
+    } 
+
 //    if (this.id == 'restart') {
 //        ctx.stroke(this.svg)
 //    }

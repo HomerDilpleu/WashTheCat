@@ -24,10 +24,10 @@ game.scenes.boot.update = function() {
 
     // Update sprites
     game.sprites.button.cloneExecuteForEach('update')
-    game.sprites.cat.update()
-    game.sprites.hydro.update()
-    // Get level state
-    console.log(game.getLevelState())
+    if (!game.isPaused) {
+        game.sprites.cat.update()
+        game.sprites.hydro.update()
+    }
 }
 
 //////////////////////

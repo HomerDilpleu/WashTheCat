@@ -12,6 +12,7 @@ game = {
   },
   levels:[],
   curLevel:0,
+  isPaused:false,
 //  variables:{},
   instruments:{},
   songs:{},
