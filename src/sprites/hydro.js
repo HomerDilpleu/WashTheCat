@@ -3,7 +3,16 @@
 // Sprite general initialisation
 // *************************************************
 // *************************************************
-game.sprites.hydro.init = function() {
+game.sprites.hydro.reInit = function() {
+    this.tanks = []
+    this.distributors = []
+    this.pipes = []
+    this.combos = []
+    this.valves = []
+    this.showers = []
+    this.linkedTanks = []
+}
+game.sprites.hydro.create = function() {
     // Constants shared by all clones
     //this.drawBoundaries = true
     this.width = 100
@@ -12,13 +21,7 @@ game.sprites.hydro.init = function() {
     this.flowConst = 1
     this.minPipeFlow = 50
     // List of objects by type
-    this.tanks = []
-    this.distributors = []
-    this.pipes = []
-    this.combos = []
-    this.valves = []
-    this.showers = []
-    this.linkedTanks = []
+    this.reInit()
 }
 
 // *************************************************

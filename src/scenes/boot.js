@@ -9,10 +9,10 @@ game.scenes.boot.start = function() {
     // Load songs
     game.songs.init()
 
-    // Init sprites
+    // Create sprites
     //game.sprites.button.init()
-    game.sprites.cat.init()
-    game.sprites.hydro.init()
+    game.sprites.cat.create()
+    game.sprites.hydro.create()
     game.loadLevel(0)
 
     }

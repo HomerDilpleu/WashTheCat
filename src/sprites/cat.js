@@ -1,4 +1,4 @@
-game.sprites.cat.init = function() {
+game.sprites.cat.create = function() {
 
     //this.drawBoundaries = true
 
@@ -11,6 +11,7 @@ game.sprites.cat.init = function() {
     this.scaleY = 1.2
     this.cleanLevel = 0
     this.speed = 0.5
+    this.maxX = 800
     // Constants
     this.touchThresehold = 95
     this.blockedThresehold = 20
@@ -109,11 +110,20 @@ game.sprites.cat.update = function () {
         game.sprites.cat.curAnimation = 'walk'                
         game.sprites.cat.cleanLevel+=game.sprites.cat.touchCleanSpeed
     }
+    // Cat end of level --> stop walkinf
+    else if (this.x > this.maxX) {
+        game.sprites.cat.curAnimation = 'idle'
+    } 
     // Cat touched on back --> keep walking
     else {
         game.sprites.cat.x+=game.sprites.cat.speed*2
         game.sprites.cat.curAnimation = 'walk'                
         game.sprites.cat.cleanLevel+=game.sprites.cat.touchCleanSpeed
+    }
+    // Cat end of level --> stop walking
+    if (this.x > this.maxX) {
+        game.sprites.cat.curAnimation = 'idle'
+        this.x = this.maxX
     }
     // Cap clean level
     if(this.cleanLevel>1) {this.cleanLevel=1}
