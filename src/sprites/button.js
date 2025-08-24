@@ -1,4 +1,4 @@
-game.sprites.playButton.init = function() {
+game.sprites.button.init = function() {
     
     // Init sprite properties
     this.width = 100
@@ -11,14 +11,14 @@ game.sprites.playButton.init = function() {
 
 }
 
-game.sprites.playButton.update = function () {
+game.sprites.button.update = function () {
     // If clicked, then change scene
     if (this.isClicked) {
         mge.game.changeScene(game.scenes.main)
     }
 }
 
-game.sprites.playButton.drawFunction = function (ctx) {
+game.sprites.button.drawFunction = function (ctx) {
     ctx.fillStyle = "red"
     ctx.fill(this.path)
     

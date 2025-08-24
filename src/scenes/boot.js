@@ -10,7 +10,7 @@ game.scenes.boot.start = function() {
     game.songs.init()
 
     // Init sprites
-    game.sprites.playButton.init()
+    //game.sprites.button.init()
     game.sprites.cat.init()
     game.sprites.hydro.init()
 
@@ -63,7 +63,7 @@ game.scenes.boot.start = function() {
 game.scenes.boot.update = function() {
 
     // Update sprites
-    //game.sprites.playButton.update()
+    //game.sprites.button.update()
     game.sprites.cat.update()
     game.sprites.hydro.update()
 }
@@ -100,7 +100,7 @@ game.scenes.boot.draw = function() {
 
 
     // Draw sprites
-    //game.sprites.playButton.draw()
+    //game.sprites.button.draw()
     game.sprites.cat.draw()
     game.sprites.hydro.cloneExecuteForEach('draw')
 

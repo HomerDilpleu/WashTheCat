@@ -6,7 +6,7 @@ game = {
     main : {}
   },
   sprites:{
-    playButton: mge.game.createSprite(),
+    button: mge.game.createSprite(),
     cat: mge.game.createSprite(),
     hydro: mge.game.createSprite()
   },

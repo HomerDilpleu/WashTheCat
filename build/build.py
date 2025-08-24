@@ -11,7 +11,7 @@ inputFiles = ['../src/lib/mge_V1.1.1.js',\
               '../src/scenes/main.js',\
               '../src/sprites/cat.js',\
               '../src/sprites/hydro.js',\
-              '../src/sprites/playButton.js'\
+              '../src/sprites/button.js'\
               ]
 
 
@@ -252,24 +252,21 @@ stringsToUglify+=['animation']
 # game.js
 stringsToUglify+=['game','scenes','boot','main','images','animations','sprites','variables','instruments','songs','utils']
 
-# assets / animations.js
-stringsToUglify+=['playButtonAnimation']
-
-# assets / images.js
-stringsToUglify+=['logoDilpleu','playButtonDark','playButton']
-
 # assets / instruments.js
 stringsToUglify+=['preRenderedSounds','standardOsc','octave','volumeADSR','detuneADSR','filterType','filterADSR','reverb','oscGain','oscFilter','_delay','_feedbackGain']
 stringsToUglify+=['getBufferId','preRender','playLive','playPreRendered','bass','arpege','lead']
 
-# songs / instruments.js
+# assets / songs
 stringsToUglify+=['mainSong']
 
-# sprites / logoDlpleu.js
-stringsToUglify+=['logoDilpleu']
+# sprites / cat.js
+stringsToUglify+=['AFAIRE']
 
-# sprites / playButton.js
-stringsToUglify+=['playButton']
+# sprites / hydro.js
+stringsToUglify+=['AFAIRE']
+
+# sprites / button.js
+stringsToUglify+=['button']
 
 
 #########################################

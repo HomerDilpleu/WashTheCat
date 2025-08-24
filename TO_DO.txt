@@ -3,7 +3,7 @@ TO DO
 -----------------------------
 P1: voir exactement ou on en est de la taille 
 - Cleaner MGE + Maquiller l'existant
-- Remplacer PlayButton par PlayButton
+X Remplacer PlayButton par PlayButton
 - Voir logique de scènes (une seule scène, plusieurs scènes,...)
 
 P2: boucle de jeu
