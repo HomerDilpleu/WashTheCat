@@ -7,9 +7,9 @@ X Remplacer PlayButton par PlayButton
 - Voir logique de scènes (une seule scène, plusieurs scènes,...)
 
 P2: boucle de jeu
-- Variable "curLevel" + load level 
-- Conditions de victoire
-- Implémenter la possibilité d'accélérer le chat
+X Variable "curLevel" + load level 
+X Conditions de victoire
+- Implémenter la possibilité d'accélérer le chat ?
 - Ajouter les boutons "rejouer" / "niveau suivant" / "pause"
 
 P3: optimisations graphismes / audio

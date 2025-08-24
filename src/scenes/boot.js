@@ -10,7 +10,7 @@ game.scenes.boot.start = function() {
     game.songs.init()
 
     // Create sprites
-    //game.sprites.button.init()
+    game.sprites.button.create()
     game.sprites.cat.create()
     game.sprites.hydro.create()
     game.loadLevel(0)
@@ -23,7 +23,7 @@ game.scenes.boot.start = function() {
 game.scenes.boot.update = function() {
 
     // Update sprites
-    //game.sprites.button.update()
+    game.sprites.button.cloneExecuteForEach('update')
     game.sprites.cat.update()
     game.sprites.hydro.update()
     // Get level state
@@ -62,7 +62,7 @@ game.scenes.boot.draw = function() {
 
 
     // Draw sprites
-    //game.sprites.button.draw()
+    game.sprites.button.cloneExecuteForEach('draw')
     game.sprites.cat.draw()
     game.sprites.hydro.cloneExecuteForEach('draw')
 

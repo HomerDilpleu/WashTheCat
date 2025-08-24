@@ -3,6 +3,8 @@ game.loadLevel = function(levelID) {
     // Init hydro
     game.sprites.hydro.reInit()
     game.sprites.hydro.cloneDeleteAll()
+    // Check level id
+    if (levelID >= game.levels.length) {levelID=0}
     // Update curLevel
     game.curLevel = levelID
     // Load level
