@@ -31,6 +31,7 @@ game.getLevelState = function () {
 // Level 0 - Introduction
 game.levels.push(function() {
         game.sprites.cat.x = 400
+        game.sprites.cat.maxX = 700
         game.sprites.hydro.newTank({X:600,altitude:450,tankWidth:100,tankHeight:200,curHeight:180})
         game.sprites.hydro.newTank({X:600,altitude:-100,tankWidth:2000,tankHeight:200,curHeight:1,isVisible:'0'})
         game.sprites.hydro.newDistributor({X:600,altitude:200})
@@ -44,6 +45,7 @@ game.levels.push(function() {
 // Level 1
 game.levels.push(function() {
         game.sprites.cat.x = 400
+        game.sprites.cat.maxX = 750
         game.sprites.hydro.newTank({X:200,altitude:350,tankWidth:100,tankHeight:280,curHeight:250})
         game.sprites.hydro.newTank({X:400,altitude:300,tankWidth:80,tankHeight:200,curHeight:100})
         game.sprites.hydro.newTank({X:400,altitude:480,tankWidth:80,tankHeight:70,curHeight:0})
@@ -67,6 +69,28 @@ game.levels.push(function() {
     }
 )
 
-
+// Level 2
+game.levels.push(function() {
+    game.sprites.cat.x = 400
+    game.sprites.cat.maxX = 1100
+    game.sprites.hydro.newTank({X:200,altitude:350,tankWidth:100,tankHeight:300,curHeight:150})
+    game.sprites.hydro.newTank({X:600,altitude:500,tankWidth:80,tankHeight:200,curHeight:100})
+    game.sprites.hydro.newTank({X:800,altitude:150,tankWidth:90,tankHeight:300,curHeight:0})
+    game.sprites.hydro.newTank({X:1000,altitude:500,tankWidth:300,tankHeight:200,curHeight:100})
+    game.sprites.hydro.newTank({X:850,altitude:-100,tankWidth:2000,tankHeight:200,curHeight:1,isVisible:'0'})
+    game.sprites.hydro.newDistributor({X:300,altitude:200})
+    game.sprites.hydro.newDistributor({X:1000,altitude:200})
+    game.sprites.hydro.newPipe({obj:['T0','D0']})
+    game.sprites.hydro.newPipe({obj:['T1','D0']})
+    game.sprites.hydro.newPipe({obj:['T2','D0']})
+    game.sprites.hydro.newPipe({obj:['T3','D1']})
+    game.sprites.hydro.newPipe({obj:['T4','D1'],isVisible:'0'})
+    game.sprites.hydro.newShower({X:1000,altitude:205,triggerPipe:4})
+    game.sprites.hydro.newValve({X:220,altitude:300,linkedTank:0,isOpen:0})
+    game.sprites.hydro.newValve({X:550,altitude:440,linkedTank:1,isOpen:0})
+    game.sprites.hydro.newValve({X:680,altitude:150,linkedTank:2,isOpen:0})
+    game.sprites.hydro.newValve({X:1000,altitude:405,linkedTank:3,isOpen:0,trigger:{tank:2,height:255}})
+    }
+)
 
 
