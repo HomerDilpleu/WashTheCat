@@ -399,67 +399,56 @@ game.sprites.hydro.drawTank = function (ctx) {
     ctx.lineWidth = 2
     ctx.fillRect(6, this.tankHeight-6, this.tankWidth-12, -this.curHeight)
     ctx.strokeRect(6, this.tankHeight-6, this.tankWidth-12, -this.curHeight)
-    // DEBUG
-    //ctx.fillStyle = "white"
-    //ctx.font = "12px serif"
-    //ctx.fillText("A: " + Math.round(this.altitude), 10, 20)
-    //ctx.fillText("P: " + Math.round(this.pressure), 10, 40)
-    //ctx.fillText("H: " + Math.round(this.curHeight), 10, 60)
-    //ctx.fillText("V: " + Math.round(this.volume), 10, 80)
-    
 }
 
 game.sprites.hydro.drawDistributor = function (ctx) {
-    // Draw connector
     ctx.strokeStyle = "black"
     ctx.fillStyle = "darkgrey"
     ctx.lineWidth = 2
     ctx.fillRect(0, 0, 20, 20)
     ctx.strokeRect(0, 0, 20, 20)
-    // DEBUG
-    //ctx.fillStyle = "Black"
-    //ctx.font = "12px serif"
-    //ctx.fillText("P: " + Math.round(this.pressure), 10, 40)
 }
 
 game.sprites.hydro.drawValve = function (ctx) {
     ctx.fillStyle = "black"
     ctx.strokeStyle = "black"
     ctx.lineWidth = 2
-    if (this.linkedTank.isOpen == 0) {
-        ctx.fillRect(0, 0, 20, 50)
-        ctx.fillRect(20, 15, 10, 20)
-        ctx.fillStyle = "red"
-        ctx.fillRect(30, 10, 10, 30)
-        ctx.strokeRect(30, 10, 10, 30)
+    // Clickable valve
+    if (this.trigger == 'click') {
+        if (this.linkedTank.isOpen == 0) {
+            ctx.fillRect(5, 0, 10, 50)
+            ctx.fillRect(15, 15, 15, 20)
+            ctx.fillStyle = "red"
+            ctx.fillRect(30, 10, 10, 30)
+            ctx.strokeRect(30, 10, 10, 30)
+        } else {
+            ctx.fillRect(15, 0, 10, 50)
+            ctx.fillRect(20, 15, 20, 20)
+            ctx.fillStyle = "green"
+            ctx.fillRect(40, 10, 10, 30)
+            ctx.strokeRect(40, 10, 10, 30)
+        }
     } else {
-        ctx.fillRect(20, 15, 20, 20)
-        ctx.fillStyle = "green"
-        ctx.fillRect(40, 10, 10, 30)
-        ctx.strokeRect(40, 10, 10, 30)
+    // Triggered valve
+        if (this.linkedTank.isOpen == 0) {
+            // Valve
+            ctx.fillRect(-10, 15, 40, 20)
+            ctx.fillRect(5, 0, 10, 50)
+            // Link to tank (left)
+            ctx.fillStyle = "dimgrey"
+            ctx.fillRect(-10,23,-this.trigger.length,4)
+            ctx.strokeRect(-10,23,-this.trigger.length,4)
+        } else {
+            // Valve
+            ctx.fillRect(-10, 15, 10, 20)
+            ctx.fillRect(20, 15, 10, 20)
+            // Link to tank
+            ctx.fillStyle = "teal"
+            ctx.fillRect(-10,23,-this.trigger.length,4)
+            ctx.strokeRect(-10,23,-this.trigger.length,4)
+        }
     }
 
-/*    if (this.linkedTank.isOpen == 0) {
-        ctx.fillRect(0, 0, 20, 50)
-        ctx.fillRect(20, 15, 20, 20)
-        ctx.fillStyle = "red"
-        ctx.fillRect(40, 10, 10, 30)
-        ctx.strokeRect(40, 10, 10, 30)
-    } else {
-        ctx.fillRect(20, 15, 10, 20)
-        ctx.fillStyle = "green"
-        ctx.fillRect(30, 10, 10, 30)
-        ctx.strokeRect(30, 10, 10, 30)
-    }
-*/
-
-/*    ctx.beginPath()
-    ctx.moveTo(this.width/2,-2)
-    ctx.lineTo(this.width+2,this.height+2)
-    ctx.lineTo(-2,this.height+2)
-    ctx.lineTo(this.width/2,-2)
-    ctx.fill()
-*/
 
 
     /*
@@ -505,12 +494,6 @@ game.sprites.hydro.drawPipe = function (ctx) {
     if (Math.abs(this.flow) > 0) {ctx.strokeStyle = "teal"}
     ctx.lineWidth = 10
     ctx.stroke()
-    // DEBUG
-    //ctx.fillStyle = "Black"
-    //ctx.font = "12px serif"
-    //let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
-    //let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
-    //ctx.fillText("F: " + Math.round(this.flow), x + 20, y)
 }
 
 game.sprites.hydro.drawShower = function (ctx) {
@@ -530,10 +513,6 @@ game.sprites.hydro.drawShower = function (ctx) {
         ctx.fillStyle = "aqua"
         ctx.fillRect(0,50,50,125)
     }
-    // DEBUG
-    //ctx.fillStyle = "white"
-    //ctx.font = "12px serif"
-    //ctx.fillText("F: " + Math.round(this.linkedPipe.flow), 10, 40)
 }
 
 game.sprites.hydro.drawCombo = function (ctx) {

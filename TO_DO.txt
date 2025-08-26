@@ -4,34 +4,32 @@ TO DO
 P1: voir exactement ou on en est de la taille 
 X Cleaner MGE + Maquiller l'existant
 X Remplacer PlayButton par PlayButton
-- Voir logique de scènes (une seule scène, plusieurs scènes,...)
+X Voir logique de scènes (une seule scène, plusieurs scènes,...)
 
 P2: boucle de jeu
 X Variable "curLevel" + load level 
 X Conditions de victoire
-- Implémenter la possibilité d'accélérer le chat ?
+N Implémenter la possibilité d'accélérer le chat ?
 X Ajouter les boutons "rejouer" / "niveau suivant" / "pause"
 
 P3: optimisations graphismes / audio
-- Gérer la création des composants 
-   - contour
-   - intérieur vide
-   - eau
-- Voir comment faire les robinets
+X Gérer la création des composants 
+X Voir comment faire les robinets
 - Animations chat
 - Saleté chat
 - Son Miaou
 - Fond d'écran
-P3: Levels & tests
+- Ecran d'accueil
+- stockage local du dernier niveau ateint (prompt au démarrage continue / restart)
+P4: Levels & tests
 
-P4: optimisations fianles
+P5: optimisations fianles
 - enleveer le dra w boundaries
 - voir ce qu'on peut enlever de mege
 
-P5: Polishing
+P6: Polishing
 - effets particules
 - sound effects
-- stockage local du dernier niveau ateint
 - menu pour voir niveaux
 - boutons arrêt / marche son
 
