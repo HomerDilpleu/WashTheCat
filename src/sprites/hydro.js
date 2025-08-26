@@ -372,7 +372,10 @@ game.sprites.hydro.drawTank = function (ctx) {
     ctx.fillRect(6, 6, this.tankWidth-12, this.tankHeight-12)
     // Draw water
     ctx.fillStyle = "teal"
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
     ctx.fillRect(6, this.tankHeight-6, this.tankWidth-12, -this.curHeight)
+    ctx.strokeRect(6, this.tankHeight-6, this.tankWidth-12, -this.curHeight)
     
 
 /*
@@ -443,7 +446,7 @@ game.sprites.hydro.drawValve = function (ctx) {
 game.sprites.hydro.drawPipe = function (ctx) {
     // Draw pipe border
     ctx.strokeStyle = "black"
-    ctx.lineWidth = 19
+    ctx.lineWidth = 18
     ctx.beginPath()
     ctx.moveTo(this.connectionPoint1.x,this.connectionPoint1.y)
     ctx.lineTo(this.connectionPoint1.x,this.connectionPoint2.y)
@@ -451,7 +454,8 @@ game.sprites.hydro.drawPipe = function (ctx) {
     ctx.stroke()
     // Draw pipe
     ctx.strokeStyle = "darkgrey"
-    ctx.lineWidth = 15
+    if (Math.abs(this.flow) > 0) {ctx.strokeStyle = "teal"}
+    ctx.lineWidth = 14
     ctx.beginPath()
     ctx.moveTo(this.connectionPoint1.x,this.connectionPoint1.y)
     ctx.lineTo(this.connectionPoint1.x,this.connectionPoint2.y)
