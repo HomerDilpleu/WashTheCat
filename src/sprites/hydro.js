@@ -22,6 +22,7 @@ game.sprites.hydro.create = function() {
     this.minPipeFlow = 50
     // List of objects by type
     this.reInit()
+
 }
 
 // *************************************************
@@ -89,13 +90,15 @@ game.sprites.hydro.newValve = function (c) {
     o.linkedTank.isOpen = c.isOpen
     o.trigger = c.trigger || 'click'
     // World coordinates
-    o.X = c.X
-    o.altitude = c.altitude
+    //o.X = c.X
+    //o.altitude = c.altitude
+    o.X = o.linkedTank.X+15
+    o.altitude = o.linkedTank.altitude-35
     // Sprite properties
     o.width = 50
     o.height = 50
-    o.x = c.X
-    o.y = mge.game.height - c.altitude - 10
+    o.x = o.X
+    o.y = mge.game.height - o.altitude - 10
     o.isVisible = c.isVisible || '1'
     // Push to list
     game.sprites.hydro.valves.push(o)
@@ -370,10 +373,10 @@ game.sprites.hydro.drawFunction = function (ctx) {
     }
     if (this.isVisible == 1 && this.drawMode == 'distributor') {
         if (this.type == 'D') {this.drawDistributor(ctx)}
+        if (this.type == 'V') {this.drawValve(ctx)}
     }
     if (this.isVisible == 1 && this.drawMode == 'other') {
         if (this.type == 'T') {this.drawTank(ctx)}
-        if (this.type == 'V') {this.drawValve(ctx)}
         if (this.type == 'S') {this.drawShower(ctx)}
         if (this.type == 'C') {this.drawCombo(ctx)}
         if (this.type == 'L') {this.linkTanks(ctx)}
@@ -420,6 +423,46 @@ game.sprites.hydro.drawDistributor = function (ctx) {
 }
 
 game.sprites.hydro.drawValve = function (ctx) {
+    ctx.fillStyle = "black"
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 2
+    if (this.linkedTank.isOpen == 0) {
+        ctx.fillRect(0, 0, 20, 50)
+        ctx.fillRect(20, 15, 10, 20)
+        ctx.fillStyle = "red"
+        ctx.fillRect(30, 10, 10, 30)
+        ctx.strokeRect(30, 10, 10, 30)
+    } else {
+        ctx.fillRect(20, 15, 20, 20)
+        ctx.fillStyle = "green"
+        ctx.fillRect(40, 10, 10, 30)
+        ctx.strokeRect(40, 10, 10, 30)
+    }
+
+/*    if (this.linkedTank.isOpen == 0) {
+        ctx.fillRect(0, 0, 20, 50)
+        ctx.fillRect(20, 15, 20, 20)
+        ctx.fillStyle = "red"
+        ctx.fillRect(40, 10, 10, 30)
+        ctx.strokeRect(40, 10, 10, 30)
+    } else {
+        ctx.fillRect(20, 15, 10, 20)
+        ctx.fillStyle = "green"
+        ctx.fillRect(30, 10, 10, 30)
+        ctx.strokeRect(30, 10, 10, 30)
+    }
+*/
+
+/*    ctx.beginPath()
+    ctx.moveTo(this.width/2,-2)
+    ctx.lineTo(this.width+2,this.height+2)
+    ctx.lineTo(-2,this.height+2)
+    ctx.lineTo(this.width/2,-2)
+    ctx.fill()
+*/
+
+
+    /*
     // Draw valve
     ctx.fillStyle = "yellow"
     if (this.trigger == 'click') {ctx.fillStyle = "orange"}
@@ -436,6 +479,7 @@ game.sprites.hydro.drawValve = function (ctx) {
         ctx.fillRect(-130, 35, 130, 5)       
     }
     // DEBUG
+    */
 }
 
 game.sprites.hydro.drawPipe = function (ctx) {
@@ -446,6 +490,7 @@ game.sprites.hydro.drawPipe = function (ctx) {
     ctx.lineTo(this.connectionPoint2.x,this.connectionPoint2.y)
 
     // Draw pipe border
+    ctx.lineJoin = "round"
     ctx.strokeStyle = "black"
     ctx.lineWidth = 22
     ctx.stroke()
