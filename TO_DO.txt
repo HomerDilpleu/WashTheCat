@@ -15,12 +15,14 @@ X Ajouter les boutons "rejouer" / "niveau suivant" / "pause"
 P3: optimisations graphismes / audio
 X Gérer la création des composants 
 X Voir comment faire les robinets
+- Faire l'eau de la douche (particules?)
+- Voir si on peut optimiser le sprite et le compressage
 - Animations chat
 - Saleté chat
-- Son Miaou
 - Fond d'écran
 - Ecran d'accueil
 - stockage local du dernier niveau ateint (prompt au démarrage continue / restart)
+
 P4: Levels & tests
 
 P5: optimisations fianles
@@ -28,6 +30,7 @@ P5: optimisations fianles
 - voir ce qu'on peut enlever de mege
 
 P6: Polishing
+- Son Miaou
 - effets particules
 - sound effects
 - menu pour voir niveaux
