@@ -18,7 +18,7 @@ game.sprites.hydro.create = function() {
     this.width = 100
     this.height = 100
     // Hydro constants
-    this.flowConst = 1
+    this.flowConst = 0.5
     this.minPipeFlow = 50
     // List of objects by type
     this.reInit()
@@ -169,6 +169,7 @@ game.sprites.hydro.newCombo = function (c) {
         tanksAltitude+=tank.altitude
         tanksWidth+=tank.width
         tanksHeight+=tank.height
+        tank.isVisible = 0
     })
     // Hydro properties
     o.curHeight = 0
@@ -215,6 +216,21 @@ game.sprites.hydro.newLinkedTanks = function (c) {
     o.sourceTank = game.sprites.hydro.tanks[c[0]]
     o.targetTank = game.sprites.hydro.tanks[c[1]]
     o.sourceHeighTrigger = game.sprites.hydro.tanks[c[1]].altitude - game.sprites.hydro.tanks[c[0]].altitude
+    o.sourceTank.isVisible = 0
+    o.targetTank.isVisible = 0
+    // Hydro properties
+    o.tankWidth = o.sourceTank.tankWidth
+    o.tankHeight = o.sourceTank.tankHeight + o.targetTank.tankHeight
+    o.curHeight =  o.sourceTank.curHeight + o.targetTank.curHeight
+    // World coordinates
+    o.X = o.sourceTank.X
+    o.altitude = o.sourceTank.altitude
+    // Sprite properties
+    o.width = o.tankWidth
+    o.height = o.tankHeight
+    o.x = o.X
+    o.y = mge.game.height - o.altitude - o.tankHeight / 2
+    o.isVisible = c.isVisible || '1'
     // Push to list
     game.sprites.hydro.linkedTanks.push(o)
 }
@@ -315,6 +331,9 @@ game.sprites.hydro.transferLinkedTanks = function () {
             link.targetTank.curHeight+=link.sourceTank.curHeight-link.sourceHeighTrigger
             link.sourceTank.curHeight = link.sourceHeighTrigger
         } 
+        // Update cur height of the linkedtanks object
+        link.curHeight =  link.sourceTank.curHeight + link.targetTank.curHeight
+
     })
 }
 
@@ -357,6 +376,7 @@ game.sprites.hydro.drawFunction = function (ctx) {
         if (this.type == 'V') {this.drawValve(ctx)}
         if (this.type == 'S') {this.drawShower(ctx)}
         if (this.type == 'C') {this.drawCombo(ctx)}
+        if (this.type == 'L') {this.linkTanks(ctx)}
     }
 }
 
@@ -376,29 +396,6 @@ game.sprites.hydro.drawTank = function (ctx) {
     ctx.lineWidth = 2
     ctx.fillRect(6, this.tankHeight-6, this.tankWidth-12, -this.curHeight)
     ctx.strokeRect(6, this.tankHeight-6, this.tankWidth-12, -this.curHeight)
-    
-
-/*
-    ctx.fillStyle = "dimgrey"
-    ctx.lineWidth = 2
-    ctx.fillRect(0, 0, this.tankWidth, this.tankHeight)
-    ctx.strokeRect(0, 0, this.tankWidth, this.tankHeight)
-    ctx.strokeRect(5, 5, this.tankWidth-10, this.tankHeight-10)
-*/
-
-
-/*
-    // Draw tank
-    ctx.fillStyle = "black"
-    ctx.fillStyle = "dimgrey"
-    ctx.lineWidth = 2
-    ctx.fillRect(0, 0, this.tankWidth, this.tankHeight)
-    ctx.strokeRect(0, 0, this.tankWidth, this.tankHeight)
-    ctx.strokeRect(5, 5, this.tankWidth-10, this.tankHeight-10)
-    // Draw water
-    ctx.fillStyle = "teal"
-    ctx.fillRect(5, this.tankHeight-5, this.tankWidth-10, -this.curHeight)
-*/    
     
     //ctx.strokeRect(5, this.tankHeight-5, this.tankWidth-10, -this.curHeight)
     // DEBUG
@@ -493,6 +490,11 @@ game.sprites.hydro.drawShower = function (ctx) {
 }
 
 game.sprites.hydro.drawCombo = function (ctx) {
+    // Draw as a tank
+    this.drawTank(ctx)
+}
+
+game.sprites.hydro.linkTanks = function (ctx) {
     // Draw as a tank
     this.drawTank(ctx)
 }
