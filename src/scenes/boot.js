@@ -65,6 +65,8 @@ game.scenes.boot.draw = function() {
     game.sprites.hydro.cloneExecuteForEach('draw')
     game.sprites.hydro.drawMode = 'other'
     game.sprites.hydro.cloneExecuteForEach('draw')
+    game.sprites.hydro.drawMode = 'distributor'
+    game.sprites.hydro.cloneExecuteForEach('draw')
  
     // Draw sprites
     game.sprites.button.cloneExecuteForEach('draw')

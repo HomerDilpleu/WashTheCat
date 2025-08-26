@@ -349,9 +349,11 @@ game.sprites.hydro.drawFunction = function (ctx) {
     if (this.isVisible == 1 && this.drawMode == 'pipe') {
         if (this.type == 'P') {this.drawPipe(ctx)}
     }
+    if (this.isVisible == 1 && this.drawMode == 'distributor') {
+        if (this.type == 'D') {this.drawDistributor(ctx)}
+    }
     if (this.isVisible == 1 && this.drawMode == 'other') {
         if (this.type == 'T') {this.drawTank(ctx)}
-        if (this.type == 'D') {this.drawDistributor(ctx)}
         if (this.type == 'V') {this.drawValve(ctx)}
         if (this.type == 'S') {this.drawShower(ctx)}
         if (this.type == 'C') {this.drawCombo(ctx)}
@@ -362,9 +364,40 @@ game.sprites.hydro.drawTank = function (ctx) {
     // Draw tank
     ctx.fillStyle = "black"
     ctx.fillRect(0, 0, this.tankWidth, this.tankHeight)
+    ctx.fillStyle = "darkgrey"
+    ctx.fillRect(2, 2, this.tankWidth-4, this.tankHeight-4)
+    ctx.fillStyle = "black"
+    ctx.fillRect(4, 4, this.tankWidth-8, this.tankHeight-8)
+    ctx.fillStyle = "dimgrey"
+    ctx.fillRect(6, 6, this.tankWidth-12, this.tankHeight-12)
     // Draw water
     ctx.fillStyle = "teal"
-    ctx.fillRect(5, this.tankHeight, this.tankWidth-10, -this.curHeight)
+    ctx.fillRect(6, this.tankHeight-6, this.tankWidth-12, -this.curHeight)
+    
+
+/*
+    ctx.fillStyle = "dimgrey"
+    ctx.lineWidth = 2
+    ctx.fillRect(0, 0, this.tankWidth, this.tankHeight)
+    ctx.strokeRect(0, 0, this.tankWidth, this.tankHeight)
+    ctx.strokeRect(5, 5, this.tankWidth-10, this.tankHeight-10)
+*/
+
+
+/*
+    // Draw tank
+    ctx.fillStyle = "black"
+    ctx.fillStyle = "dimgrey"
+    ctx.lineWidth = 2
+    ctx.fillRect(0, 0, this.tankWidth, this.tankHeight)
+    ctx.strokeRect(0, 0, this.tankWidth, this.tankHeight)
+    ctx.strokeRect(5, 5, this.tankWidth-10, this.tankHeight-10)
+    // Draw water
+    ctx.fillStyle = "teal"
+    ctx.fillRect(5, this.tankHeight-5, this.tankWidth-10, -this.curHeight)
+*/    
+    
+    //ctx.strokeRect(5, this.tankHeight-5, this.tankWidth-10, -this.curHeight)
     // DEBUG
     //ctx.fillStyle = "white"
     //ctx.font = "12px serif"
@@ -377,8 +410,11 @@ game.sprites.hydro.drawTank = function (ctx) {
 
 game.sprites.hydro.drawDistributor = function (ctx) {
     // Draw connector
-    ctx.fillStyle = "green"
+    ctx.strokeStyle = "black"
+    ctx.fillStyle = "darkgrey"
+    ctx.lineWidth = 2
     ctx.fillRect(0, 0, 20, 20)
+    ctx.strokeRect(0, 0, 20, 20)
     // DEBUG
     //ctx.fillStyle = "Black"
     //ctx.font = "12px serif"
@@ -405,32 +441,42 @@ game.sprites.hydro.drawValve = function (ctx) {
 }
 
 game.sprites.hydro.drawPipe = function (ctx) {
-    if (this.isVisible == 1) {
-        // Draw pipe
-        ctx.strokeStyle = "darkgrey"
-        ctx.lineWidth = 15
-        ctx.beginPath()
-        ctx.moveTo(this.connectionPoint1.x,this.connectionPoint1.y)
-        ctx.lineTo(this.connectionPoint1.x,this.connectionPoint2.y)
-        ctx.lineTo(this.connectionPoint2.x,this.connectionPoint2.y)
-        ctx.stroke()
-        // DEBUG
-        //ctx.fillStyle = "Black"
-        //ctx.font = "12px serif"
-        //let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
-        //let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
-        //ctx.fillText("F: " + Math.round(this.flow), x + 20, y)
-    }
+    // Draw pipe border
+    ctx.strokeStyle = "black"
+    ctx.lineWidth = 19
+    ctx.beginPath()
+    ctx.moveTo(this.connectionPoint1.x,this.connectionPoint1.y)
+    ctx.lineTo(this.connectionPoint1.x,this.connectionPoint2.y)
+    ctx.lineTo(this.connectionPoint2.x,this.connectionPoint2.y)
+    ctx.stroke()
+    // Draw pipe
+    ctx.strokeStyle = "darkgrey"
+    ctx.lineWidth = 15
+    ctx.beginPath()
+    ctx.moveTo(this.connectionPoint1.x,this.connectionPoint1.y)
+    ctx.lineTo(this.connectionPoint1.x,this.connectionPoint2.y)
+    ctx.lineTo(this.connectionPoint2.x,this.connectionPoint2.y)
+    ctx.stroke()
+    // DEBUG
+    //ctx.fillStyle = "Black"
+    //ctx.font = "12px serif"
+    //let x = (this.connection1.connectionPointx + this.connection2.connectionPointx) / 2
+    //let y = (this.connection1.connectionPointy + this.connection2.connectionPointy) / 2
+    //ctx.fillText("F: " + Math.round(this.flow), x + 20, y)
 }
 
 game.sprites.hydro.drawShower = function (ctx) {
     // Draw shower
+    ctx.strokeStyle = "black"
     ctx.fillStyle = "darkgrey"
+    ctx.lineWidth = 2
     ctx.beginPath()
-    ctx.moveTo(this.width/2,0)
-    ctx.lineTo(this.width,this.height)
-    ctx.lineTo(0,this.height)
+    ctx.moveTo(this.width/2,-2)
+    ctx.lineTo(this.width+2,this.height+2)
+    ctx.lineTo(-2,this.height+2)
+    ctx.lineTo(this.width/2,-2)
     ctx.fill()
+    ctx.stroke()
     // Draw water
     if(this.linkedPipe.flow < 0) {
         ctx.fillStyle = "aqua"
