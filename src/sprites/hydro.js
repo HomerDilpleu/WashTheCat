@@ -115,7 +115,6 @@ game.sprites.hydro.newPipe = function (c) {
     o.connection1.linkedObjects.push(o.connection2)
     o.connection2.linkedObjects.push(o.connection1)
     // hydraulic properties
-    o.isFilled = 0
     o.flow = 0
     // Sprite properties
     o.width = Math.abs(o.connection1.connectionPointx-o.connection2.connectionPointx)
@@ -288,10 +287,6 @@ game.sprites.hydro.calcPipesFlow = function () {
         if (pipe.connection2.isOpen == 0) {pipe.flow = 0} 
         if (pipe.flow>0 && pipe.flow < game.sprites.hydro.minPipeFlow) {pipe.flow = game.sprites.hydro.minPipeFlow}
         if (pipe.flow<0 && pipe.flow > -game.sprites.hydro.minPipeFlow) {pipe.flow = -game.sprites.hydro.minPipeFlow}
-        // Check if pipe is filled or not
-        pipe.isFilled = 1
-        if (pipe.connection1.curHeight == 0 || pipe.connection2.curHeight == 0) {pipe.isFilled = 0}
-        if (pipe.connection1.isOpen == 0 || pipe.connection2.curHeight == 0) {pipe.isFilled = 0}
     })
 }
 
@@ -351,10 +346,12 @@ game.sprites.hydro.updateComboCurHeight = function () {
 // *************************************************
 // *************************************************
 game.sprites.hydro.drawFunction = function (ctx) {
-    if (this.isVisible == 1) {
+    if (this.isVisible == 1 && this.drawMode == 'pipe') {
+        if (this.type == 'P') {this.drawPipe(ctx)}
+    }
+    if (this.isVisible == 1 && this.drawMode == 'other') {
         if (this.type == 'T') {this.drawTank(ctx)}
         if (this.type == 'D') {this.drawDistributor(ctx)}
-        if (this.type == 'P') {this.drawPipe(ctx)}
         if (this.type == 'V') {this.drawValve(ctx)}
         if (this.type == 'S') {this.drawShower(ctx)}
         if (this.type == 'C') {this.drawCombo(ctx)}
@@ -410,8 +407,7 @@ game.sprites.hydro.drawValve = function (ctx) {
 game.sprites.hydro.drawPipe = function (ctx) {
     if (this.isVisible == 1) {
         // Draw pipe
-        ctx.strokeStyle = "black"
-        if(this.isFilled ==  1) {ctx.strokeStyle = "teal"}
+        ctx.strokeStyle = "darkgrey"
         ctx.lineWidth = 15
         ctx.beginPath()
         ctx.moveTo(this.connectionPoint1.x,this.connectionPoint1.y)
@@ -429,17 +425,12 @@ game.sprites.hydro.drawPipe = function (ctx) {
 
 game.sprites.hydro.drawShower = function (ctx) {
     // Draw shower
-    ctx.fillStyle = "black"
-    if(this.linkedPipe.flow < 0) {
-        ctx.fillStyle = "teal"
-    }
+    ctx.fillStyle = "darkgrey"
     ctx.beginPath()
     ctx.moveTo(this.width/2,0)
     ctx.lineTo(this.width,this.height)
     ctx.lineTo(0,this.height)
     ctx.fill()
-
-
     // Draw water
     if(this.linkedPipe.flow < 0) {
         ctx.fillStyle = "aqua"

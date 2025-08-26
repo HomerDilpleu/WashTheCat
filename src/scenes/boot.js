@@ -60,10 +60,15 @@ game.scenes.boot.draw = function() {
     ctx.font = "bold 72px serif"
     ctx.fillText("CAT WASH",500,100)
 
-
+    // Draw pipes
+    game.sprites.hydro.drawMode = 'pipe'
+    game.sprites.hydro.cloneExecuteForEach('draw')
+    game.sprites.hydro.drawMode = 'other'
+    game.sprites.hydro.cloneExecuteForEach('draw')
+ 
     // Draw sprites
     game.sprites.button.cloneExecuteForEach('draw')
     game.sprites.cat.draw()
-    game.sprites.hydro.cloneExecuteForEach('draw')
+
 
 }

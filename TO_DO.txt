@@ -10,7 +10,7 @@ P2: boucle de jeu
 X Variable "curLevel" + load level 
 X Conditions de victoire
 - Implémenter la possibilité d'accélérer le chat ?
-- Ajouter les boutons "rejouer" / "niveau suivant" / "pause"
+X Ajouter les boutons "rejouer" / "niveau suivant" / "pause"
 
 P3: optimisations graphismes / audio
 - Gérer la création des composants 
@@ -42,7 +42,9 @@ RESSOURCES
 
 https://fr.freepik.com/search?format=search&last_filter=query&last_value=Paysage+ville+ombre&query=Paysage+ville+ombre&type=vector
 
-
+IDEES niveaux
+- Mettre en réservoir qui va alimenter 4 ou 5 réservoirs liés à une douche chacun
+- Réalimenter le circuit principal grace à l'interruptueur du réseau secondaire qui a beaucoup plus de pression
 
 
 -----------------------------
