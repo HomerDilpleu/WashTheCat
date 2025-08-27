@@ -11,6 +11,7 @@ game.scenes.boot.start = function() {
 
     // Create background
     game.background.create()
+    game.background.generate()
 
     // Create sprites
     game.sprites.button.create()

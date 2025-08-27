@@ -1,15 +1,4 @@
 game.background.create = function () {
-
-    /////////////////////////////
-    // Colors
-    /////////////////////////////
-    let cloudCol = game.hsl(game.mainColor,100,65)
-    let skyCol = game.hsl(game.mainColor,100,80)
-    let build1Col = game.hsl(game.mainColor,100,55)
-    let build1Co2 = game.hsl(game.mainColor,100,45)
-    let build1Co3 = game.hsl(game.mainColor,100,35)
-    let groundCol = game.hsl(game.mainColor,35,15)
-
     /////////////////////////////
     // Create a specific canvas
     /////////////////////////////
@@ -21,7 +10,18 @@ game.background.create = function () {
     // save context and html reference
     this.canvasCtx = htmlCanvas.getContext('2d')
     this.canvasHtmlRef = htmlCanvas
+}
 
+game.background.generate = function () {
+    /////////////////////////////
+    // Colors
+    /////////////////////////////
+    let cloudCol = game.hsl(game.mainColor,100,65)
+    let skyCol = game.hsl(game.mainColor,100,80)
+    let build1Col = game.hsl(game.mainColor,100,55)
+    let build1Co2 = game.hsl(game.mainColor,100,45)
+    let build1Co3 = game.hsl(game.mainColor,100,35)
+    let groundCol = game.hsl(game.mainColor,35,15)
     /////////////////////////////
     // Draw background
     /////////////////////////////
@@ -30,6 +30,8 @@ game.background.create = function () {
     ctx.fillStyle = cloudCol
     ctx.fillRect(0, 0, mge.game.width, mge.game.height)
     // CLOUDS
+    ctx.shadowColor = 'white'
+    ctx.shadowBlur = 10
     ctx.fillStyle = skyCol
     for (let i = 0; i < 10; i++) {
         let startX = Math.random() * mge.game.width * 0.8
@@ -44,6 +46,8 @@ game.background.create = function () {
         ctx.fill()
     }
     // BUILDINGS
+    ctx.shadowColor = 'white'
+    ctx.shadowBlur = 0
     ctx.fillStyle = build1Col
     this.drawBuildings(ctx,30,400)
     ctx.fillStyle = build1Co2
@@ -83,6 +87,7 @@ game.background.create = function () {
     ctx.lineWidth = 3
     ctx.strokeText("CAT WASH",450,110)
 }
+
 
 game.background.drawBuildings = function (ctx,maxWidth,maxHeight) {
     let x=-10

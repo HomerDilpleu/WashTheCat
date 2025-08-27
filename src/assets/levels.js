@@ -1,5 +1,7 @@
 // Laod a level
 game.loadLevel = function(levelID) {
+    // Generate background
+    if (game.curLevel != levelID) {game.background.generate()}
     // Init cat
     game.sprites.cat.cleanLevel = 0
     // Init hydro
