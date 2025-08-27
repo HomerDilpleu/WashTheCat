@@ -17,10 +17,10 @@ game.background.create = function () {
     /////////////////////////////
     let ctx = this.canvasCtx
     // SKY
-    ctx.fillStyle = "#93E3FC"
+    ctx.fillStyle = game.hsl(game.mainColor,100,75)
     ctx.fillRect(0, 0, mge.game.width, mge.game.height)
     // CLOUDS
-    ctx.fillStyle = "#D7F5FF"
+    ctx.fillStyle = game.hsl(game.mainColor,100,90)
     for (let i = 0; i < 10; i++) {
         let startX = Math.random() * mge.game.width * 0.8
         let startY = Math.random() * mge.game.height * 0.6
@@ -34,13 +34,13 @@ game.background.create = function () {
         ctx.fill()
     }
     // BUILDINGS
-    ctx.fillStyle = "#4CC2FF"
+    ctx.fillStyle = game.hsl(game.mainColor,100,65)
     ctx.fillRect(0,300,100,2000)
 
     // GROUND
-    ctx.fillStyle = "#68A3CF"
+    ctx.fillStyle = game.hsl(game.mainColor,50,60)
     ctx.fillRect(0,mge.game.height-200,mge.game.width,200)
-    ctx.fillStyle = "#5D8CB6"
+    ctx.fillStyle = game.hsl(game.mainColor,35,55)
     ctx.fillRect(0,mge.game.height-185,mge.game.width,200)
 
 }

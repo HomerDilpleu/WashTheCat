@@ -10,14 +10,17 @@ game = {
     cat: mge.game.createSprite(),
     hydro: mge.game.createSprite()
   },
+  // VAriables globales
   levels:[],
   curLevel:0,
   isPaused:false,
-//  variables:{},
+  mainColor:195, 
+  // utils
+  hsl:function(h,s,l) {return 'hsl('+h+' '+s+'% '+l+'%)'},
+  // other
   instruments:{},
   songs:{},
   background:{}
-//  utils:{}
 }
 
 // Remove "Loading" div and start the game
