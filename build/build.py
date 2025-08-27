@@ -7,6 +7,7 @@ inputFiles = ['../src/lib/mge_V1.1.1.js',\
               '../src/game.js',\
               '../src/assets/instruments.js',\
               '../src/assets/songs.js',\
+              '../src/assets/background.js',\
               '../src/assets/levels.js',\
               '../src/scenes/boot.js',\
               '../src/scenes/main.js',\
@@ -251,7 +252,7 @@ stringsToUglify+=['animation']
 #########################################
 #########################################
 # game.js
-stringsToUglify+=['game','scenes','boot','main','sprites','hydro','variables','instruments','songs','utils']
+stringsToUglify+=['game','scenes','boot','main','sprites','hydro','variables','instruments','songs','utils','mainColor','background']
 
 # assets / instruments.js
 stringsToUglify+=['preRenderedSounds','standardOsc','octave','volumeADSR','detuneADSR','filterType','filterADSR','reverb','oscGain','oscFilter','_delay','_feedbackGain']
@@ -259,6 +260,14 @@ stringsToUglify+=['getBufferId','preRender','playLive','playPreRendered','bass',
 
 # assets / songs
 stringsToUglify+=['mainSong']
+
+# assets / background (create)
+stringsToUglify+=['htmlCanvas','canvasCtx','canvasHtmlRef','startX','startY']
+# assets / background (draw buildings)
+stringsToUglify+=['drawBuildings','maxWidth','maxHeight','buildingWidth','buildingHeight']
+# assets / background (draw structure)
+stringsToUglify+=['drawStructure']
+
 
 # sprites / cat.js (init)
 stringsToUglify+=['cleanLevel','speed','touchThresehold','blockedThresehold','touchCleanSpeed','blockedCleanSpeed','curAnimation','lastAnimation']

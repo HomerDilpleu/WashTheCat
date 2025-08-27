@@ -13,7 +13,7 @@ game.background.create = function () {
     this.canvasHtmlRef = htmlCanvas
 
     /////////////////////////////
-    // Draw
+    // Draw background
     /////////////////////////////
     let ctx = this.canvasCtx
     // SKY
@@ -41,21 +41,42 @@ game.background.create = function () {
     ctx.fillStyle = game.hsl(game.mainColor,100,45)
     this.drawBuildings(ctx,50,200)
     ctx.fillRect(0,650,2000,200)
-
     // GROUND
     ctx.fillStyle = game.hsl(game.mainColor,35,25)
     ctx.fillRect(0,680,2000,2000)
-
+    // STRUCTURE
+    for (let i = 1; i < 13; i++) {
+        // left
+        game.background.drawStructure(ctx,100,30+i*50)
+        // right
+        game.background.drawStructure(ctx,1150,30+i*50)
+    }
+    for (let i = 1; i < 21; i++) {
+        // top
+        game.background.drawStructure(ctx,100+i*50,80)
+    }
 }
 
 game.background.drawBuildings = function (ctx,maxWidth,maxHeight) {
     let x=-10
     while (x<mge.game.width) {
         let buildingWidth = Math.random() * maxWidth
-        let buildinHeight = Math.random() * maxHeight
-        ctx.fillRect(x-buildingWidth/2,680,buildingWidth,-buildinHeight)
+        let buildingHeight = Math.random() * maxHeight
+        ctx.fillRect(x-buildingWidth/2,680,buildingWidth,-buildingHeight)
         x+= Math.random() * maxWidth
     }
+}
+
+game.background.drawStructure = function (ctx,x,y) {
+    ctx.strokeStyle = game.hsl(game.mainColor,35,25)
+    ctx.lineWidth = 4
+    ctx.strokeRect (x,y,50,50)
+    ctx.beginPath()
+    ctx.moveTo(x,y)
+    ctx.lineTo(x+50,y+50)
+    ctx.moveTo(x+50,y)
+    ctx.lineTo(x,y+50)
+    ctx.stroke()
 }
 
 game.background.draw = function() {
