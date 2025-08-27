@@ -60,17 +60,17 @@ game.background.create = function () {
     ctx.fillStyle = game.hsl(game.mainColor,35,50)
     ctx.strokeStyle = game.hsl(game.mainColor,35,25)
     ctx.lineWidth = 5
-    ctx.fillRect(430,60,450,90)
-    ctx.strokeRect(430,60,450,90)
+    ctx.fillRect(410,40,460,90)
+    ctx.strokeRect(410,40,460,90)
     // Text
-    ctx.font = "bold 72px cursive"
+    ctx.font = "bold 72px sans-serif"
     ctx.fillStyle = 'white'
     ctx.shadowColor = 'white'
     ctx.shadowBlur = 20
-    ctx.fillText("CAT WASH",450,130)
+    ctx.fillText("CAT WASH",450,110)
     ctx.strokeStyle = game.hsl(game.mainColor,35,25)
     ctx.lineWidth = 3
-    ctx.strokeText("CAT WASH",450,130)
+    ctx.strokeText("CAT WASH",450,110)
 }
 
 game.background.drawBuildings = function (ctx,maxWidth,maxHeight) {
