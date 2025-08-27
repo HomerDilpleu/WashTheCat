@@ -9,6 +9,9 @@ game.scenes.boot.start = function() {
     // Load songs
     game.songs.init()
 
+    // Create background
+    game.background.create()
+
     // Create sprites
     game.sprites.button.create()
     game.sprites.cat.create()
@@ -35,10 +38,13 @@ game.scenes.boot.update = function() {
 //////////////////////
 game.scenes.boot.draw = function() {
 
+    // Draw backgroun
+    game.background.draw()
+
     // Draw ground
     let ctx = mge.game.context
-    ctx.fillStyle = "Black"
-    ctx.fillRect(0,mge.game.height-50,mge.game.width,50)
+    //ctx.fillStyle = "Black"
+    //ctx.fillRect(0,mge.game.height-50,mge.game.width,50)
 
     // Draw clean jauge
     // Jauge size

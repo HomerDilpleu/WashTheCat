@@ -16,6 +16,7 @@ game = {
 //  variables:{},
   instruments:{},
   songs:{},
+  background:{}
 //  utils:{}
 }
 

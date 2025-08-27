@@ -32,7 +32,7 @@ game.getLevelState = function () {
 game.levels.push(function() {
         game.sprites.cat.x = 400
         game.sprites.cat.maxX = 700
-        game.sprites.hydro.newTank({X:600,altitude:450,tankWidth:100,tankHeight:200,curHeight:180})
+        game.sprites.hydro.newTank({X:600,altitude:350,tankWidth:100,tankHeight:200,curHeight:180})
         game.sprites.hydro.newTank({X:600,altitude:-100,tankWidth:2000,tankHeight:200,curHeight:1,isVisible:'0'})
         game.sprites.hydro.newDistributor({X:600,altitude:200})
         game.sprites.hydro.newPipe({obj:['T0','D0']})
