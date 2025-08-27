@@ -35,16 +35,28 @@ game.background.create = function () {
     }
     // BUILDINGS
     ctx.fillStyle = game.hsl(game.mainColor,100,65)
-    ctx.fillRect(0,300,100,2000)
+    this.drawBuildings(ctx,30,400)
+    ctx.fillStyle = game.hsl(game.mainColor,100,55)
+    this.drawBuildings(ctx,40,300)
+    ctx.fillStyle = game.hsl(game.mainColor,100,45)
+    this.drawBuildings(ctx,50,200)
+    ctx.fillRect(0,650,2000,200)
 
     // GROUND
-    ctx.fillStyle = game.hsl(game.mainColor,50,60)
-    ctx.fillRect(0,mge.game.height-200,mge.game.width,200)
-    ctx.fillStyle = game.hsl(game.mainColor,35,55)
-    ctx.fillRect(0,mge.game.height-185,mge.game.width,200)
+    ctx.fillStyle = game.hsl(game.mainColor,35,25)
+    ctx.fillRect(0,680,2000,2000)
 
 }
 
+game.background.drawBuildings = function (ctx,maxWidth,maxHeight) {
+    let x=-10
+    while (x<mge.game.width) {
+        let buildingWidth = Math.random() * maxWidth
+        let buildinHeight = Math.random() * maxHeight
+        ctx.fillRect(x-buildingWidth/2,680,buildingWidth,-buildinHeight)
+        x+= Math.random() * maxWidth
+    }
+}
 
 game.background.draw = function() {
     mge.game.context.drawImage(this.canvasHtmlRef,0,0)
