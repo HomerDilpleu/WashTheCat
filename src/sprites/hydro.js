@@ -22,6 +22,9 @@ game.sprites.hydro.create = function() {
     this.minPipeFlow = 50
     // List of objects by type
     this.reInit()
+    // Colours
+    this.waterCol = game.hsl(game.mainColor,100,75)
+
 
 }
 
@@ -394,7 +397,7 @@ game.sprites.hydro.drawTank = function (ctx) {
     ctx.fillStyle = "dimgrey"
     ctx.fillRect(6, 6, this.tankWidth-12, this.tankHeight-12)
     // Draw water
-    ctx.fillStyle = "teal"
+    ctx.fillStyle = this.waterCol
     ctx.strokeStyle = "black"
     ctx.lineWidth = 2
     ctx.fillRect(6, this.tankHeight-6, this.tankWidth-12, -this.curHeight)
@@ -443,32 +446,11 @@ game.sprites.hydro.drawValve = function (ctx) {
             ctx.fillRect(-10, 15, 10, 20)
             ctx.fillRect(20, 15, 10, 20)
             // Link to tank
-            ctx.fillStyle = "teal"
+            ctx.fillStyle = this.waterCol
             ctx.fillRect(-10,23,-this.trigger.length,4)
             ctx.strokeRect(-10,23,-this.trigger.length,4)
         }
     }
-
-
-
-    /*
-    // Draw valve
-    ctx.fillStyle = "yellow"
-    if (this.trigger == 'click') {ctx.fillStyle = "orange"}
-    ctx.fillRect(0, 0, 50, 50)
-    // Draw water
-    if (this.linkedTank.isOpen == 1) {
-        ctx.fillStyle = "teal"
-        ctx.fillRect(5, 5, 40, 40)
-    }
-    // Draw trigger tank height
-    if (this.trigger != 'click') {
-        ctx.fillStyle = "black"
-        if (this.linkedTank.isOpen == 1) {ctx.fillStyle = "teal"}
-        ctx.fillRect(-130, 35, 130, 5)       
-    }
-    // DEBUG
-    */
 }
 
 game.sprites.hydro.drawPipe = function (ctx) {
@@ -491,7 +473,7 @@ game.sprites.hydro.drawPipe = function (ctx) {
     ctx.stroke()
     // Water
     ctx.strokeStyle = "dimgrey"
-    if (Math.abs(this.flow) > 0) {ctx.strokeStyle = "teal"}
+    if (Math.abs(this.flow) > 0) {ctx.strokeStyle = this.waterCol}
     ctx.lineWidth = 10
     ctx.stroke()
 }
@@ -510,7 +492,7 @@ game.sprites.hydro.drawShower = function (ctx) {
     ctx.stroke()
     // Draw water
     if(this.linkedPipe.flow < 0) {
-        ctx.fillStyle = "aqua"
+        ctx.fillStyle = this.waterCol
         ctx.fillRect(0,50,50,125)
     }
 }

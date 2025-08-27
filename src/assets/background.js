@@ -47,21 +47,21 @@ game.background.create = function () {
     // STRUCTURE
     for (let i = 1; i < 13; i++) {
         // left
-        game.background.drawStructure(ctx,100,30+i*50)
+        game.background.drawStructure(ctx,80,i*50+30)
         // right
-        game.background.drawStructure(ctx,1150,30+i*50)
+        game.background.drawStructure(ctx,1130,i*50+30)
     }
     for (let i = 1; i < 21; i++) {
         // top
-        game.background.drawStructure(ctx,100+i*50,80)
+        game.background.drawStructure(ctx,80+i*50,80)
     }
     // CAT WASH
     // Box
     ctx.fillStyle = game.hsl(game.mainColor,35,50)
     ctx.strokeStyle = game.hsl(game.mainColor,35,25)
-    ctx.lineWidth = 5
-    ctx.fillRect(410,40,460,90)
-    ctx.strokeRect(410,40,460,90)
+    ctx.lineWidth = 4
+    ctx.fillRect(380,40,500,90)
+    ctx.strokeRect(380,40,500,90)
     // Text
     ctx.font = "bold 72px sans-serif"
     ctx.fillStyle = 'white'
