@@ -17,6 +17,7 @@ game.scenes.boot.start = function() {
     game.sprites.button.create()
     game.sprites.cat.create()
     game.sprites.hydro.create()
+    game.sprites.decoration.create()
     game.loadLevel(0)
 
     }
@@ -28,6 +29,7 @@ game.scenes.boot.update = function() {
 
     // Update sprites
     game.sprites.button.cloneExecuteForEach('update')
+    game.sprites.decoration.cloneExecuteForEach('update')
     if (!game.isPaused) {
         game.sprites.cat.update()
         game.sprites.hydro.update()
@@ -51,6 +53,7 @@ game.scenes.boot.draw = function() {
     game.sprites.hydro.cloneExecuteForEach('draw')
  
     // Draw sprites
+    game.sprites.decoration.cloneExecuteForEach('draw')
     game.sprites.button.cloneExecuteForEach('draw')
     game.sprites.cat.draw()
 

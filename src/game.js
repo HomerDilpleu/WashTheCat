@@ -8,7 +8,8 @@ game = {
   sprites:{
     button: mge.game.createSprite(),
     cat: mge.game.createSprite(),
-    hydro: mge.game.createSprite()
+    hydro: mge.game.createSprite(),
+    decoration: mge.game.createSprite()
   },
   // VAriables globales
   levels:[],

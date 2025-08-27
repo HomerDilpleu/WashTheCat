@@ -19,7 +19,7 @@ X Voir comment faire les robinets
 - Voir si on peut optimiser le sprite et le compressage
 - Animations chat
 - Saleté chat
-- Fond d'écran
+X Fond d'écran
 - Ecran d'accueil
 - stockage local du dernier niveau ateint (prompt au démarrage continue / restart)
 
