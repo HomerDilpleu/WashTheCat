@@ -62,9 +62,9 @@ game.scenes.boot.draw = function() {
     ctx.fillRect(12,22,jaugeWidth*game.sprites.cat.cleanLevel-4,jaugeHeight-4)
 
     // Draw title
-    ctx.fillStyle = "orangered"
-    ctx.font = "bold 72px serif"
-    ctx.fillText("CAT WASH",500,100)
+    //ctx.fillStyle = "orangered"
+    //ctx.font = "bold 72px serif"
+    //ctx.fillText("CAT WASH",500,100)
 
     // Draw pipes
     game.sprites.hydro.drawMode = 'pipe'

@@ -55,6 +55,22 @@ game.background.create = function () {
         // top
         game.background.drawStructure(ctx,100+i*50,80)
     }
+    // CAT WASH
+    // Box
+    ctx.fillStyle = game.hsl(game.mainColor,35,50)
+    ctx.strokeStyle = game.hsl(game.mainColor,35,25)
+    ctx.lineWidth = 5
+    ctx.fillRect(430,60,450,90)
+    ctx.strokeRect(430,60,450,90)
+    // Text
+    ctx.font = "bold 72px cursive"
+    ctx.fillStyle = 'white'
+    ctx.shadowColor = 'white'
+    ctx.shadowBlur = 20
+    ctx.fillText("CAT WASH",450,130)
+    ctx.strokeStyle = game.hsl(game.mainColor,35,25)
+    ctx.lineWidth = 3
+    ctx.strokeText("CAT WASH",450,130)
 }
 
 game.background.drawBuildings = function (ctx,maxWidth,maxHeight) {
