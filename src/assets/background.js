@@ -1,6 +1,16 @@
 game.background.create = function () {
 
     /////////////////////////////
+    // Colors
+    /////////////////////////////
+    let cloudCol = game.hsl(game.mainColor,100,65)
+    let skyCol = game.hsl(game.mainColor,100,80)
+    let build1Col = game.hsl(game.mainColor,100,55)
+    let build1Co2 = game.hsl(game.mainColor,100,45)
+    let build1Co3 = game.hsl(game.mainColor,100,35)
+    let groundCol = game.hsl(game.mainColor,35,15)
+
+    /////////////////////////////
     // Create a specific canvas
     /////////////////////////////
     let htmlCanvas =  document.createElement('canvas')
@@ -17,10 +27,10 @@ game.background.create = function () {
     /////////////////////////////
     let ctx = this.canvasCtx
     // SKY
-    ctx.fillStyle = game.hsl(game.mainColor,100,75)
+    ctx.fillStyle = cloudCol
     ctx.fillRect(0, 0, mge.game.width, mge.game.height)
     // CLOUDS
-    ctx.fillStyle = game.hsl(game.mainColor,100,90)
+    ctx.fillStyle = skyCol
     for (let i = 0; i < 10; i++) {
         let startX = Math.random() * mge.game.width * 0.8
         let startY = Math.random() * mge.game.height * 0.6
@@ -34,17 +44,18 @@ game.background.create = function () {
         ctx.fill()
     }
     // BUILDINGS
-    ctx.fillStyle = game.hsl(game.mainColor,100,65)
+    ctx.fillStyle = build1Col
     this.drawBuildings(ctx,30,400)
-    ctx.fillStyle = game.hsl(game.mainColor,100,55)
+    ctx.fillStyle = build1Co2
     this.drawBuildings(ctx,40,300)
-    ctx.fillStyle = game.hsl(game.mainColor,100,45)
+    ctx.fillStyle = build1Co3
     this.drawBuildings(ctx,50,200)
     ctx.fillRect(0,650,2000,200)
     // GROUND
-    ctx.fillStyle = game.hsl(game.mainColor,35,25)
+    ctx.fillStyle = groundCol
     ctx.fillRect(0,680,2000,2000)
     // STRUCTURE
+    ctx.strokeStyle = groundCol
     for (let i = 1; i < 13; i++) {
         // left
         game.background.drawStructure(ctx,80,i*50+30)
@@ -58,7 +69,7 @@ game.background.create = function () {
     // CAT WASH
     // Box
     ctx.fillStyle = game.hsl(game.mainColor,35,50)
-    ctx.strokeStyle = game.hsl(game.mainColor,35,25)
+    ctx.strokeStyle = groundCol
     ctx.lineWidth = 4
     ctx.fillRect(380,40,500,90)
     ctx.strokeRect(380,40,500,90)
@@ -68,7 +79,7 @@ game.background.create = function () {
     ctx.shadowColor = 'white'
     ctx.shadowBlur = 20
     ctx.fillText("CAT WASH",450,110)
-    ctx.strokeStyle = game.hsl(game.mainColor,35,25)
+    ctx.strokeStyle = groundCol
     ctx.lineWidth = 3
     ctx.strokeText("CAT WASH",450,110)
 }
@@ -84,7 +95,6 @@ game.background.drawBuildings = function (ctx,maxWidth,maxHeight) {
 }
 
 game.background.drawStructure = function (ctx,x,y) {
-    ctx.strokeStyle = game.hsl(game.mainColor,35,25)
     ctx.lineWidth = 4
     ctx.strokeRect (x,y,50,50)
     ctx.beginPath()

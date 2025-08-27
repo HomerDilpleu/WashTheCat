@@ -402,6 +402,9 @@ game.sprites.hydro.drawTank = function (ctx) {
     ctx.lineWidth = 2
     ctx.fillRect(6, this.tankHeight-6, this.tankWidth-12, -this.curHeight)
     ctx.strokeRect(6, this.tankHeight-6, this.tankWidth-12, -this.curHeight)
+    // Draw Link to structure
+    ctx.fillStyle = game.hsl(game.mainColor,35,15)
+    ctx.fillRect(this.width/2,0,4,130-this.y+this.height/2)
 }
 
 game.sprites.hydro.drawDistributor = function (ctx) {
