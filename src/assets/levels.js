@@ -15,21 +15,6 @@ game.loadLevel = function(levelID) {
     game.levels[game.curLevel]()
 }
 
-// Check level end
-game.getLevelState = function () {
-    // Level completed, 3*
-    if (game.sprites.cat.cleanLevel >= 0.9) {return '***'}
-    // Level finished, 2*
-    else if (game.sprites.cat.x >= game.sprites.cat.maxX && game.sprites.cat.cleanLevel >= 0.8) {return '**'}
-    // Level finished, 1*
-    else if (game.sprites.cat.x >= game.sprites.cat.maxX && game.sprites.cat.cleanLevel >= 0.7) {return '*'}
-    // Level failed
-    else if (game.sprites.cat.x >= game.sprites.cat.maxX && game.sprites.cat.cleanLevel < 0.7) {return 'failed'}
-    // In progress
-    else {return 'running'}
-}
-
-
 // Level 0 - Introduction
 game.levels.push(function() {
         game.sprites.cat.x = 400

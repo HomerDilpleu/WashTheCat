@@ -17,7 +17,15 @@ game = {
   isPaused:false,
   mainColor:195, 
   animationInProgress:false,
-  levelState:'',
+ // Check level end
+  getLevelState: function () {
+    if (game.sprites.cat.cleanLevel >= 1) {game.levelState='won'}
+    else if (game.sprites.cat.x >= game.sprites.cat.maxX && game.sprites.cat.cleanLevel >= 0.8) {game.levelState='won'}
+    else if (game.sprites.cat.x >= game.sprites.cat.maxX && game.sprites.cat.cleanLevel < 0.8) {game.levelState='failed'}
+    else {game.levelState='running'}
+    if(game.levelState=='won') {game.isPaused=true}
+    //if()
+  },
   // utils
   hsl:function(h,s,l) {return 'hsl('+h+' '+s+'% '+l+'%)'},
   // other

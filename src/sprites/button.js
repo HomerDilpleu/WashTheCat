@@ -60,7 +60,7 @@ game.sprites.button.update = function () {
     // Next level
     if (this.id == 'next') {
         // Visibility
-        if (game.levelState[0]=='*' &&  !game.animationInProgress) {this.isVisible=true} else {this.isVisible=false}
+        if (game.levelState=='won' &&  !game.animationInProgress) {this.isVisible=true} else {this.isVisible=false}
         // If is cliked
         if (this.isClicked && this.isVisible) {
             game.isPaused=false

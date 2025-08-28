@@ -28,7 +28,7 @@ game.scenes.boot.start = function() {
 game.scenes.boot.update = function() {
 
     // Get level state
-    game.levelState=game.getLevelState()
+    game.getLevelState()
     // Update sprites
     game.sprites.button.cloneExecuteForEach('update')
     game.sprites.decoration.cloneExecuteForEach('update')
