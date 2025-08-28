@@ -18,13 +18,13 @@ game.loadLevel = function(levelID) {
 // Check level end
 game.getLevelState = function () {
     // Level completed, 3*
-    if (game.sprites.cat.cleanLevel >= 1) {return '***'}
+    if (game.sprites.cat.cleanLevel >= 0.9) {return '***'}
     // Level finished, 2*
-    else if (game.sprites.cat.x >= game.sprites.cat.maxX && game.sprites.cat.cleanLevel >= 0.9) {return '**'}
+    else if (game.sprites.cat.x >= game.sprites.cat.maxX && game.sprites.cat.cleanLevel >= 0.8) {return '**'}
     // Level finished, 1*
-    else if (game.sprites.cat.x >= game.sprites.cat.maxX && game.sprites.cat.cleanLevel >= 0.8) {return '*'}
+    else if (game.sprites.cat.x >= game.sprites.cat.maxX && game.sprites.cat.cleanLevel >= 0.7) {return '*'}
     // Level failed
-    else if (game.sprites.cat.x >= game.sprites.cat.maxX && game.sprites.cat.cleanLevel < 0.8) {return 'failed'}
+    else if (game.sprites.cat.x >= game.sprites.cat.maxX && game.sprites.cat.cleanLevel < 0.7) {return 'failed'}
     // In progress
     else {return 'running'}
 }

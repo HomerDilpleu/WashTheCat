@@ -25,28 +25,49 @@ game.sprites.button.create = function() {
     p.id = 'next'
     p.width = 50
     p.height = 50
-    p.x = 800
-    p.y = 400
+    p.x = 650
+    p.y = 450
     p.svg = new Path2D('M10 10 L40 25 L10 40')
 
 }
 
 game.sprites.button.update = function () {
     // Restart level
-    if (this.id == 'restart' && this.isClicked) {
-        game.isPaused=false
-        game.loadLevel(game.curLevel)
+    if (this.id == 'restart') {
+        if (this.isClicked) {
+            game.isPaused=false
+            game.loadLevel(game.curLevel)
+        }
+        if (game.getLevelState() != 'running' && !game.animationInProgress) {
+            if (game.getLevelState()=='failed') {
+                this.x = 620
+                this.y = 450
+            } else {
+                this.x = 560
+                this.y = 450
+            }
+        } else {
+            this.x = 200
+            this.y = 600
+        }
     }
     // Play/pause
-    if (this.id == 'pause' && this.isClicked) {
-        game.isPaused=!game.isPaused
+    if (this.id == 'pause') {
+        if (this.isClicked) {game.isPaused=!game.isPaused}
+        this.isVisible=true
+        if (game.getLevelState()!='running' && !game.animationInProgress) {this.isVisible=false}
     }
+
+/*    if (this.id == 'pause' && this.isClicked) {
+        game.isPaused=!game.isPaused
+    }*/
+
     // Next level
     if (this.id == 'next') {
         // Visibility
         if (game.getLevelState()[0]=='*' &&  !game.animationInProgress) {this.isVisible=true} else {this.isVisible=false}
         // If is cliked
-        if (this.isClicked) {
+        if (this.isClicked && this.isVisible) {
             game.isPaused=false
             game.loadLevel(game.curLevel+1)
         }
