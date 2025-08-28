@@ -1,47 +1,35 @@
 -----------------------------
 TO DO
 -----------------------------
-P1: voir exactement ou on en est de la taille 
-X Cleaner MGE + Maquiller l'existant
-X Remplacer PlayButton par PlayButton
-X Voir logique de scènes (une seule scène, plusieurs scènes,...)
+P1
+- Finaliser la partie level fini 
+- Mettre en place l'écran d'accueil et le local storage
 
-P2: boucle de jeu
-X Variable "curLevel" + load level 
-X Conditions de victoire
-N Implémenter la possibilité d'accélérer le chat ?
-X Ajouter les boutons "rejouer" / "niveau suivant" / "pause"
+P2
+- Faire les niveaux
 
-P3: optimisations graphismes / audio
-X Gérer la création des composants 
-X Voir comment faire les robinets
-- Faire l'eau de la douche (particules?)
-- Voir si on peut optimiser le sprite et le compressage
+P3
 - Animations chat
-- Saleté chat
-X Fond d'écran
-- Ecran d'accueil
-- stockage local du dernier niveau ateint (prompt au démarrage continue / restart)
+- Saleté chat sur le chat
+- Jauge saleté chat?
 
-P4: Levels & tests
+P4
+- Musique
+- Miaulement
 
-P5: optimisations fianles
-- enleveer le dra w boundaries
-- voir ce qu'on peut enlever de mege
+P5 optimisations taille
+- Enleveer le draw boundaries
+- Revoir le pur indispensable mge
 
-P6: Polishing
-- Son Miaou
-- effets particules
-- sound effects
-- menu pour voir niveaux
-- boutons arrêt / marche son
+P6 Polishing
+- Barre de propeté
+- Effets particules
+- Animation étoiles en fin de niveau
+- Bouton arrêt / marche son
 
 
-----------------------
-RESSOURCES
-----------------------
 
-https://fr.freepik.com/search?format=search&last_filter=query&last_value=Paysage+ville+ombre&query=Paysage+ville+ombre&type=vector
+
 
 IDEES niveaux
 - Mettre en réservoir qui va alimenter 4 ou 5 réservoirs liés à une douche chacun
@@ -80,9 +68,3 @@ Condition de victoire
 >70% --> 1*
 en dessous, niveau perdu
 
------------------------------
-A faire si temps
------------------------------
-- enregistrer la progression (niveau par niveau, nb étoiles)
-- ajouter une possibilité de sélectionner les niveau à rejouer
-- ajouter un robinet à pression
