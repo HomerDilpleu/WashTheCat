@@ -16,6 +16,7 @@ game = {
   curLevel:0,
   isPaused:false,
   mainColor:195, 
+  animationInProgress:false,
   // utils
   hsl:function(h,s,l) {return 'hsl('+h+' '+s+'% '+l+'%)'},
   // other

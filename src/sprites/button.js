@@ -25,8 +25,8 @@ game.sprites.button.create = function() {
     p.id = 'next'
     p.width = 50
     p.height = 50
-    p.x = 350
-    p.y = 600
+    p.x = 800
+    p.y = 400
     p.svg = new Path2D('M10 10 L40 25 L10 40')
 
 }
@@ -44,7 +44,7 @@ game.sprites.button.update = function () {
     // Next level
     if (this.id == 'next') {
         // Visibility
-        if (game.getLevelState()[0]=='*') {this.isVisible=true} else {this.isVisible=false}
+        if (game.getLevelState()[0]=='*' &&  !game.animationInProgress) {this.isVisible=true} else {this.isVisible=false}
         // If is cliked
         if (this.isClicked) {
             game.isPaused=false
@@ -78,8 +78,4 @@ game.sprites.button.drawFunction = function (ctx) {
         if (game.isPaused) {ctx.stroke(this.svgPlay)} 
         else {ctx.stroke(this.svgPause)}
     } 
-
-//    if (this.id == 'restart') {
-//        ctx.stroke(this.svg)
-//    }
 }

@@ -8,21 +8,44 @@ game.sprites.decoration.create = function() {
     p.height = 350
     p.x = 630
     p.y = 330
-    //p.svg = new Path2D('M10 10 A19 19 0 1 0 40 10 L30 20 M40 10 L50 20 M0 0')
+    p.txt = ''
 
 }
 
 game.sprites.decoration.update = function () {
-    if (this.id == 'endLevel' && game.getLevelState() == 'running') {this.scaleY=0}
-    if (this.id == 'endLevel' && game.getLevelState() != 'running') {this.scaleY+=0.05}
-    if (this.id == 'endLevel' && this.scaleY > 1) {this.scaleY=1}
+    // End level
+    if (this.id == 'endLevel') {
+        if (game.getLevelState() == 'running') {this.scaleY=0}
+        else {
+            game.animationInProgress=true
+            this.scaleY+=0.05
+        }
+        if (this.scaleY>=1) {
+            this.scaleY=1
+            game.animationInProgress=false
+        }
+        if (game.getLevelState()=='failed') {this.txt='LEVEL FAILED'}
+        else {this.txt='LEVEL COMPLETED'}
+    }
 }
 
 game.sprites.decoration.drawFunction = function (ctx) {
     // End level
     if (this.id == 'endLevel' && game.getLevelState() != 'running') {
-        ctx.fillStyle = 'red'
+        // Rectangle
+        ctx.fillStyle = 'white'
+        ctx.strokeStyle = 'black'
+        ctx.lineWidth = 4
         ctx.fillRect(0,0,this.width,this.height)
+        ctx.strokeRect(0,0,this.width,this.height)
+        // Text
+        ctx.font = "bold 50px sans-serif"
+        ctx.fillStyle = 'black'
+        ctx.shadowColor = 'white'
+        ctx.shadowBlur = 0
+        ctx.textAlign = 'center'
+        ctx.fillText(this.txt+' '+Math.round(game.sprites.cat.cleanLevel*100) + '%',this.width/2,80)
+        // Score bar
     }
 
 }
