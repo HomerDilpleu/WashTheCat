@@ -17,6 +17,7 @@ game = {
   isPaused:false,
   mainColor:195, 
   animationInProgress:false,
+  levelState:'',
   // utils
   hsl:function(h,s,l) {return 'hsl('+h+' '+s+'% '+l+'%)'},
   // other

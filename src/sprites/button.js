@@ -38,8 +38,8 @@ game.sprites.button.update = function () {
             game.isPaused=false
             game.loadLevel(game.curLevel)
         }
-        if (game.getLevelState() != 'running' && !game.animationInProgress) {
-            if (game.getLevelState()=='failed') {
+        if (game.levelState != 'running' && !game.animationInProgress) {
+            if (game.levelState=='failed') {
                 this.x = 620
                 this.y = 450
             } else {
@@ -55,17 +55,12 @@ game.sprites.button.update = function () {
     if (this.id == 'pause') {
         if (this.isClicked) {game.isPaused=!game.isPaused}
         this.isVisible=true
-        if (game.getLevelState()!='running' && !game.animationInProgress) {this.isVisible=false}
+        if (game.levelState!='running' && !game.animationInProgress) {this.isVisible=false}
     }
-
-/*    if (this.id == 'pause' && this.isClicked) {
-        game.isPaused=!game.isPaused
-    }*/
-
     // Next level
     if (this.id == 'next') {
         // Visibility
-        if (game.getLevelState()[0]=='*' &&  !game.animationInProgress) {this.isVisible=true} else {this.isVisible=false}
+        if (game.levelState[0]=='*' &&  !game.animationInProgress) {this.isVisible=true} else {this.isVisible=false}
         // If is cliked
         if (this.isClicked && this.isVisible) {
             game.isPaused=false

@@ -16,7 +16,7 @@ game.sprites.decoration.create = function() {
 game.sprites.decoration.update = function () {
     // End level
     if (this.id == 'endLevel') {
-        if (game.getLevelState() == 'running') {
+        if (game.levelState == 'running') {
             this.scaleY=0
             this.curDisplayScore=0
         }
@@ -31,7 +31,7 @@ game.sprites.decoration.update = function () {
                 this.curDisplayScore+=2
             } else {game.animationInProgress=false}
         }
-        if (game.getLevelState()=='failed') {this.txt='LEVEL FAILED'}
+        if (game.levelState=='failed') {this.txt='LEVEL FAILED'}
         else {this.txt='LEVEL COMPLETED'}
         if (this.curDisplayScore<game.sprites.cat.cleanLevel*100) {this.txt=''}
     }
@@ -39,7 +39,7 @@ game.sprites.decoration.update = function () {
 
 game.sprites.decoration.drawFunction = function (ctx) {
     // End level
-    if (this.id == 'endLevel' && game.getLevelState() != 'running') {
+    if (this.id == 'endLevel' && game.levelState != 'running') {
         // Rectangle
         ctx.fillStyle = 'white'
         ctx.strokeStyle = 'black'
