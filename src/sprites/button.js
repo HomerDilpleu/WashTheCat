@@ -28,7 +28,6 @@ game.sprites.button.create = function() {
     p.x = 650
     p.y = 450
     p.svg = new Path2D('M10 10 L40 25 L10 40')
-
 }
 
 game.sprites.button.update = function () {
@@ -64,6 +63,7 @@ game.sprites.button.update = function () {
         // If is cliked
         if (this.isClicked && this.isVisible) {
             game.isPaused=false
+            localStorage.setItem('wtc.maxLevelReached', game.curLevel+1)
             game.loadLevel(game.curLevel+1)
         }
     }
