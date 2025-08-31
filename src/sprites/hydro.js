@@ -476,7 +476,10 @@ game.sprites.hydro.drawPipe = function (ctx) {
     ctx.stroke()
     // Water
     ctx.strokeStyle = "dimgrey"
+    //if (Math.abs(this.flow) > 0) {ctx.strokeStyle = this.waterCol}
     if (Math.abs(this.flow) > 0) {ctx.strokeStyle = this.waterCol}
+    if (this.connection1.curHeight != 0 && this.connection1.isOpen == 1) {ctx.strokeStyle = this.waterCol}
+    if (this.connection2.curHeight != 0 && this.connection2.isOpen == 1) {ctx.strokeStyle = this.waterCol}
     ctx.lineWidth = 10
     ctx.stroke()
 }
