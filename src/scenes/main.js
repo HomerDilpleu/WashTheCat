@@ -14,12 +14,12 @@ game.scenes.main.update = function() {
     // Get level state
     game.getLevelState()
     // Update sprites
-    game.sprites.button.cloneExecuteForEach('update')
     game.sprites.decoration.cloneExecuteForEach('update')
     if (!game.isPaused) {
         game.sprites.cat.update()
         game.sprites.hydro.update()
     }
+    game.sprites.button.cloneExecuteForEach('update')
 }
 
 //////////////////////

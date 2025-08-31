@@ -7,10 +7,10 @@ game.sprites.cat.create = function() {
     this.height = 110
     this.x = 200
     this.y = 200
-    this.scaleX = 1.2
-    this.scaleY = 1.2
+    this.scaleX = 1.3
+    this.scaleY = 1.3
     this.cleanLevel = 0
-    this.speed = 0.5
+    this.speed = 0.7
     this.maxX = 800
     // Constants
     this.touchThresehold = 95
@@ -90,12 +90,12 @@ game.sprites.cat.update = function () {
         game.sprites.cat.curAnimation = 'walk'                
     } 
     // Cat far from shower --> walk
-    else if (closestShowerAbsDistance > game.sprites.cat.touchThresehold) {
+    else if (closestShowerAbsDistance > game.sprites.cat.touchThresehold + 10) {
         game.sprites.cat.x+=game.sprites.cat.speed
         game.sprites.cat.curAnimation = 'walk'                
     }
     // Cat not in the shower but seeing it --> idle
-    else if (closestShowerAbsDistance == game.sprites.cat.touchThresehold) {
+    else if (closestShowerAbsDistance > game.sprites.cat.touchThresehold) {
         game.sprites.cat.curAnimation = 'idle'                
     }
     // Cat inside shower --> blocked

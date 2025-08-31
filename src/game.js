@@ -24,7 +24,7 @@ game = {
     else if (game.sprites.cat.x >= game.sprites.cat.maxX && game.sprites.cat.cleanLevel >= 0.8) {game.levelState='won'}
     else if (game.sprites.cat.x >= game.sprites.cat.maxX && game.sprites.cat.cleanLevel < 0.8) {game.levelState='failed'}
     else {game.levelState='running'}
-    if(game.levelState=='won') {game.isPaused=true}
+    if(game.levelState!='running') {game.isPaused=true}
     //if()
   },
   // utils

@@ -3,7 +3,7 @@ TO DO
 -----------------------------
 P1
 X Finaliser la partie level fini 
-- Mettre en place l'écran d'accueil et le local storage
+X Mettre en place l'écran d'accueil et le local storage
 - Accélération chat?
 
 P2

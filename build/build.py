@@ -14,6 +14,7 @@ inputFiles = ['../src/lib/mge_V1.1.1.js',\
               '../src/sprites/cat.js',\
               '../src/sprites/hydro.js',\
               '../src/sprites/decoration.js',\
+              '../src/sprites/restartContinue.js',\
               '../src/sprites/button.js'\
               ]
 
@@ -304,6 +305,7 @@ stringsToUglify+=['flowConst','minPipeFlow','tanks','distributors','pipes','comb
 stringsToUglify+=['tank','pipe','distributor','combo','valve','shower']
 
 # sprites / decoration.js A FAIRE
+# sprites / restartContinue.js A FAIRE
 
 # sprites / button.js A FAIRE
 stringsToUglify+=['button']
