@@ -2,21 +2,21 @@ game.sprites.restartContinue.create = function() {
     //this.drawBoundaries = true
     this.width = 200
     this.height = 50
-    this.x = mge.game.width/2
+    this.x = 640
     // Restart
     p = game.sprites.restartContinue.cloneCreate()
     p.id = 'restart'
-    p.y = 280
-    p.txt = 'Restart progress'
+    p.y = 490
+    p.txt = 'Restart game'
     // Continue
     p = game.sprites.restartContinue.cloneCreate()
     p.id = 'continue'
-    p.y = 200
+    p.y = 430
     p.txt = 'Continue'
     // Play
     p = game.sprites.restartContinue.cloneCreate()
     p.id = 'play'
-    p.y = 350
+    p.y = 430
     p.txt = 'PLAY'
 }
 

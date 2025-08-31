@@ -14,6 +14,9 @@ game.scenes.boot.start = function() {
     game.sprites.hydro.create()
     game.sprites.decoration.create()
     game.sprites.restartContinue.create()
+    // Init cat
+    game.sprites.cat.x = 640
+    game.sprites.cat.y = 300
 }
 
 //////////////////////

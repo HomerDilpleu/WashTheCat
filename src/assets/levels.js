@@ -75,16 +75,16 @@ game.levels.push(function() {
 //                     D2
 //                     T5
 game.levels.push(function() {
-        game.sprites.cat.x = 500
+        game.sprites.cat.x = 600
         game.sprites.cat.maxX = 950
-        game.sprites.hydro.newTank({X:400,altitude:340,tankWidth:150,tankHeight:200,curHeight:180})
-        game.sprites.hydro.newTank({X:620,altitude:270,tankWidth:80,tankHeight:150,curHeight:0})
-        game.sprites.hydro.newTank({X:620,altitude:420,tankWidth:80,tankHeight:60,curHeight:0})
-        game.sprites.hydro.newTank({X:800,altitude:270,tankWidth:40,tankHeight:150,curHeight:0})
-        game.sprites.hydro.newTank({X:840,altitude:270,tankWidth:40,tankHeight:200,curHeight:0})
+        game.sprites.hydro.newTank({X:450,altitude:350,tankWidth:110,tankHeight:200,curHeight:180})
+        game.sprites.hydro.newTank({X:630,altitude:300,tankWidth:80,tankHeight:150,curHeight:0})
+        game.sprites.hydro.newTank({X:630,altitude:415,tankWidth:80,tankHeight:60,curHeight:0})
+        game.sprites.hydro.newTank({X:800,altitude:270,tankWidth:55,tankHeight:200,curHeight:0})
+        game.sprites.hydro.newTank({X:840,altitude:270,tankWidth:55,tankHeight:200,curHeight:0})
         game.sprites.hydro.newTank({X:800,altitude:-100,tankWidth:2000,tankHeight:200,curHeight:1,isVisible:'0'})
         game.sprites.hydro.newCombo([3,4])
-        game.sprites.hydro.newDistributor({X:450,altitude:220,isVisible:'0'})
+        game.sprites.hydro.newDistributor({X:550,altitude:220,isVisible:'0'})
         game.sprites.hydro.newDistributor({X:700,altitude:405,isVisible:'0'})
         game.sprites.hydro.newDistributor({X:840,altitude:200})
         game.sprites.hydro.newPipe({obj:['T0','D0']})
