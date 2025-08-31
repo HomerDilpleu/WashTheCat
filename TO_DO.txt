@@ -4,7 +4,6 @@ TO DO
 P1
 X Finaliser la partie level fini 
 X Mettre en place l'écran d'accueil et le local storage
-- Accélération chat?
 
 P2
 - Faire les niveaux
@@ -23,6 +22,7 @@ P5 optimisations taille
 - Revoir le pur indispensable mge
 
 P6 Polishing
+- Perfect hit
 - Barre de propeté
 - Effets particules
 - Animation étoiles en fin de niveau

@@ -11,6 +11,23 @@ game.sprites.decoration.create = function() {
     p.txt = ''
     p.curDisplayScore = 0
 
+    // Arrow
+    p = game.sprites.decoration.cloneCreate()
+    p.id = 'arrow'
+    p.width = 100
+    p.height = 100
+    p.x = 750
+    p.y = 395
+    p.path = new Path2D("M0 50 L20 30 V40 L100 50 L20 60 V70 L0 50")
+    p.vx = 1
+
+    // Help
+    p = game.sprites.decoration.cloneCreate()
+    p.id = 'help'
+    p.width = 100
+    p.height = 100
+    p.x = 740
+    p.y = 480
 }
 
 game.sprites.decoration.update = function () {
@@ -35,6 +52,12 @@ game.sprites.decoration.update = function () {
         else {this.txt='LEVEL COMPLETED'}
         if (this.curDisplayScore<game.sprites.cat.cleanLevel*100) {this.txt=''}
     }
+    // Arrox
+    if (this.id == 'arrow') {
+        if (this.x < 740) {this.vx=0.4}
+        if (this.x > 760) {this.vx=-0.4}
+        this.x+=this.vx
+    }
 }
 
 game.sprites.decoration.drawFunction = function (ctx) {
@@ -57,7 +80,20 @@ game.sprites.decoration.drawFunction = function (ctx) {
         ctx.fillRect(100,190,this.curDisplayScore*5,50)
         ctx.strokeRect(100,190,500,50)
         ctx.fillText(Math.round(this.curDisplayScore) + '%',this.width/2,150)
-
+    }
+    // Arrow
+    if (this.id == 'arrow' && game.curLevel == 0 && game.levelState == 'running') {
+        ctx.fillStyle = 'yellow'
+        ctx.strokeStyle = 'black'
+        ctx.lineWidth = 2
+        ctx.fill(this.path)
+        ctx.stroke(this.path)
+    }
+    // Help
+    if (this.id == 'help' && game.curLevel == 0 && game.levelState == 'running') {
+        ctx.fillStyle = 'black'
+        ctx.font = "bold 12px sans-serif"
+        ctx.fillText('OPEN / CLOSE THE TAP',0,0)
     }
 
 }
