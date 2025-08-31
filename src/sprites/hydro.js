@@ -441,7 +441,7 @@ game.sprites.hydro.drawValve = function (ctx) {
             ctx.fillRect(-10, 15, 40, 20)
             ctx.fillRect(5, 0, 10, 50)
             // Link to tank (left)
-            ctx.fillStyle = "dimgrey"
+            ctx.fillStyle = "red"//"dimgrey"
             ctx.fillRect(-10,23,-this.trigger.length,4)
             ctx.strokeRect(-10,23,-this.trigger.length,4)
         } else {
@@ -449,7 +449,7 @@ game.sprites.hydro.drawValve = function (ctx) {
             ctx.fillRect(-10, 15, 10, 20)
             ctx.fillRect(20, 15, 10, 20)
             // Link to tank
-            ctx.fillStyle = this.waterCol
+            ctx.fillStyle = "green"//this.waterCol
             ctx.fillRect(-10,23,-this.trigger.length,4)
             ctx.strokeRect(-10,23,-this.trigger.length,4)
         }
