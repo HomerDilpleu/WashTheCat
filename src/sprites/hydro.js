@@ -10,7 +10,7 @@ game.sprites.hydro.reInit = function() {
     this.combos = []
     this.valves = []
     this.showers = []
-    this.linkedTanks = []
+//    this.linkedTanks = []
 }
 game.sprites.hydro.create = function() {
     // Constants shared by all clones
@@ -24,8 +24,6 @@ game.sprites.hydro.create = function() {
     this.reInit()
     // Colours
     this.waterCol = game.hsl(game.mainColor,100,75)
-
-
 }
 
 // *************************************************
@@ -214,32 +212,32 @@ game.sprites.hydro.newShower = function (c) {
     game.sprites.hydro.showers.push(o)
 }
 
-game.sprites.hydro.newLinkedTanks = function (c) {
-    // Create combo of tanks object
-    let o = game.sprites.hydro.cloneCreate()
-    o.type = 'L'
-    // Linked tanks
-    o.sourceTank = game.sprites.hydro.tanks[c[0]]
-    o.targetTank = game.sprites.hydro.tanks[c[1]]
-    o.sourceHeighTrigger = game.sprites.hydro.tanks[c[1]].altitude - game.sprites.hydro.tanks[c[0]].altitude
-    o.sourceTank.isVisible = 0
-    o.targetTank.isVisible = 0
-    // Hydro properties
-    o.tankWidth = o.sourceTank.tankWidth
-    o.tankHeight = o.sourceTank.tankHeight + o.targetTank.tankHeight
-    o.curHeight =  o.sourceTank.curHeight + o.targetTank.curHeight
-    // World coordinates
-    o.X = o.sourceTank.X
-    o.altitude = o.sourceTank.altitude
-    // Sprite properties
-    o.width = o.tankWidth
-    o.height = o.tankHeight
-    o.x = o.X
-    o.y = mge.game.height - o.altitude - o.tankHeight / 2
-    o.isVisible = c.isVisible || '1'
-    // Push to list
-    game.sprites.hydro.linkedTanks.push(o)
-}
+//game.sprites.hydro.newLinkedTanks = function (c) {
+//    // Create combo of tanks object
+//    let o = game.sprites.hydro.cloneCreate()
+//    o.type = 'L'
+//    // Linked tanks
+//    o.sourceTank = game.sprites.hydro.tanks[c[0]]
+//    o.targetTank = game.sprites.hydro.tanks[c[1]]
+//    o.sourceHeighTrigger = game.sprites.hydro.tanks[c[1]].altitude - game.sprites.hydro.tanks[c[0]].altitude
+//    o.sourceTank.isVisible = 0
+//    o.targetTank.isVisible = 0
+//    // Hydro properties
+//    o.tankWidth = o.sourceTank.tankWidth
+//    o.tankHeight = o.sourceTank.tankHeight + o.targetTank.tankHeight
+//    o.curHeight =  o.sourceTank.curHeight + o.targetTank.curHeight
+//    // World coordinates
+//    o.X = o.sourceTank.X
+//    o.altitude = o.sourceTank.altitude
+//    // Sprite properties
+//    o.width = o.tankWidth
+//    o.height = o.tankHeight
+//    o.x = o.X
+//    o.y = mge.game.height - o.altitude - o.tankHeight / 2
+//    o.isVisible = c.isVisible || '1'
+//    // Push to list
+//    game.sprites.hydro.linkedTanks.push(o)
+//}
 
 // *************************************************
 // *************************************************
@@ -252,7 +250,7 @@ game.sprites.hydro.update = function () {
     game.sprites.hydro.calcDistributorsPressure()
     game.sprites.hydro.calcPipesFlow()
     game.sprites.hydro.updateTankCurHeight()
-    game.sprites.hydro.transferLinkedTanks()
+//    game.sprites.hydro.transferLinkedTanks()
     game.sprites.hydro.updateComboCurHeight()
 }
 
@@ -329,19 +327,18 @@ game.sprites.hydro.updateTankCurHeight = function () {
     })
 }
 
-game.sprites.hydro.transferLinkedTanks = function () {
-    // For each linked tanks
-    game.sprites.hydro.linkedTanks.forEach(function (link) {
-        // if minimal height reached in source tank, then transfer water
-        if (link.sourceTank.curHeight > link.sourceHeighTrigger) {
-            link.targetTank.curHeight+=link.sourceTank.curHeight-link.sourceHeighTrigger
-            link.sourceTank.curHeight = link.sourceHeighTrigger
-        } 
-        // Update cur height of the linkedtanks object
-        link.curHeight =  link.sourceTank.curHeight + link.targetTank.curHeight
-
-    })
-}
+//game.sprites.hydro.transferLinkedTanks = function () {
+//    // For each linked tanks
+//    game.sprites.hydro.linkedTanks.forEach(function (link) {
+//        // if minimal height reached in source tank, then transfer water
+//        if (link.sourceTank.curHeight > link.sourceHeighTrigger) {
+//            link.targetTank.curHeight+=link.sourceTank.curHeight-link.sourceHeighTrigger
+//            link.sourceTank.curHeight = link.sourceHeighTrigger
+//        } 
+//        // Update cur height of the linkedtanks object
+//        link.curHeight =  link.sourceTank.curHeight + link.targetTank.curHeight
+//    })
+//}
 
 game.sprites.hydro.updateComboCurHeight = function () {
     // For each combo, update the linked tanks
@@ -508,7 +505,7 @@ game.sprites.hydro.drawCombo = function (ctx) {
     this.drawTank(ctx)
 }
 
-game.sprites.hydro.linkTanks = function (ctx) {
-    // Draw as a tank
-    this.drawTank(ctx)
-}
+//game.sprites.hydro.linkTanks = function (ctx) {
+//    // Draw as a tank
+//    this.drawTank(ctx)
+//}
