@@ -7,7 +7,7 @@ game.sprites.restartContinue.create = function() {
     p = game.sprites.restartContinue.cloneCreate()
     p.id = 'restart'
     p.y = 490
-    p.txt = 'Restart game'
+    p.txt = 'Restart'
     // Continue
     p = game.sprites.restartContinue.cloneCreate()
     p.id = 'continue'
