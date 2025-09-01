@@ -37,6 +37,10 @@ game.sprites.cat.create = function() {
             ctx.strokeStyle = "yellow"
             ctx.stroke(pathEyes)
         }
+        // Tache
+        let alpha = 1-this.cleanLevel
+        ctx.fillStyle = 'rgba(135,60,45,'+alpha+')'
+        ctx.fillRect(50,50,50,20)
     }
 
     // Walk
