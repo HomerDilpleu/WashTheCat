@@ -126,8 +126,8 @@ game.levels.push(function() {
 game.levels.push(function() {
         game.sprites.cat.x = 600
         game.sprites.cat.maxX = 1100
-        game.sprites.hydro.newTank({X:440,altitude:470,tankWidth:100,tankHeight:100,curHeight:80})
-        game.sprites.hydro.newTank({X:540,altitude:470,tankWidth:100,tankHeight:100,curHeight:80})
+        game.sprites.hydro.newTank({X:440,altitude:470,tankWidth:100,tankHeight:100,curHeight:85})
+        game.sprites.hydro.newTank({X:540,altitude:470,tankWidth:100,tankHeight:100,curHeight:85})
         game.sprites.hydro.newTank({X:310,altitude:350,tankWidth:40,tankHeight:150,curHeight:0})
         game.sprites.hydro.newTank({X:350,altitude:350,tankWidth:40,tankHeight:100,curHeight:0})
         game.sprites.hydro.newTank({X:620,altitude:250,tankWidth:40,tankHeight:100,curHeight:0})
