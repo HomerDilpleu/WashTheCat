@@ -109,12 +109,14 @@ game.sprites.hydro.newPipe = function (c) {
     // Create pipe object
     let o = game.sprites.hydro.cloneCreate()
     o.type = 'P'
+    let idObj1 = c.obj[0].slice(1)
+    let idObj2 = c.obj[1].slice(1)
     // Connection 1
-    if (c.obj[0][0] == 'T') {o.connection1 = game.sprites.hydro.tanks[c.obj[0][1]]}
-    if (c.obj[0][0] == 'D') {o.connection1 = game.sprites.hydro.distributors[c.obj[0][1]]}
+    if (c.obj[0][0] == 'T') {o.connection1 = game.sprites.hydro.tanks[idObj1]}
+    if (c.obj[0][0] == 'D') {o.connection1 = game.sprites.hydro.distributors[idObj1]}
     // Connection 2
-    if (c.obj[1][0] == 'T') {o.connection2 = game.sprites.hydro.tanks[c.obj[1][1]]}
-    if (c.obj[1][0] == 'D') {o.connection2 = game.sprites.hydro.distributors[c.obj[1][1]]}
+    if (c.obj[1][0] == 'T') {o.connection2 = game.sprites.hydro.tanks[idObj2]}
+    if (c.obj[1][0] == 'D') {o.connection2 = game.sprites.hydro.distributors[idObj2]}
     // Update 'connected objects' list of each object
     o.connection1.linkedObjects.push(o.connection2)
     o.connection2.linkedObjects.push(o.connection1)
