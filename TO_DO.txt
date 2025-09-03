@@ -9,21 +9,24 @@ P2
 - Faire les niveaux
 
 P3
-- Animations chat
+X Animations chat
+- Mettre en variable globale le local storage
+- Ecran accueil
 - Saleté chat sur le chat
-- Jauge saleté chat?
+- REvoir design des boutons
 
 P4
-- Musique
+- Musique ??
 - Miaulement
+- Cliques
 
 P5 optimisations taille
 - Enleveer le draw boundaries
 - Revoir le pur indispensable mge
 
 P6 Polishing
+- Enlever la pause lorsqu'on clique sur un interruptueur 
 - Perfect hit
-- Barre de propeté
 - Effets particules
 - Animation étoiles en fin de niveau
 - Bouton arrêt / marche son

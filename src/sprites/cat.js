@@ -68,8 +68,13 @@ game.sprites.cat.create = function() {
 
     this.faceAnimation = [this.faceImage]
 
-    // Blocked - TO DO
-    this.blockedAnimation = [this.walk3Image]
+    // Blocked
+    this.blockedBody = new Path2D("M121 47 C100 84,50 39,38 72 C48 78,41 92,23 110 C61 67,93 81,140 95 C91 72,110 71,120 68 Q127 64,121 54 ")
+    this.blockedLegs = new Path2D("M38 72 C40 77,19 98,13 100 C84 65,92 80,129 110 C105 88,92 65,114 68")
+    this.blockedTail = new Path2D("M37 73 C27 66,25 76,9 70")
+    this.blockedImage = {draw: function (ctx) {game.sprites.cat.drawCat(ctx,game.sprites.cat.blockedBody, game.sprites.cat.blockedLegs, game.sprites.cat.blockedTail)}}
+
+    this.blockedAnimation = [this.blockedImage]
 
 }
 
