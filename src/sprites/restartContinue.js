@@ -22,12 +22,12 @@ game.sprites.restartContinue.create = function() {
 
 game.sprites.restartContinue.update = function () {
     // There is a level in local storage
-    if (Number(localStorage.getItem('wtc.maxLevelReached') || '0') > 0) {
+    if (Number(localStorage.getItem(game.lclStorage) || '0') > 0) {
         if (this.id == 'continue') {
             this.isVisible = true
             if (this.isClicked) {
                 game.songs.mainSong.playSong()
-                game.curLevel = Number(localStorage.getItem('wtc.maxLevelReached'))
+                game.curLevel = Number(localStorage.getItem(game.lclStorage))
                 mge.game.changeScene(game.scenes.main)
             }
         }
@@ -35,7 +35,7 @@ game.sprites.restartContinue.update = function () {
             this.isVisible = true
             if (this.isClicked) {
                 game.songs.mainSong.playSong()
-                localStorage.removeItem('wtc.maxLevelReached')
+                localStorage.removeItem(game.lclStorage)
                 game.curLevel = 0
                 mge.game.changeScene(game.scenes.main)
             }

@@ -18,6 +18,7 @@ game = {
   isPaused:false,
   mainColor:195, 
   animationInProgress:false,
+  lclStorage:'wtc.maxLevelReached',
  // Check level end
   getLevelState: function () {
     if (game.sprites.cat.cleanLevel >= 1) {game.levelState='won'}
