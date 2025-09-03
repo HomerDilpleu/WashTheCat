@@ -34,9 +34,11 @@ game.sprites.cat.create = function() {
         ctx.fill(pathLegs)
         ctx.stroke(pathTail)
         // Tache
-        let alpha = 1-this.cleanLevel
+        let alpha = Math.min(1,1.2-this.cleanLevel)
+        if (this.cleanLevel>=1) {alpha = 0}
         //ctx.fillStyle = 'rgba(135,60,45,'+alpha+')'
-        ctx.fillStyle = 'rgba(220,220,220,'+alpha+')'
+        //ctx.fillStyle = 'rgba(220,220,220,'+alpha+')'
+        ctx.fillStyle = 'rgba(80,220,80,'+alpha+')'
         ctx.fill(pahtStain)
         if (pathEyes) {
             ctx.strokeStyle = "yellow"

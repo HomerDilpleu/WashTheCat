@@ -14,6 +14,9 @@ X Mettre en variable globale le local storage
 - Ecran accueil
 X Saleté chat sur le chat
 - REvoir design des boutons
+- Revoir desing shower
+- Revoir design eau qui tombe de la douche
+- Arreter la douche lorsque level completed
 
 P4
 - Musique ??
