@@ -93,12 +93,14 @@ game.sprites.decoration.drawFunction = function (ctx) {
     if (this.id == 'help' && game.curLevel == 0 && game.levelState == 'running') {
         ctx.fillStyle = 'black'
         ctx.font = "bold 12px sans-serif"
-        ctx.fillText('OPEN / CLOSE THE TAP',0,0)
+        ctx.textAlign = 'center'
+        ctx.textBaseline = 'middle'
+        ctx.fillText('OPEN / CLOSE THE TAP',80,0)
     }
     if (this.id == 'help' && game.curLevel == 2 && game.levelState == 'running') {
         ctx.fillStyle = 'black'
         ctx.font = "bold 12px sans-serif"
-        ctx.fillText('REACH THIS POINT TO OPEN VALVE',-60,50)
+        ctx.fillText('REACH THIS POINT TO OPEN VALVE',40,50)
     }
 
 }
