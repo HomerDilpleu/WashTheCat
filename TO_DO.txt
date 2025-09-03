@@ -10,7 +10,7 @@ P2
 
 P3
 X Animations chat
-- Mettre en variable globale le local storage
+X Mettre en variable globale le local storage
 - Ecran accueil
 - Saleté chat sur le chat
 - REvoir design des boutons

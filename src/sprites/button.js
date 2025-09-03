@@ -63,7 +63,7 @@ game.sprites.button.update = function () {
         // If is cliked
         if (this.isClicked && this.isVisible) {
             game.isPaused=false
-            localStorage.setItem('wtc.maxLevelReached', game.curLevel+1)
+            localStorage.setItem(game.lclStorage, game.curLevel+1)
             game.loadLevel(game.curLevel+1)
         }
     }

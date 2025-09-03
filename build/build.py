@@ -254,7 +254,7 @@ stringsToUglify+=['animation']
 #########################################
 #########################################
 # game.js
-stringsToUglify+=['game','scenes','boot','main','sprites','hydro','variables','instruments','songs','utils','mainColor','background']
+stringsToUglify+=['game','scenes','boot','main','sprites','hydro','variables','instruments','songs','utils','mainColor','background','animationInProgress','lclStorage','wtc.maxLevelReached']
 
 # assets / instruments.js
 stringsToUglify+=['preRenderedSounds','standardOsc','octave','volumeADSR','detuneADSR','filterType','filterADSR','reverb','oscGain','oscFilter','_delay','_feedbackGain']
@@ -276,6 +276,7 @@ stringsToUglify+=['cleanLevel','speed','touchThresehold','blockedThresehold','to
 stringsToUglify+=['pathBody','pathLegs','pathTail','pathEyes']
 stringsToUglify+=['walk1Body','walk1Legs','walk1Tail','walk1Image','walk2Body','walk2Legs','walk2Tail','walk2Image','walk3Body','walk3Legs','walk3Tail','walk3Image']
 stringsToUglify+=['walkAnimation','faceBody','faceEyes','faceImage','faceAnimation','blockedAnimation']
+stringsToUglify+=['blockedAnimation','blockedBody','blockedLegs','blockedTail','blockedImage']
 # sprites / cat.js (update)
 stringsToUglify+=['closestShowerAbsDistance','closestShowerDistance']
 # sprites / cat.js (draw)
@@ -301,14 +302,17 @@ stringsToUglify+=['updateComboCurHeight','comboHeight','tanksNb']
 stringsToUglify+=['drawTank','drawDistributor','drawValve','drawPipe']
 # sprites / hydro.js (init)
 stringsToUglify+=['flowConst','minPipeFlow','tanks','distributors','pipes','combos','valves','showers','linkedTanks']
-# sprites / hydro.js (rammassemiettes)
+# sprites / hydro.js (rammasse miettes)
 stringsToUglify+=['tank','pipe','distributor','combo','valve','shower']
 
-# sprites / decoration.js A FAIRE
-# sprites / restartContinue.js A FAIRE
+# sprites / decoration.js
+stringsToUglify+=['endLevel','arrow','help','decoration']
+
+# sprites / restartContinue.js
+stringsToUglify+=['restartContinue']
 
 # sprites / button.js A FAIRE
-stringsToUglify+=['button']
+stringsToUglify+=['button','svgPlay','svgPause']
 
 
 #########################################
