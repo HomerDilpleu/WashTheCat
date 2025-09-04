@@ -13,11 +13,11 @@ X Animations chat
 X Mettre en variable globale le local storage
 X Ecran accueil
 X Saleté chat sur le chat
-- REvoir design des boutons
+X REvoir design des boutons
 - Revoir desing shower
 - Revoir design eau qui tombe de la douche
 - Arreter la douche lorsque level completed
-- Revoir design des niveaux (cohérence d'ensemble)
+X Revoir design des niveaux (cohérence d'ensemble)
 
 P4
 - Musique ??

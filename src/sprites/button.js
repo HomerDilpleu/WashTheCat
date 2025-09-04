@@ -8,7 +8,8 @@ game.sprites.button.create = function() {
     p.height = 50
     p.x = 200
     p.y = 600
-    p.svg = new Path2D('M10 10 A19 19 0 1 0 40 10 L30 20 M40 10 L50 20 M0 0')
+    //p.svg = new Path2D('M10 10 A19 19 0 1 0 40 10 L30 20 M40 10 L50 20 M0 0')
+    p.svg = new Path2D('M16 12 A17 17 0 1 0 34 12 L30 20 M34 12 L45 15')
 
     // Pause Button
     p = game.sprites.button.cloneCreate()
@@ -18,14 +19,14 @@ game.sprites.button.create = function() {
     p.x = 275
     p.y = 600
     p.svgPlay = new Path2D('M10 10 L40 25 L10 40 L10 10')
-    p.svgPause = new Path2D('M20 15 L20 40 M30 15 L30 40')
+    p.svgPause = new Path2D('M20 12 L20 40 M30 12 L30 40')
 
     // Next level Button
     p = game.sprites.button.cloneCreate()
     p.id = 'next'
     p.width = 50
     p.height = 50
-    p.x = 650
+    p.x = 670
     p.y = 450
     p.svg = new Path2D('M10 10 L40 25 L10 40')
 }
@@ -39,10 +40,10 @@ game.sprites.button.update = function () {
         }
         if (game.levelState != 'running' && !game.animationInProgress) {
             if (game.levelState=='failed') {
-                this.x = 620
+                this.x = 630
                 this.y = 450
             } else {
-                this.x = 560
+                this.x = 590
                 this.y = 450
             }
         } else {
@@ -71,8 +72,8 @@ game.sprites.button.update = function () {
 
 game.sprites.button.drawFunction = function (ctx) {
     // Style
-    ctx.fillStyle = "grey"
-    ctx.strokeStyle = "black"
+    ctx.fillStyle = '#AAAAAA'
+    ctx.strokeStyle = 'black'
     ctx.lineWidth = 4
     ctx.lineCap = "round"
     if (this.isClicked) {

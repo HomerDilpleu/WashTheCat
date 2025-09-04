@@ -57,7 +57,7 @@ game.sprites.restartContinue.update = function () {
 }
 
 game.sprites.restartContinue.drawFunction = function (ctx) {
-        ctx.fillStyle = game.hsl(game.mainColor,100,90)
+        ctx.fillStyle = 'white'
         ctx.strokeStyle = 'black'
         ctx.lineWidth = 3
         ctx.fillRect(0,0,this.width,this.height)
