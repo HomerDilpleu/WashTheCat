@@ -6,13 +6,13 @@ game.sprites.restartContinue.create = function() {
     // Restart
     p = game.sprites.restartContinue.cloneCreate()
     p.id = 'restart'
-    p.y = 490
-    p.txt = 'Restart'
+    p.y = 495
+    p.txt = 'RESTART'
     // Continue
     p = game.sprites.restartContinue.cloneCreate()
     p.id = 'continue'
     p.y = 430
-    p.txt = 'Continue'
+    p.txt = 'CONTINUE'
     // Play
     p = game.sprites.restartContinue.cloneCreate()
     p.id = 'play'
@@ -26,7 +26,7 @@ game.sprites.restartContinue.update = function () {
         if (this.id == 'continue') {
             this.isVisible = true
             if (this.isClicked) {
-                game.songs.mainSong.playSong()
+                //game.songs.mainSong.playSong()
                 game.curLevel = Number(localStorage.getItem(game.lclStorage))
                 mge.game.changeScene(game.scenes.main)
             }
@@ -34,7 +34,7 @@ game.sprites.restartContinue.update = function () {
         if (this.id == 'restart') {
             this.isVisible = true
             if (this.isClicked) {
-                game.songs.mainSong.playSong()
+                //game.songs.mainSong.playSong()
                 localStorage.removeItem(game.lclStorage)
                 game.curLevel = 0
                 mge.game.changeScene(game.scenes.main)
@@ -48,7 +48,7 @@ game.sprites.restartContinue.update = function () {
         if (this.id == 'play') {
             this.isVisible = true
             if (this.isClicked) {
-                game.songs.mainSong.playSong()
+                //game.songs.mainSong.playSong()
                 game.curLevel = 0
                 mge.game.changeScene(game.scenes.main)
             }
@@ -57,13 +57,13 @@ game.sprites.restartContinue.update = function () {
 }
 
 game.sprites.restartContinue.drawFunction = function (ctx) {
-        ctx.fillStyle = 'white'
+        ctx.fillStyle = game.hsl(game.mainColor,100,90)
         ctx.strokeStyle = 'black'
-        ctx.lineWidth = 4
+        ctx.lineWidth = 3
         ctx.fillRect(0,0,this.width,this.height)
         ctx.strokeRect(0,0,this.width,this.height)
         // Text
-        ctx.font = "20px sans-serif"
+        ctx.font = "bold 20px sans-serif"
         ctx.fillStyle = 'black'
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'

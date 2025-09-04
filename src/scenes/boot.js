@@ -15,11 +15,13 @@ game.scenes.boot.start = function() {
     game.sprites.decoration.create()
     game.sprites.restartContinue.create()
     // Init cat
-    game.sprites.cat.x = 500
+    game.sprites.cat.x = 550
     game.sprites.cat.maxX = 640
     game.sprites.cat.cleanLevel = 1
     // Green ball for introducvtion
     game.ball={x:mge.game.width/2,y:100}
+    // Play song
+    game.songs.mainSong.playSong()
 }
 
 //////////////////////
@@ -29,16 +31,16 @@ game.scenes.boot.update = function() {
     game.sprites.cat.update()
     // When cat in the center:
     if(game.sprites.cat.x >= game.sprites.cat.maxX) {
-        game.sprites.cat.cleanLevel*=0.99
+        game.sprites.cat.cleanLevel*=0.97
     }
     // When cat is dirty
-    if (game.sprites.cat.cleanLevel <= 0.35) {
+    if (game.sprites.cat.cleanLevel <= 0.4) {
         game.sprites.restartContinue.cloneExecuteForEach('update')
     }
     // Force y position of cat
     game.sprites.cat.y = 300
     // Ball
-    game.ball.y = Math.min(300,game.ball.y+1)
+    game.ball.y = Math.min(300,game.ball.y+1.5)
 }
 
 //////////////////////
@@ -62,17 +64,16 @@ game.scenes.boot.draw = function() {
     ctx.textAlign = 'center'
     ctx.textBaseline = 'middle'
     ctx.fillText('T',mge.game.width/2,150)
-    if (game.sprites.cat.cleanLevel <= 0.35) {
+    // Title other letters
+    let a = 1-game.sprites.cat.cleanLevel
+    ctx.fillStyle = 'rgba(0,0,0,'+a+')'
+    ctx.fillText('WASH    HE CAT',mge.game.width/2+20,150)
+    // JS13
+    ctx.font = "italic bold 40px sans-serif"
+    ctx.fillStyle = 'black'
+    ctx.fillText('A game created for JS13K 2025 challenge',mge.game.width/2,610)
+    if (game.sprites.cat.cleanLevel <= 0.4) {
         // Buttons
         game.sprites.restartContinue.cloneExecuteForEach('draw')
-        // Title
-        ctx.font = "bold 150px sans-serif"
-        ctx.fillStyle = 'black'
-        ctx.textAlign = 'center'
-        ctx.textBaseline = 'middle'
-        ctx.fillText('WASH    HE CAT',mge.game.width/2+20,150)
     }
-    // Foreground
-    ctx.fillStyle = game.hsl(game.mainColor,100,70)
-    ctx.fillRect(0,200,550,200)
 }
