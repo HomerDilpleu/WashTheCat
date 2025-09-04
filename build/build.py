@@ -254,7 +254,8 @@ stringsToUglify+=['animation']
 #########################################
 #########################################
 # game.js
-stringsToUglify+=['game','scenes','boot','main','sprites','hydro','variables','instruments','songs','utils','mainColor','background','animationInProgress','lclStorage','wtc.maxLevelReached']
+stringsToUglify+=['game','scenes','boot','main','sprites','hydro','variables','instruments','songs','utils','mainColor','background','animationInProgress','lclStorage']
+stringsToUglify+=['levelState','wtc.maxLevelReached']
 
 # assets / instruments.js
 stringsToUglify+=['preRenderedSounds','standardOsc','octave','volumeADSR','detuneADSR','filterType','filterADSR','reverb','oscGain','oscFilter','_delay','_feedbackGain']
@@ -311,7 +312,7 @@ stringsToUglify+=['endLevel','arrow','help','decoration']
 # sprites / restartContinue.js
 stringsToUglify+=['restartContinue']
 
-# sprites / button.js A FAIRE
+# sprites / button.js
 stringsToUglify+=['button','svgPlay','svgPause']
 
 
@@ -322,6 +323,7 @@ stringsToUglify+=['button','svgPlay','svgPause']
 #########################################
 stringsToUglify+=['pitchADSR','detuneADSR','filterFreqADSR','filterQADSR','noise','GAME_RENDER_CANVAS','_method','started','stopped','_nbBars','_point']
 stringsToUglify+=['_activateOwnCloneAnimation','_detune']
+stringsToUglify+=['loadLevel','isPaused','minValue','maxValue','newInstrument','feedbackLevel']
 
 
 outputFile='main.js'
