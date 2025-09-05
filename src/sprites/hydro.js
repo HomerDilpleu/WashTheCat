@@ -496,9 +496,9 @@ game.sprites.hydro.drawShower = function (ctx) {
     ctx.fill()
     ctx.stroke()
     // Draw water
-    if(this.linkedPipe.flow < 0) {
+    if(this.linkedPipe.flow < 0 && game.levelState=='running') {
         ctx.fillStyle = this.waterCol
-        ctx.fillRect(0,50,50,125)
+        ctx.fillRect(-3,53,56,122)
     }
 }
 
