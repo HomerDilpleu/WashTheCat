@@ -22,7 +22,7 @@ X Revoir design des niveaux (cohérence d'ensemble)
 P4
 X Musique ??
 X Miaulement
-- Cliques
+X Cliques
 
 P5 optimisations taille
 X Enleveer le draw boundaries
@@ -30,7 +30,7 @@ X Revoir le pur indispensable mge
 
 P6 Polishing
 - Enlever la pause lorsqu'on clique sur un interruptueur 
-- Perfect hit
+X Perfect hit
 - Effets particules
 - Animation étoiles en fin de niveau
 - Bouton arrêt / marche son

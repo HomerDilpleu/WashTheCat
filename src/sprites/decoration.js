@@ -28,6 +28,14 @@ game.sprites.decoration.create = function() {
     p.height = 100
     p.x = 740
     p.y = 480
+
+    // Perfect hit
+    p = game.sprites.decoration.cloneCreate()
+    p.id = 'perfect'
+    p.width = 0
+    p.height = 0
+    p.x = 650
+    p.y = 300
 }
 
 game.sprites.decoration.update = function () {
@@ -57,6 +65,15 @@ game.sprites.decoration.update = function () {
         if (this.x < 740) {this.vx=0.4}
         if (this.x > 760) {this.vx=-0.4}
         this.x+=this.vx
+    }
+    // Perfect
+    if (this.id == 'perfect' && game.sprites.cat.curAnimation == 'blocked') {
+        this.scaleX = Math.min(1,this.scaleX+0.05)
+        this.scaleY = Math.min(1,this.scaleY+0.05)
+    }
+    if (this.id == 'perfect' && game.sprites.cat.curAnimation != 'blocked') {
+        this.scaleX=0
+        this.scaleY=0
     }
 }
 
@@ -102,5 +119,13 @@ game.sprites.decoration.drawFunction = function (ctx) {
         ctx.font = "bold 12px sans-serif"
         ctx.fillText('REACH THIS POINT TO OPEN VALVE',40,50)
     }
-
+    // Perfect hit
+    if (this.id == 'perfect' && game.sprites.cat.curAnimation == 'blocked') {
+        ctx.fillStyle = 'white'
+        ctx.strokeStyle = 'black'
+        ctx.font = "bold 200px sans-serif"
+        ctx.lineWidth = 4
+        ctx.fillText('GREAT!',0,0)
+        ctx.strokeText('GREAT!',0,0)
+    }
 }
