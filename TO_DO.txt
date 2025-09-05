@@ -20,13 +20,13 @@ X Arreter la douche lorsque level completed
 X Revoir design des niveaux (cohérence d'ensemble)
 
 P4
-- Musique ??
-- Miaulement
+X Musique ??
+X Miaulement
 - Cliques
 
 P5 optimisations taille
-- Enleveer le draw boundaries
-- Revoir le pur indispensable mge
+X Enleveer le draw boundaries
+X Revoir le pur indispensable mge
 
 P6 Polishing
 - Enlever la pause lorsqu'on clique sur un interruptueur 

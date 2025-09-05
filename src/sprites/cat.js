@@ -160,6 +160,8 @@ game.sprites.cat.drawFunction = function (ctx) {
         }
         if(this.curAnimation == 'blocked') {
             this.animation.frames = this.blockedAnimation
+            // Horrible de mettre ça là...
+            game.instruments.cat.play(440,mge.audio.currentAudioTime,0.5,0.1)
         }
         this.animation.restart()
     }
