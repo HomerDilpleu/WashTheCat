@@ -95,13 +95,13 @@ mge.game = {
         mge._canvas._renderCanvas.height = _value
     },
     // Frames per second
-    get fps() {
-        return mge._loop._fps
-    },
+//    get fps() {
+//        return mge._loop._fps
+//    },
     // Number of clones
-    get clonesNb() {
-        return mge._game._getClonesNb()
-    },
+//    get clonesNb() {
+//        return mge._game._getClonesNb()
+//    },
     // Access to the game canvas
     get context() {
         return mge._canvas._renderContext
@@ -228,12 +228,12 @@ mge._sprite = {
         this._isVisible = _value
     },
     // drawBoundaries
-    get drawBoundaries() {
-        return this._drawBoundaries
-    },
-    set drawBoundaries(_value) {
-        this._drawBoundaries = _value
-    },
+//    get drawBoundaries() {
+//        return this._drawBoundaries
+//    },
+//    set drawBoundaries(_value) {
+//        this._drawBoundaries = _value
+//    },
     // is touched by mouse
 //    get isTouched() {
 //        return this._isTouched()
@@ -420,10 +420,6 @@ mge._audio._setVolume = function (_volume) {
     mge._audio._audioGain.gain.setValueAtTime(mge._audio._volumeToGain(mge._audio._volume), mge.audio.currentAudioTime)
 }
 
-
-
-
-
 ///////////////////////////
 // Convert a volume to
 // a gain
@@ -536,20 +532,20 @@ mge._game._createSprite = function () {
 // in the game
 ///////////////////////////
 
-mge._game._getClonesNb = function () {
+//mge._game._getClonesNb = function () {
     
     // Initialize the number of clones to 0
-    let _clonesNb = 0
+//    let _clonesNb = 0
 
     // For each sprite, count the number of clones and sum it
-    this._spritesList.forEach(_sprite => {
-        _clonesNb += _sprite._clonesList.length
-    })
+//    this._spritesList.forEach(_sprite => {
+//        _clonesNb += _sprite._clonesList.length
+//    })
 
     // Return the result
-    return _clonesNb
+//    return _clonesNb
 
-}
+//}
 ///////////////////////////
 // Change the scene
 ///////////////////////////
@@ -666,7 +662,7 @@ mge._loop._create = function() {
     this._lastTick = 0
     this._currentTick = 0
     this._elapsedTick = 0
-    this._fps = 0
+//    this._fps = 0
 
 }
 
@@ -686,7 +682,7 @@ mge._loop._tick = function () {
     // Update tick metrics
     mge._loop._currentTick = performance.now()
     mge._loop._elapsedTick = mge._loop._currentTick - mge._loop._lastTick
-    mge._loop._fps = 1 / (mge._loop._elapsedTick / 1000)
+//    mge._loop._fps = 1 / (mge._loop._elapsedTick / 1000)
 
     // Fixed time step 16.67ms (60 fps)
     if (mge._loop._elapsedTick >= 16) {
@@ -873,7 +869,7 @@ mge._sprite._create = function(_ctx) {
     this._scaleX = 1
     this._scaleY = 1
     this._isVisible = true
-    this._drawBoundaries = false
+//    this._drawBoundaries = false
 
     // Properties for mouse
 //    this._dragState = false
@@ -907,11 +903,11 @@ mge._sprite._draw = function() {
         this._drawFunction(_ctx)   
 
         // Draw boundaries if needed
-        if (this._drawBoundaries) {
-            _ctx.strokeStyle = 'red'
-            _ctx.strokeRect(0, 0, this._width, this._height)
-            _ctx.strokeRect(this._width / 2, this._height / 2, 1, 1)
-        }
+//        if (this._drawBoundaries) {
+//            _ctx.strokeStyle = 'red'
+//            _ctx.strokeRect(0, 0, this._width, this._height)
+//            _ctx.strokeRect(this._width / 2, this._height / 2, 1, 1)
+//        }
 
         // Restore context
         _ctx.restore()
