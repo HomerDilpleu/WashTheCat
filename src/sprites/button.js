@@ -53,7 +53,16 @@ game.sprites.button.update = function () {
     }
     // Play/pause
     if (this.id == 'pause') {
-        if (this.isClicked) {game.isPaused=!game.isPaused}
+        if (this.isClicked) {
+            game.isPaused=!game.isPaused
+            if(game.isPaused) {
+                mge.sequencer.stop()
+                mge.audio.volume = 0
+            } else {
+                mge.sequencer.start()
+                mge.audio.volume = 0.8
+            }
+        }
         this.isVisible=true
         if (game.levelState!='running' && !game.animationInProgress) {this.isVisible=false}
     }

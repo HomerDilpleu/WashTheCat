@@ -36,6 +36,14 @@ game.sprites.decoration.create = function() {
     p.height = 0
     p.x = 650
     p.y = 300
+
+    // PAuse
+    p = game.sprites.decoration.cloneCreate()
+    p.id = 'pause'
+    p.width = 0
+    p.height = 0
+    p.x = 650
+    p.y = 300
 }
 
 game.sprites.decoration.update = function () {
@@ -127,5 +135,14 @@ game.sprites.decoration.drawFunction = function (ctx) {
         ctx.lineWidth = 4
         ctx.fillText('GREAT!',0,0)
         ctx.strokeText('GREAT!',0,0)
+    }
+    // Pause
+    if (this.id == 'pause' && game.isPaused && game.levelState=='running') {
+        ctx.fillStyle = 'white'
+        ctx.strokeStyle = 'black'
+        ctx.font = "bold 200px sans-serif"
+        ctx.lineWidth = 4
+        ctx.fillText('PAUSE',0,0)
+        ctx.strokeText('PAUSE',0,0)
     }
 }
