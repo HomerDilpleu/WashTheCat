@@ -64,11 +64,11 @@ game.sprites.decoration.update = function () {
                 this.curDisplayScore+=2
             } else {game.animationInProgress=false}
         }
-        if (game.levelState=='failed') {this.txt='LEVEL FAILED'}
-        else {this.txt='LEVEL COMPLETED'}
+        if (game.levelState=='failed') {this.txt='LEVEL ' + Number(game.curLevel+1) + ' FAILED'}
+        else {this.txt='LEVEL ' + Number(game.curLevel+1) + ' COMPLETED'}
         if (this.curDisplayScore<game.sprites.cat.cleanLevel*100) {this.txt=''}
     }
-    // Arrox
+    // Arrow
     if (this.id == 'arrow') {
         if (this.x < 740) {this.vx=0.4}
         if (this.x > 760) {this.vx=-0.4}
@@ -92,8 +92,8 @@ game.sprites.decoration.drawFunction = function (ctx) {
         ctx.fillStyle = 'white'
         ctx.strokeStyle = 'black'
         ctx.lineWidth = 4
-        ctx.fillRect(0,0,this.width,this.height)
-        ctx.strokeRect(0,0,this.width,this.height)
+        ctx.fillRect(0,0,this.width,this.height+50)
+        ctx.strokeRect(0,0,this.width,this.height+50)
         // Text
         ctx.font = "bold 50px sans-serif"
         ctx.fillStyle = 'black'

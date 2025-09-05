@@ -29,11 +29,11 @@ X Enleveer le draw boundaries
 X Revoir le pur indispensable mge
 
 P6 Polishing
-- Enlever la pause lorsqu'on clique sur un interruptueur 
+- Bouton arrêt / marche son
 X Perfect hit
 - Effets particules
 - Animation étoiles en fin de niveau
-- Bouton arrêt / marche son
+- Enlever la pause lorsqu'on clique sur un interruptueur 
 
 
 

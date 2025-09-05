@@ -29,6 +29,17 @@ game.sprites.button.create = function() {
     p.x = 670
     p.y = 450
     p.svg = new Path2D('M10 10 L40 25 L10 40')
+
+    // Level button
+    for (let i = 1; i <= game.levels.length; i++) {
+        p = game.sprites.button.cloneCreate()
+        p.id = 'lvl'
+        p.width = 30
+        p.height = 30
+        p.x = 400 + i*40
+        p.y = 515
+        p.lvlNb = i
+    }  
 }
 
 game.sprites.button.update = function () {
@@ -77,31 +88,53 @@ game.sprites.button.update = function () {
             game.loadLevel(game.curLevel+1)
         }
     }
+    // Level
+    if (this.id == 'lvl' && this.isClicked && this.lvlNb -1 <= Number(localStorage.getItem(game.lclStorage))) {
+        game.isPaused=false
+        game.loadLevel(this.lvlNb-1)
+    }
 }
 
 game.sprites.button.drawFunction = function (ctx) {
-    // Style
-    ctx.fillStyle = '#AAAAAA'
-    ctx.strokeStyle = 'black'
-    ctx.lineWidth = 4
-    ctx.lineCap = "round"
-    if (this.isClicked) {
-        ctx.fillStyle = "white"
+    if (this.id != 'lvl') {
+        // Style
+        ctx.fillStyle = '#AAAAAA'
+        ctx.strokeStyle = 'black'
+        ctx.lineWidth = 4
+        ctx.lineCap = "round"
+        if (this.isClicked) {
+            ctx.fillStyle = "white"
+        }
+        // Draw button box
+        ctx.fillRect(0,0,50,50)
+        ctx.strokeRect(0,0,50,50)
+        // restart
+        if (this.id == 'restart') {
+            ctx.stroke(this.svg)
+        } 
+        // next
+        if (this.id == 'next') {
+            ctx.stroke(this.svg)
+        } 
+        // Pause
+        if (this.id == 'pause') {
+            if (game.isPaused) {ctx.stroke(this.svgPlay)} 
+            else {ctx.stroke(this.svgPause)}
+        } 
+    } else {
+        if (game.levelState != 'running' && !game.animationInProgress) {
+            // Levels
+            if (this.lvlNb -1 <= Number(localStorage.getItem(game.lclStorage))) {ctx.fillStyle = 'white'} else {ctx.fillStyle = 'grey'}
+            ctx.strokeStyle = 'black'
+            ctx.lineWidth = 2
+            ctx.fillRect (0,0,this.width,this.height)
+            ctx.strokeRect (0,0,this.width,this.height)
+            ctx.font = "bold 16px sans-serif"
+            ctx.textAlign = 'center'
+            ctx.textBaseline = 'middle'
+            ctx.fillStyle = 'black'
+            ctx.fillText(this.lvlNb,this.width/2,this.height/2)
+        }
     }
-    // Draw button box
-    ctx.fillRect(0,0,50,50)
-    ctx.strokeRect(0,0,50,50)
-    // restart
-    if (this.id == 'restart') {
-        ctx.stroke(this.svg)
-    } 
-    // next
-    if (this.id == 'next') {
-        ctx.stroke(this.svg)
-    } 
-    // Pause
-    if (this.id == 'pause') {
-        if (game.isPaused) {ctx.stroke(this.svgPlay)} 
-        else {ctx.stroke(this.svgPause)}
-    } 
+
 }
