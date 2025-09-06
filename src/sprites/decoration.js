@@ -122,7 +122,7 @@ game.sprites.decoration.drawFunction = function (ctx) {
         ctx.textBaseline = 'middle'
         ctx.fillText('OPEN / CLOSE THE TAP',80,0)
     }
-    if (this.id == 'help' && game.curLevel == 2 && game.levelState == 'running') {
+    if (this.id == 'help' && game.curLevel == 3 && game.levelState == 'running') {
         ctx.fillStyle = 'black'
         ctx.font = "bold 12px sans-serif"
         ctx.fillText('REACH THIS POINT TO OPEN VALVE',40,50)

@@ -15,7 +15,7 @@ game.loadLevel = function(levelID) {
     game.levels[game.curLevel]()
 }
 
-// Level 0 - Introduction
+// Introduction
 game.levels.push(function() {
         game.sprites.cat.x = 500
         game.sprites.cat.maxX = 740
@@ -29,7 +29,7 @@ game.levels.push(function() {
         }
 )
 
-// Level 1 - Consolidation with 2 tanks
+// Consolidation with 2 tanks
 //   T0         T1
 //   D0         D1
 //   T2T3     T4T5
@@ -66,8 +66,48 @@ game.levels.push(function() {
         }
 )
 
+// 1 tank, one vales opened
+// T0                 T1
+// D0                 D3
+// T2T3
+//   D1   T4T5T6        
+//          D2        
+//          T7        
 
-// Level 2 - Add triggered valvle concept
+game.levels.push(function() {
+        game.sprites.cat.x = 580
+        game.sprites.cat.maxX = 800
+        game.sprites.hydro.newTank({X:400,altitude:450,tankWidth:100,tankHeight:100,curHeight:40})
+        game.sprites.hydro.newTank({X:850,altitude:450,tankWidth:100,tankHeight:100,curHeight:50})
+        game.sprites.hydro.newTank({X:500,altitude:300,tankWidth:50,tankHeight:120,curHeight:1})
+        game.sprites.hydro.newTank({X:550,altitude:300,tankWidth:50,tankHeight:120,curHeight:1})
+        game.sprites.hydro.newTank({X:650,altitude:250,tankWidth:50,tankHeight:170,curHeight:1})
+        game.sprites.hydro.newTank({X:700,altitude:250,tankWidth:50,tankHeight:170,curHeight:1})
+        game.sprites.hydro.newTank({X:750,altitude:250,tankWidth:50,tankHeight:170,curHeight:1})
+        game.sprites.hydro.newTank({X:1000,altitude:-100,tankWidth:2000,tankHeight:200,curHeight:1,isVisible:'0'})
+        game.sprites.hydro.newCombo([2,3])
+        game.sprites.hydro.newCombo([4,5,6])
+        game.sprites.hydro.newDistributor({X:420,altitude:250,isVisible:'0'})
+        game.sprites.hydro.newDistributor({X:570,altitude:200,isVisible:'0'})
+        game.sprites.hydro.newDistributor({X:700,altitude:200})
+        game.sprites.hydro.newDistributor({X:770,altitude:200,isVisible:'0'})
+        game.sprites.hydro.newPipe({obj:['T0','D0']})
+        game.sprites.hydro.newPipe({obj:['T2','D0']})
+        game.sprites.hydro.newPipe({obj:['T3','D1']})
+        game.sprites.hydro.newPipe({obj:['T4','D1']})
+        game.sprites.hydro.newPipe({obj:['T5','D2']})
+        game.sprites.hydro.newPipe({obj:['T7','D2'],isVisible:'0'})
+        game.sprites.hydro.newPipe({obj:['T1','D3']})
+        game.sprites.hydro.newPipe({obj:['T6','D3']})
+        game.sprites.hydro.newShower({X:700,altitude:180,triggerPipe:5})
+        game.sprites.hydro.newValve({linkedTank:0,isOpen:1})
+        game.sprites.hydro.newValve({linkedTank:1,isOpen:1})
+        game.sprites.hydro.newValve({linkedTank:3,isOpen:1})
+        }
+)
+
+
+// Add triggered valvle concept
 //   T0         T1
 //   D0         D1
 //   T2T3     T4T5
@@ -114,61 +154,7 @@ game.levels.push(function() {
 )
 
 
-// Level 3 - Simple level with several valves
-// T0T1
-// D0       D1         T2T3T4
-//     T5T6T7     D2       D3     T8T9T10
-//        D4                        D5 D6
-//        T11                       T11 
-game.levels.push(function() {
-        game.sprites.cat.x = 600
-        game.sprites.cat.maxX = 1100
-        game.sprites.hydro.newTank({X:440,altitude:470,tankWidth:100,tankHeight:100,curHeight:85})
-        game.sprites.hydro.newTank({X:540,altitude:470,tankWidth:100,tankHeight:100,curHeight:85})
-        game.sprites.hydro.newTank({X:450,altitude:400,tankWidth:50,tankHeight:100,curHeight:1})
-        game.sprites.hydro.newTank({X:500,altitude:400,tankWidth:50,tankHeight:100,curHeight:1})
-        game.sprites.hydro.newTank({X:550,altitude:400,tankWidth:50,tankHeight:100,curHeight:1})
-
-/*
-        game.sprites.hydro.newTank({X:440,altitude:470,tankWidth:100,tankHeight:100,curHeight:85})
-        game.sprites.hydro.newTank({X:540,altitude:470,tankWidth:100,tankHeight:100,curHeight:85})
-        game.sprites.hydro.newTank({X:310,altitude:350,tankWidth:40,tankHeight:170,curHeight:0})
-        game.sprites.hydro.newTank({X:350,altitude:350,tankWidth:40,tankHeight:170,curHeight:0})
-        game.sprites.hydro.newTank({X:620,altitude:250,tankWidth:40,tankHeight:150,curHeight:0})
-        game.sprites.hydro.newTank({X:660,altitude:250,tankWidth:40,tankHeight:150,curHeight:0})
-        game.sprites.hydro.newTank({X:800,altitude:240,tankWidth:45,tankHeight:160,curHeight:0})
-        game.sprites.hydro.newTank({X:845,altitude:240,tankWidth:45,tankHeight:160,curHeight:0})
-        game.sprites.hydro.newTank({X:1000,altitude:397,tankWidth:150,tankHeight:120,curHeight:80})
-        game.sprites.hydro.newTank({X:1000,altitude:-100,tankWidth:2000,tankHeight:200,curHeight:1,isVisible:'0'})
-        game.sprites.hydro.newDistributor({X:430,altitude:355,isVisible:'0'})
-        game.sprites.hydro.newDistributor({X:550,altitude:255,isVisible:'0'})
-        game.sprites.hydro.newDistributor({X:320,altitude:150,isVisible:'0'})
-        game.sprites.hydro.newDistributor({X:785,altitude:180,isVisible:'0'})
-        game.sprites.hydro.newDistributor({X:1000,altitude:200})
-        game.sprites.hydro.newPipe({obj:['T0','D0']})
-        game.sprites.hydro.newPipe({obj:['T3','D0']})
-        game.sprites.hydro.newPipe({obj:['T1','D1']})
-        game.sprites.hydro.newPipe({obj:['T4','D1']})
-        game.sprites.hydro.newPipe({obj:['T2','D2']})
-        game.sprites.hydro.newPipe({obj:['T7','D2']})
-        game.sprites.hydro.newPipe({obj:['T5','D3']})
-        game.sprites.hydro.newPipe({obj:['T6','D3']})
-        game.sprites.hydro.newPipe({obj:['T8','D4']})
-        game.sprites.hydro.newPipe({obj:['T9','D4'],isVisible:'0'})
-        game.sprites.hydro.newCombo([0,1])
-        game.sprites.hydro.newCombo([2,3])
-        game.sprites.hydro.newCombo([4,5])
-        game.sprites.hydro.newCombo([6,7])
-        game.sprites.hydro.newValve({linkedTank:2,isOpen:0})
-        game.sprites.hydro.newValve({linkedTank:5,isOpen:0})
-        game.sprites.hydro.newValve({linkedTank:8,isOpen:0,trigger:{tank:7,height:125,direction:'L',length:130}})
-        game.sprites.hydro.newShower({X:1000,altitude:180,triggerPipe:9})*/
-        }
-)
-
-
-
-// Level 3 - Trigger that needs specific order to open
+// Trigger that needs specific order to open
 //                  T0T1
 //      D0    D1
 //    T2T3  
@@ -216,7 +202,7 @@ game.levels.push(function() {
         }
 )
 
-// Level 4 - Trigger that needs to be closed
+// Trigger that needs to be closed
 // T0T1       D0           T2T3
 //       T4
 //            D1   T5T6  -->    
@@ -257,7 +243,7 @@ game.levels.push(function() {
 )
 
 
-// Level 5 - Double trigger
+// Double trigger
 // T0            T5              T10
 // D0
 //    T1
