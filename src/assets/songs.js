@@ -23,7 +23,7 @@ game.songs.init = function () {
         let bpm = 110
 
         // And finally play the song
-        mge.audio.volume = 0.8
+        mge.audio.volume = 0.75
         game.songs.mainSong.play(bpm,orchestra,mix)
     }    
 }

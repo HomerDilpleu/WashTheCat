@@ -71,7 +71,7 @@ game.sprites.button.update = function () {
                 mge.audio.volume = 0
             } else {
                 mge.sequencer.start()
-                mge.audio.volume = 0.8
+                mge.audio.volume = 0.75
             }
         }
         this.isVisible=true
