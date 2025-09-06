@@ -195,21 +195,21 @@ game.instruments.init = function () {
     game.instruments.cat.init()
     // osc1
     game.instruments.cat.osc1.type = 'sawtooth'
-    game.instruments.cat.osc1.volumeADSR = {a:0.1, d:0.2, s:0.7, r:0.5, minValue:0, maxValue: 1}
+    game.instruments.cat.osc1.volumeADSR = {a:0.05, d:0.1, s:0.5, r:0.2, minValue:0, maxValue: 1}
     game.instruments.cat.osc1.filterType = 'lowpass'
-    game.instruments.cat.osc1.filterADSR = {a:0.005, d:0.3, s:0.4, r:0.8, minValue:3500, maxValue: 4900}
-    game.instruments.cat.osc1.detuneADSR = {a:0.1, d:0, s:0.6, r:0.5, minValue:0, maxValue: 70}
-    game.instruments.cat.osc1.filterQ = 12
-    game.instruments.cat.osc1.reverb = {delay: 0.1, feedbackLevel: 0.5}
+    game.instruments.cat.osc1.filterADSR = {a:0.1, d:0.1, s:0.5, r:0.2, minValue:500, maxValue: 2000}
+    game.instruments.cat.osc1.detuneADSR = {a:0.05, d:0.1, s:0.5, r:0.2, minValue:0, maxValue: 100}
+    //game.instruments.cat.osc1.filterQ = 12
+    game.instruments.cat.osc1.reverb = {delay: 0.1, feedbackLevel: 0.2}
     // osc2 (1 octave down)
-    game.instruments.cat.osc2.type = 'sawtooth'
-    game.instruments.arpege.osc2.octave = 1
-    game.instruments.cat.osc2.volumeADSR = {a:0.1, d:0.2, s:0.7, r:0.5, minValue:0, maxValue: 0.8}
-    game.instruments.cat.osc2.filterType = 'lowpass'
-    game.instruments.cat.osc2.filterADSR = {a:0.005, d:0.3, s:0.4, r:0.8, minValue:3500, maxValue: 4900}
-    game.instruments.cat.osc2.detuneADSR = {a:0.1, d:0, s:0.6, r:0.5, minValue:0, maxValue: 70}
-    game.instruments.cat.osc2.filterQ = 12
-    game.instruments.cat.osc2.reverb = {delay: 0.1, feedbackLevel: 0.5}
+    //game.instruments.cat.osc2.type = 'sawtooth'
+    //game.instruments.arpege.osc2.octave = 1
+    //game.instruments.cat.osc2.volumeADSR = {a:0.1, d:0.2, s:0.7, r:0.5, minValue:0, maxValue: 0.8}
+    //game.instruments.cat.osc2.filterType = 'lowpass'
+    //game.instruments.cat.osc2.filterADSR = {a:0.005, d:0.3, s:0.4, r:0.8, minValue:3500, maxValue: 4900}
+    //game.instruments.cat.osc2.detuneADSR = {a:0.1, d:0, s:0.6, r:0.5, minValue:0, maxValue: 70}
+    //game.instruments.cat.osc2.filterQ = 12
+    //game.instruments.cat.osc2.reverb = {delay: 0.1, feedbackLevel: 0.5}
     // osc3 (not used)
 }
 
