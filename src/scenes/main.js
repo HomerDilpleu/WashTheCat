@@ -21,7 +21,7 @@ game.scenes.main.update = function() {
     }
     game.sprites.button.cloneExecuteForEach('update')
     // Update local storge if nneded
-    if(game.levelState!='running'){localStorage.setItem(game.lclStorage, Math.max(game.curLevel+1,Number(localStorage.getItem(game.lclStorage)))) }
+    if(game.levelState=='won'){localStorage.setItem(game.lclStorage, Math.max(game.curLevel,Number(localStorage.getItem(game.lclStorage)))) }
 }
 
 //////////////////////
