@@ -35,7 +35,7 @@ game.sprites.restartContinue.update = function () {
             this.isVisible = true
             if (this.isClicked) {
                 //game.songs.mainSong.playSong()
-                localStorage.removeItem(game.lclStorage)
+                //localStorage.removeItem(game.lclStorage)
                 game.curLevel = 0
                 mge.game.changeScene(game.scenes.main)
             }

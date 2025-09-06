@@ -29,6 +29,7 @@ X Enleveer le draw boundaries
 X Revoir le pur indispensable mge
 
 P6 Polishing
+- Revoir le moment ou je mets à jour le max niveau + ne pas remettre à 0 en mode "restart"
 - Bouton arrêt / marche son
 X Perfect hit
 - Effets particules
