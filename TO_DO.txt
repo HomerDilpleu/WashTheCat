@@ -1,6 +1,21 @@
 -----------------------------
 TO DO
 -----------------------------
+Finalisation du jeu:
+- Faire dernier niveau
+- Faire écrand de fin de démo
+- Ajouter bouton son
+- Effets particules (eau et level)
+- Revoir couleurs pour fin niveau (mettre en fond blanc semi opaque?) 
+
+Soumission
+- Faie les screenshots et le texte de présentation
+
+Post Soumission
+- Faire le readme git
+- Ecrire un post mortem
+  
+
 P1
 X Finaliser la partie level fini 
 X Mettre en place l'écran d'accueil et le local storage
