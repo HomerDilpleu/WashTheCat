@@ -16,10 +16,20 @@ game.sprites.button.create = function() {
     p.id = 'pause'
     p.width = 50
     p.height = 50
-    p.x = 275
+    p.x = 260
     p.y = 600
     p.svgPlay = new Path2D('M10 10 L40 25 L10 40 L10 10')
     p.svgPause = new Path2D('M20 12 L20 40 M30 12 L30 40')
+
+    // Audio Button
+    p = game.sprites.button.cloneCreate()
+    p.id = 'audio'
+    p.width = 50
+    p.height = 50
+    p.x = 320
+    p.y = 600
+    p.svgOn = new Path2D('M7 20 L7 30 L15 30 L30 40 L30 10 L15 20 L7 20 M37 15 L37 35 M44 10 L44 40')
+    p.svgOff = new Path2D('M7 20 L7 30 L15 30 L30 40 L30 10 L15 20 L7 20 M37 20 L44 30 M44 20 L37 30')
 
     // Next level Button
     p = game.sprites.button.cloneCreate()
@@ -40,6 +50,7 @@ game.sprites.button.create = function() {
         p.y = 515
         p.lvlNb = i
     }  
+
 }
 
 game.sprites.button.update = function () {
@@ -71,6 +82,21 @@ game.sprites.button.update = function () {
                 mge.audio.volume = 0
             } else {
                 mge.sequencer.start()
+                mge.audio.volume = 0.75
+            }
+        }
+        this.isVisible=true
+        if (game.levelState!='running' && !game.animationInProgress) {this.isVisible=false}
+    }
+    // Audio
+    if (this.id == 'audio') {
+        if (this.isClicked) {
+            game.audioOn=!game.audioOn
+            if(!game.audioOn) {
+                //mge.sequencer.stop()
+                mge.audio.volume = 0
+            } else {
+                //mge.sequencer.start()
                 mge.audio.volume = 0.75
             }
         }
@@ -119,6 +145,11 @@ game.sprites.button.drawFunction = function (ctx) {
         if (this.id == 'pause') {
             if (game.isPaused) {ctx.stroke(this.svgPlay)} 
             else {ctx.stroke(this.svgPause)}
+        } 
+        // Audio
+        if (this.id == 'audio') {
+            if (game.audioOn) {ctx.stroke(this.svgOn)} 
+            else {ctx.stroke(this.svgOff)}
         } 
     } else {
         if (game.levelState != 'running' && !game.animationInProgress) {
