@@ -2,7 +2,7 @@
 TO DO
 -----------------------------
 Finalisation du jeu:
-- Faire dernier niveau
+X Faire dernier niveau
 - Faire écrand de fin de démo
 - Ajouter bouton son
 - Effets particules (eau et level)

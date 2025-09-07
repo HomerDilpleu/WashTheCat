@@ -36,7 +36,7 @@ game.sprites.button.create = function() {
         p.id = 'lvl'
         p.width = 30
         p.height = 30
-        p.x = 400 + i*40
+        p.x = 430 + i*40
         p.y = 515
         p.lvlNb = i
     }  
