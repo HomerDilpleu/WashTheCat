@@ -79,10 +79,10 @@ game.sprites.button.update = function () {
             game.isPaused=!game.isPaused
             if(game.isPaused) {
                 mge.sequencer.stop()
-                mge.audio.volume = 0
+//                mge.audio.volume = 0
             } else {
                 mge.sequencer.start()
-                mge.audio.volume = 0.75
+//                mge.audio.volume = 0.75
             }
         }
         this.isVisible=true
