@@ -72,6 +72,9 @@ game.scenes.boot.draw = function() {
     ctx.font = "italic bold 40px sans-serif"
     ctx.fillStyle = 'black'
     ctx.fillText('A game created for JS13K 2025 challenge',mge.game.width/2,610)
+    // Homer Dilpleu
+    ctx.font = "italic bold 20px sans-serif"
+    ctx.fillText('by Homer Dilpleu',mge.game.width/2,650)
     if (game.sprites.cat.cleanLevel <= 0.4) {
         // Buttons
         game.sprites.restartContinue.cloneExecuteForEach('draw')
