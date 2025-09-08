@@ -36,6 +36,7 @@ game.sprites.decoration.create = function() {
     p.height = 0
     p.x = 650
     p.y = 300
+    p.perfectTxt = 'GREAT!'
 
     // PAuse
     p = game.sprites.decoration.cloneCreate()
@@ -82,6 +83,8 @@ game.sprites.decoration.update = function () {
     if (this.id == 'perfect' && game.sprites.cat.curAnimation != 'blocked') {
         this.scaleX=0
         this.scaleY=0
+        let array = ['GREAT!','AMAZING!','FANTASTIC!','SUPERB!','EXCELLENT!','NICE!']
+        this.perfectTxt=array[Math.floor(Math.random() * array.length)]
     }
 }
 
@@ -131,8 +134,8 @@ game.sprites.decoration.drawFunction = function (ctx) {
         ctx.strokeStyle = 'black'
         ctx.font = "bold 200px sans-serif"
         ctx.lineWidth = 4
-        ctx.fillText('GREAT!',0,0)
-        ctx.strokeText('GREAT!',0,0)
+        ctx.fillText(this.perfectTxt,0,0)
+        ctx.strokeText(this.perfectTxt,0,0)
     }
     // Pause
     if (this.id == 'pause' && game.isPaused && game.levelState=='running') {

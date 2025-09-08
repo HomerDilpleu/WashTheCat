@@ -6,7 +6,7 @@ X Faire dernier niveau
 - Faire écrand de fin de démo
 X Ajouter bouton son
 - Effets particules (eau et level)
-- Revoir couleurs pour fin niveau (mettre en fond blanc semi opaque?) 
+X Revoir couleurs pour fin niveau (mettre en fond blanc semi opaque?) 
 
 Soumission
 - Faie les screenshots et le texte de présentation
