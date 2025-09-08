@@ -43,7 +43,7 @@ game.sprites.decoration.create = function() {
     p.width = 0
     p.height = 0
     p.x = 650
-    p.y = 300
+    p.y = 150
 }
 
 game.sprites.decoration.update = function () {
@@ -89,16 +89,14 @@ game.sprites.decoration.drawFunction = function (ctx) {
     // End level
     if (this.id == 'endLevel' && game.levelState != 'running') {
         // Rectangle
-        ctx.fillStyle = 'white'
-        ctx.strokeStyle = 'black'
+        ctx.fillStyle = game.hsl(game.mainColor,100,98)
+        ctx.strokeStyle = game.hsl(game.mainColor,100,15)
         ctx.lineWidth = 4
         ctx.fillRect(0,0,this.width,this.height+50)
         ctx.strokeRect(0,0,this.width,this.height+50)
         // Text
         ctx.font = "bold 50px sans-serif"
-        ctx.fillStyle = 'black'
-        //ctx.shadowColor = 'white'
-        //ctx.shadowBlur = 0
+        ctx.fillStyle = game.hsl(game.mainColor,100,15)
         ctx.textAlign = 'center'
         ctx.fillText(this.txt,this.width/2,80)
         // Score bar
@@ -129,7 +127,7 @@ game.sprites.decoration.drawFunction = function (ctx) {
     }
     // Perfect hit
     if (this.id == 'perfect' && game.sprites.cat.curAnimation == 'blocked') {
-        ctx.fillStyle = 'white'
+        ctx.fillStyle = '#FF0000'
         ctx.strokeStyle = 'black'
         ctx.font = "bold 200px sans-serif"
         ctx.lineWidth = 4
@@ -138,7 +136,7 @@ game.sprites.decoration.drawFunction = function (ctx) {
     }
     // Pause
     if (this.id == 'pause' && game.isPaused && game.levelState=='running') {
-        ctx.fillStyle = 'white'
+        ctx.fillStyle = 'yellow'
         ctx.strokeStyle = 'black'
         ctx.font = "bold 200px sans-serif"
         ctx.lineWidth = 4

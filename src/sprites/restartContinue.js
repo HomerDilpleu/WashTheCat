@@ -57,14 +57,14 @@ game.sprites.restartContinue.update = function () {
 }
 
 game.sprites.restartContinue.drawFunction = function (ctx) {
-        ctx.fillStyle = 'white'
-        ctx.strokeStyle = 'black'
+        ctx.fillStyle = game.hsl(game.mainColor,100,95)
+        ctx.strokeStyle = game.hsl(game.mainColor,100,5)
         ctx.lineWidth = 3
         ctx.fillRect(0,0,this.width,this.height)
         ctx.strokeRect(0,0,this.width,this.height)
         // Text
         ctx.font = "bold 20px sans-serif"
-        ctx.fillStyle = 'black'
+        ctx.fillStyle = game.hsl(game.mainColor,100,5)
         ctx.textAlign = 'center'
         ctx.textBaseline = 'middle'
         ctx.fillText(this.txt,this.width/2,this.height/2)

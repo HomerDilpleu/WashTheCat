@@ -8,7 +8,6 @@ game.sprites.button.create = function() {
     p.height = 50
     p.x = 200
     p.y = 600
-    //p.svg = new Path2D('M10 10 A19 19 0 1 0 40 10 L30 20 M40 10 L50 20 M0 0')
     p.svg = new Path2D('M16 12 A17 17 0 1 0 34 12 L30 20 M34 12 L45 15')
 
     // Pause Button
@@ -79,10 +78,8 @@ game.sprites.button.update = function () {
             game.isPaused=!game.isPaused
             if(game.isPaused) {
                 mge.sequencer.stop()
-//                mge.audio.volume = 0
             } else {
                 mge.sequencer.start()
-//                mge.audio.volume = 0.75
             }
         }
         this.isVisible=true
@@ -93,10 +90,8 @@ game.sprites.button.update = function () {
         if (this.isClicked) {
             game.audioOn=!game.audioOn
             if(!game.audioOn) {
-                //mge.sequencer.stop()
                 mge.audio.volume = 0
             } else {
-                //mge.sequencer.start()
                 mge.audio.volume = 0.75
             }
         }
@@ -123,8 +118,8 @@ game.sprites.button.update = function () {
 game.sprites.button.drawFunction = function (ctx) {
     if (this.id != 'lvl') {
         // Style
-        ctx.fillStyle = '#AAAAAA'
-        ctx.strokeStyle = 'black'
+        ctx.fillStyle = game.hsl(game.mainColor,100,95)
+        ctx.strokeStyle = game.hsl(game.mainColor,100,15)
         ctx.lineWidth = 4
         ctx.lineCap = "round"
         if (this.isClicked) {
@@ -154,15 +149,15 @@ game.sprites.button.drawFunction = function (ctx) {
     } else {
         if (game.levelState != 'running' && !game.animationInProgress) {
             // Levels
-            if (this.lvlNb -1 <= Number(localStorage.getItem(game.lclStorage))) {ctx.fillStyle = 'white'} else {ctx.fillStyle = 'grey'}
-            ctx.strokeStyle = 'black'
+            if (this.lvlNb -1 <= Number(localStorage.getItem(game.lclStorage))) {ctx.fillStyle = game.hsl(game.mainColor,100,95)} else {ctx.fillStyle = game.hsl(game.mainColor,50,50)}
+            ctx.strokeStyle = game.hsl(game.mainColor,100,15)
             ctx.lineWidth = 2
             ctx.fillRect (0,0,this.width,this.height)
             ctx.strokeRect (0,0,this.width,this.height)
             ctx.font = "bold 16px sans-serif"
             ctx.textAlign = 'center'
             ctx.textBaseline = 'middle'
-            ctx.fillStyle = 'black'
+            ctx.fillStyle = game.hsl(game.mainColor,100,15)
             ctx.fillText(this.lvlNb,this.width/2,this.height/2)
         }
     }
