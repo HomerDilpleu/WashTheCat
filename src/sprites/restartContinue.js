@@ -26,7 +26,7 @@ game.sprites.restartContinue.update = function () {
         if (this.id == 'continue') {
             this.isVisible = true
             if (this.isClicked) {
-                //game.songs.mainSong.playSong()
+                game.songs.mainSong.playSong()
                 game.curLevel = Number(localStorage.getItem(game.lclStorage))
                 mge.game.changeScene(game.scenes.main)
             }
@@ -34,7 +34,7 @@ game.sprites.restartContinue.update = function () {
         if (this.id == 'restart') {
             this.isVisible = true
             if (this.isClicked) {
-                //game.songs.mainSong.playSong()
+                game.songs.mainSong.playSong()
                 //localStorage.removeItem(game.lclStorage)
                 game.curLevel = 0
                 mge.game.changeScene(game.scenes.main)
@@ -48,7 +48,7 @@ game.sprites.restartContinue.update = function () {
         if (this.id == 'play') {
             this.isVisible = true
             if (this.isClicked) {
-                //game.songs.mainSong.playSong()
+                game.songs.mainSong.playSong()
                 game.curLevel = 0
                 mge.game.changeScene(game.scenes.main)
             }

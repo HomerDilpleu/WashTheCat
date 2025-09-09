@@ -21,7 +21,7 @@ game.scenes.boot.start = function() {
     // Green ball for introducvtion
     game.ball={x:mge.game.width/2,y:100}
     // Play song
-    game.songs.mainSong.playSong()
+    //game.songs.mainSong.playSong()
 }
 
 //////////////////////
