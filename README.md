@@ -1,4 +1,4 @@
-![]/images/Cover.png
+![](/images/Cover.png)
 
 # Overview
 "Wash the Cat" is a puzzle game where you must manipulate a hydraulic system to clean a dirty black cat!
@@ -19,3 +19,10 @@ With simple controls but increasingly tricky levels, can you master the flow and
 - A mix of logic and timing challenges.
 
 Dive in and see if you have what it takes to wash this cat!
+
+# Screenshots
+Level 4
+![](/images/screenShot2.png)
+
+Level 8
+![](/images/screenShot1.png)
